@@ -10,5 +10,6 @@ namespace CrudOperation.Service
 	public interface IProductService
 	{
 		bool SaveProduct(Product product);
+		List<Product> GetProductList();
 	}
 }

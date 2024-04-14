@@ -9,4 +9,13 @@
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.procGetProductList_14042024" Method="procGetProductList_14042024">
+    <ElementType Name="procGetProductList_14042024Result">
+      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

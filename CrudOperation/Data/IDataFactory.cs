@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using CrudOperation.Data;
 
-namespace CurdwithMVC.Data
+namespace CrudOperation.Data
 {
-	public interface IDataFatory
+	public interface IDataFactory
 	{
-		DataFactoryDBDataContext DataFatoryDBDataContext();
+		DataFactoryDBDataContext DataFactoryDBDataContext();
 
 	}
 }

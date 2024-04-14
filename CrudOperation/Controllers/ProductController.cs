@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CrudOperation.Data;
 using CrudOperation.Models;
 using CrudOperation.Service;
 
@@ -15,7 +17,18 @@ namespace CrudOperation.Controllers
         {
             _productService = productService;
         }
-        public ActionResult NewProduct()
+
+
+
+		public ActionResult GetProductList()
+		{
+			var res = _productService.GetProductList();
+
+			return View(res);
+		}
+
+
+		public ActionResult NewProduct()
         {
             return View();
         }
@@ -27,8 +40,11 @@ namespace CrudOperation.Controllers
             return Json(result,JsonRequestBehavior.AllowGet);
 
 		}
-
-        public ActionResult NewProductSuccess()
+		public ActionResult UpdateProduct()
+		{
+			return View();
+		}
+		public ActionResult NewProductSuccess()
         {
             return View();
         }

@@ -147,7 +147,6 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IDataFactory.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Service\IProductService.cs" />
@@ -203,6 +202,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Product\NewProduct.cshtml" />
+    <Content Include="Views\Product\GetProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
