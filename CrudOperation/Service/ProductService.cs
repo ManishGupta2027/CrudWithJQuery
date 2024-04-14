@@ -14,6 +14,13 @@ namespace CrudOperation.Service
 		{
 			_productRepository = productRepository;
 		}
+
+		public List<Product> GetProductList()
+		{
+			var res = _productRepository.GetProductList();
+			return res;
+		}
+
 		public bool SaveProduct(Product product)
 		{
 			var res = _productRepository.SaveProduct(product);

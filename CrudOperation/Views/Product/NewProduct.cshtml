@@ -100,8 +100,31 @@
             // Bind click event to submit button
             $("#submitBtn").click(function () {
                 if (validateForm()) {
-                    // Your submission logic here
-                    alert("Form submitted successfully!");
+
+                    var data = {
+                        title: $("#title").val().trim(),
+                        stockcode: $("#stockcode").val().trim(),
+                        category: $("#dropdownMenuButton1").text().trim(),
+                        price: $("#price").val().trim()
+                    };
+
+                    $.ajax({
+                        url: "/Product/NewProduct",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+                        success: function (response) {
+                            // Handle success response
+                            if (response === true) {
+                                alert("Form submitted successfully!");
+                                window.location.href="/Product/GetProductList"
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle error
+                            console.error(xhr.responseText);
+                        }
+                    });
 
 
                 }

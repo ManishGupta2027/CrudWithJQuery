@@ -4,8 +4,7 @@ using System.Configuration;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Web;
-using CrudOperation.Data;
-using CrudOperation.Repository;
+
 
 namespace CrudOperation.Data
 {

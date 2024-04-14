@@ -10,5 +10,6 @@ namespace CrudOperation.Repository
 	public interface IProductRepository
 	{
 		bool SaveProduct(Product product);
+		List<Product> GetProductList();
 	}
 }

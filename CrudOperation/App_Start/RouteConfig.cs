@@ -16,7 +16,7 @@ namespace CrudOperation
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Product", action = "NewProduct", id = UrlParameter.Optional }
+                defaults: new { controller = "Product", action = "GetProductList", id = UrlParameter.Optional }
             );
         }
     }

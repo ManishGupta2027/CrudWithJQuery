@@ -7,9 +7,11 @@ namespace CrudOperation.Models
 {
     public class Product
     {
-        public string Title { get; set; }
+		internal int id;
+
+		public string Title { get; set; }
         public string StockCode { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         public string Category { get; set; }
        

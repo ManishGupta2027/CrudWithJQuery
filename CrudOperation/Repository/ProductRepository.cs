@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CrudOperation.Data;
 using CrudOperation.Models;
+using CrudOperation.Data;
 
 namespace CrudOperation.Repository
 {
@@ -16,13 +17,23 @@ namespace CrudOperation.Repository
 			_dataFactory = dataFactory;
 			_dataFactoryDBDataContext = _dataFactory.DataFactoryDBDataContext();
 		}
-
-		public bool SaveProduct(Product product)
+		public List<Product> GetProductList()
 		{
-			throw new NotImplementedException();
+			var dbResp = _dataFactoryDBDataContext.procGetProductList_14042024();
+			var Product = (from o in dbResp
+						select new Product
+						{
+							Title = o.Title,
+							StockCode = o.StockCode,
+							Price = (decimal)o.Price,
+							Category = o.Category,
+							id = o.id,
+						}).ToList();
+			return Product;
+
 		}
 
-		public bool SaveUser(Product product)
+		public bool SaveProduct(Product product)
 		{
 			var res = _dataFactoryDBDataContext.procSaveProduct_11042024(product.Title, product.StockCode, product.Price, product.Category);
 		var isValid=res.FirstOrDefault().isValid;
