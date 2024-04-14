@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "NewProduct";
+}
+
+<h2>NewProduct</h2>
+
+<h2 class="text-center">Product Details</h2>
+
+<div class="container-fluid min-vh-100 w-50 justify-content-center">
+    <form class="mb-3" action="#">
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title">
+            <span id="titleError" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>StockCode</label>
+            <input type="text" class="form-control" id="stockcode" placeholder="Stock Code">
+            <span id="stockcodeError" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label>Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Price" inputmode="numeric">
+            <span id="priceError" class="text-danger"></span>
+        </div>
+
+        <div class="dropdown mb-3">
+            <label>Category:</label>
+            <button class="btn btn-warning dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Any Category
+            </button>
+            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#" onclick="changeCategory('Phone')">Phone</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeCategory('Clothes')">Clothes</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeCategory('Foods')">Foods</a></li>
+            </ul>
+            <span id="categoryError" class="text-danger"></span>
+        </div>
+
+        <script>
+                function changeCategory(category) {
+                    document.getElementById('dropdownMenuButton1').innerText = category;
+                }
+        </script>
+
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="button" value="Submit" id="submitBtn" >Submit</button>
+    </form>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function () {
+            // Function to validate form
+            function validateForm() {
+                var title = $("#title").val().trim();
+                var stockcode = $("#stockcode").val().trim();
+                var category = $("#dropdownMenuButton1").text().trim();
+                var price = $("#price").val().trim();
+
+                // Reset previous errors
+                $(".text-danger").html("");
+
+                var isValid = true;
+
+                // Title validation
+                if (title === "") {
+                    $("#titleError").html("Title cannot be empty");
+                    isValid = false;
+                }
+
+                // StockCode validation
+                if (stockcode === "") {
+                    $("#stockcodeError").html("Stock Code cannot be empty");
+                    isValid = false;
+                }
+
+                // Category validation
+                if (category === "Select Any Category") {
+                    $("#categoryError").html("Please select a category");
+                    isValid = false;
+                }
+
+                // Price validation
+                if (price === "") {
+                    $("#priceError").html("Price cannot be empty");
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Bind input event listeners to clear error messages
+            $("#title, #stockcode, #price").on("input", function () {
+                $(this).siblings(".text-danger").html("");
+            });
+
+            // Bind click event to submit button
+            $("#submitBtn").click(function () {
+                if (validateForm()) {
+                    // Your submission logic here
+                    alert("Form submitted successfully!");
+                }
+            });
+        });
+</script>
+
+
+

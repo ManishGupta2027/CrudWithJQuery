@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRUD" Class="DataFactoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MANISH\MSSQLSERVER2023;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.procSaveProduct_11042024" Method="procSaveProduct_11042024">
+    <Parameter Name="Title" Parameter="title" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="StockCode" Parameter="stockCode" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Category" Parameter="category" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="procSaveProduct_11042024Result">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

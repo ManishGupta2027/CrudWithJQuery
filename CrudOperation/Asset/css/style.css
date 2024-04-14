@@ -1,0 +1,60 @@
+/* CSS for the circular button */
+.circular-color-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  
+  .main-discount-banner {
+    display: flex;
+    justify-content: space-between; /* Place content at the beginning and end */
+    align-items: center;
+    background-color: #dc3545;
+    padding: 10px;
+    
+}
+
+.main-discount-banner span {
+    flex: 1; /* Let the span element take up available space */
+    text-align: center; /* Center the text within the span */
+    
+}
+
+.main-discount-banner i {
+    font-size: 20px;
+    cursor: pointer;
+}
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/*.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown {
+    margin-left: 40rem;
+    margin-right: 40rem;
+}
+
+.name {
+    text-align: center;
+    color: green;
+} 
+*/
+.dropdown:hover .dropdown-menu {
+    display: block;
+   
+}
+
+.dropdown-item:hover {
+    background-color:gray ;
+}
+
+
