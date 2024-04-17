@@ -21,6 +21,18 @@ namespace CrudOperation.Service
 			return res;
 		}
 
+		public Product GetProductListById(int id)
+		{
+			return _productRepository.GetProductListById(id);
+		}
+		public bool UpsertProduct(Product product)
+		{
+			return _productRepository.UpsertProduct(product);
+		}
+		public bool DeleteProduct(int id)
+		{
+			return _productRepository.DeleteProduct(id);
+		}
 		public bool SaveProduct(Product product)
 		{
 			var res = _productRepository.SaveProduct(product);
