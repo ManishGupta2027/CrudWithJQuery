@@ -75,6 +75,27 @@ namespace CrudOperation.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<procGetProductList_14042024Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductDetail_14042024")]
+		public ISingleResult<procGetProductDetail_14042024Result> procGetProductDetail_14042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<procGetProductDetail_14042024Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertProduct_14042024")]
+		public ISingleResult<procUpsertProduct_14042024Result> procUpsertProduct_14042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, title, stockCode, price, category);
+			return ((ISingleResult<procUpsertProduct_14042024Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procDeleteProduct_15042024")]
+		public ISingleResult<procDeleteProduct_15042024Result> procDeleteProduct_15042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<procDeleteProduct_15042024Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procSaveProduct_11042024Result
@@ -196,6 +217,156 @@ namespace CrudOperation.Data
 				if ((this._id != value))
 				{
 					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetProductDetail_14042024Result
+	{
+		
+		private string _Title;
+		
+		private string _StockCode;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private string _Category;
+		
+		private int _id;
+		
+		public procGetProductDetail_14042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(100)")]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockCode", DbType="VarChar(50)")]
+		public string StockCode
+		{
+			get
+			{
+				return this._StockCode;
+			}
+			set
+			{
+				if ((this._StockCode != value))
+				{
+					this._StockCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(100)")]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this._Category = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procUpsertProduct_14042024Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		public procUpsertProduct_14042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procDeleteProduct_15042024Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		public procDeleteProduct_15042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
 				}
 			}
 		}

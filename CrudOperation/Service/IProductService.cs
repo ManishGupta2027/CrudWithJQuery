@@ -11,5 +11,8 @@ namespace CrudOperation.Service
 	{
 		bool SaveProduct(Product product);
 		List<Product> GetProductList();
+		bool UpsertProduct(Product product);
+		Product GetProductListById(int id);
+		bool DeleteProduct(int id);
 	}
 }
