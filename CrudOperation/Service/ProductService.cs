@@ -25,7 +25,7 @@ namespace CrudOperation.Service
 		{
 			return _productRepository.GetProductListById(id);
 		}
-		public bool UpsertProduct(Product product)
+		public Response UpsertProduct(Product product)
 		{
 			return _productRepository.UpsertProduct(product);
 		}

@@ -36,8 +36,17 @@ namespace CrudOperation.Controllers
         [HttpPost]
         public JsonResult NewProduct(Product product)
         {
-            var result = _productService.SaveProduct(product);
+            var result = _productService.UpsertProduct(product);
             return Json(result,JsonRequestBehavior.AllowGet);
+
+		}
+
+		[HttpPost]
+		public JsonResult UpsertProduct(Product product)
+		{
+
+			var result = _productService.UpsertProduct(product);
+			return Json(result, JsonRequestBehavior.AllowGet);
 
 		}
 
@@ -52,14 +61,6 @@ namespace CrudOperation.Controllers
 			return View(user);
 		}
 
-		[HttpPost]
-		public JsonResult UpsertProduct(Product product)
-		{
-
-			var result = _productService.UpsertProduct(product);
-			return Json(result, JsonRequestBehavior.AllowGet);
-
-		}
 
 
 		[HttpGet]

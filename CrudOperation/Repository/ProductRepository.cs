@@ -54,24 +54,35 @@ namespace CrudOperation.Repository
 			return product;
 		}
 
-		public bool UpsertProduct(Product product)
+		public Response UpsertProduct(Product product)
 		{
+			var a = new Response();
 			// Check if the new StockCode is the same as the existing StockCode
 			var existingProduct = GetProductListById(product.Id);
 			if (existingProduct == null)
 			{
-				return false;
+				return a;
 			}
 
 			if (existingProduct.StockCode != product.StockCode)
 			{
-				return false;
+				return a;
 			}
 
 			// Proceed with the update operation
-			var res = _dataFactoryDBDataContext.procUpsertProduct_19042024(product.Id,product.Title, product.StockCode, product.Price,product.Category,product.Gender,product.IsActive);
-			var isValid = res.FirstOrDefault()?.isValid;
-			return isValid ?? false;
+
+
+
+			var res = _dataFactoryDBDataContext.procUpsertProduct_20240420(product.Id,product.Title, product.StockCode, product.Price,product.Category,product.Gender,product.IsActive);
+			 a = (from o in res
+						   select new Response
+						   {
+							   isValid = o.isValid,
+							   Message = o.Message,
+						   }).FirstOrDefault();
+
+			//var isValid = res.FirstOrDefault()?.isValid;
+			return a;
 		}
 		public bool DeleteProduct(int id)
 		{

@@ -167,9 +167,12 @@
                         data: JSON.stringify(data),
                         success: function (response) {
                             // Handle success response
-                            if (response === true) {
-                                alert("Form submitted successfully!");
-                                window.location.href="/Product/GetProductList"
+                            if (response.isValid == true) {
+                                alert(response.message);
+                                window.location.href = "/Product/GetProductList"
+                            }
+                            else {
+                                alert(response.message);
                             }
                         },
                         error: function (xhr, status, error) {

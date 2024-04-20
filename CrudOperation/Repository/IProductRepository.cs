@@ -11,7 +11,7 @@ namespace CrudOperation.Repository
 	{
 		bool SaveProduct(Product product);
 		List<Product> GetProductList();
-		bool UpsertProduct(Product product);
+		Response UpsertProduct(Product product);
 		Product GetProductListById(int id);
 		bool DeleteProduct(int id);
 	}
