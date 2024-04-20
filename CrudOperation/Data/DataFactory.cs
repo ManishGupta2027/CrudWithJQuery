@@ -14,7 +14,7 @@ namespace CrudOperation.Data
 		string _connectionString;
 		public DataFactoryDBDataContext DataFactoryDBDataContext()
 		{
-			_connectionString = ConfigurationManager.ConnectionStrings["CRUDConnectionString"].ConnectionString;
+			_connectionString = ConfigurationManager.ConnectionStrings["CRUDConnectionString1"].ConnectionString;
 			return new DataFactoryDBDataContext(_connectionString, _sharedMappingSource);
 		}
 	}

@@ -12,9 +12,9 @@
 <table class="table table-striped">
     <thead class="thead-dark bg-secondary">
         <tr class="p-4">
-            @*<th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>*@
+            <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -40,9 +40,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
+                <td>
             @Html.DisplayFor(modelItem => item.Id)
-        </td>*@
+        </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>

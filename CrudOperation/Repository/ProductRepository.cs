@@ -40,7 +40,7 @@ namespace CrudOperation.Repository
 
 		public Product GetProductListById(int id)
 		{
-			var dbResp = _dataFactoryDBDataContext.procGetProductDetail_19042024(id);
+			var dbResp = _dataFactoryDBDataContext.procGetProductDetail_20240420(id);
 			var product = (from o in dbResp
 						   select new Product
 						   {
@@ -50,6 +50,7 @@ namespace CrudOperation.Repository
 							   Category = o.Category,
 							   Id = o.id,
 							   Gender = o.Gender,
+							   IsActive = (bool)(o.IsActive ?? false), // Handling null value for IsActive field
 						   }).FirstOrDefault();
 			return product;
 		}

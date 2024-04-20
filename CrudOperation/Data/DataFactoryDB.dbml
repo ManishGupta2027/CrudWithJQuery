@@ -1,20 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRUD" Class="DataFactoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=MANISH\MSSQLSERVER2023;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-DH5RI22C\SQLEXPRESS;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="dbo.procDeleteProduct_15042024" Method="procDeleteProduct_15042024">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="procDeleteProduct_15042024Result">
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.procGetProductDetail_19042024" Method="procGetProductDetail_19042024">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="procGetProductDetail_19042024Result">
-      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.procSaveProduct_19042024" Method="procSaveProduct_19042024">
@@ -42,6 +31,18 @@
   </Function>
   <Function Name="dbo.procGetProductList_19042024" Method="procGetProductList_19042024">
     <ElementType Name="procGetProductList_19042024Result">
+      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetProductDetail_20240420" Method="procGetProductDetail_20240420">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetProductDetail_20240420Result">
       <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
