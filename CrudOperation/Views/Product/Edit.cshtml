@@ -192,6 +192,23 @@
             </ul>
             <span id="categoryError" class="text-danger"></span>
         </div>
+        <div class="mb-3">
+            <label>Gender :</label>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male"  @(Model.Gender == "male" ? "checked" : "") onchange="validateForm()">
+                <label for="Male">Male</label>
+            </div>
+            <div class=" form-check-inline">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female"  @(Model.Gender == "female" ? "checked" : "") onchange="validateForm()">
+                <label for="Female">Female</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others"  @(Model.Gender == "other" ? "checked" : "") onchange="validateForm()">
+                <label for="Other">Other</label>
+            </div>
+            <span id="GenderError" class="text-danger" value="@Model.Gender"></span>
+        </div>
+
         <script>
             function changeCategory(category) {
                 document.getElementById('dropdownMenuButton1').innerText = category;
@@ -211,6 +228,7 @@
             var stockcode = $("#stockcode").val().trim();
             var price = $("#price").val().trim();
             var category = $("#dropdownMenuButton1").text().trim();
+            var gender = $("input[name='gender']:checked").val();
             // Reset previous errors
             $(".text-danger").html("");
 
@@ -244,6 +262,12 @@
                 $("#categoryError").html("Please select a category");
                 isValid = false;
             }
+            // Gender validation
+            var gender = $("input[name='gender']:checked").val();
+            if (!gender) {
+                $("#GenderError").html("Please select a gender");
+                isValid = false;
+            }
             return isValid;
         }
 
@@ -261,6 +285,7 @@
                     stockcode: $("#stockcode").val().trim(),
                     price: $("#price").val().trim(),
                     category: $("#dropdownMenuButton1").text().trim(),
+                    gender: $("input[name='gender']:checked").val() || ""
                 };
 
                 $.ajax({

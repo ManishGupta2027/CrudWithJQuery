@@ -27,7 +27,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +54,19 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <text>True</text>
+                    }
+                    else
+                    {
+                        <text>False</text>
+                    }
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", "Product", new { id = item.Id })" onclick="return confirm('Are you sure you want to edit?')" class="btn btn-primary">Edit</a>

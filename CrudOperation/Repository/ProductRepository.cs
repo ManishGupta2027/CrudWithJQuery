@@ -22,7 +22,7 @@ namespace CrudOperation.Repository
 
 		public List<Product> GetProductList()
 		{
-			var dbResp = _dataFactoryDBDataContext.procGetProductList_14042024();
+			var dbResp = _dataFactoryDBDataContext.procGetProductList_19042024();
 			var Product = (from o in dbResp
 						select new Product
 						{
@@ -31,6 +31,8 @@ namespace CrudOperation.Repository
 							Price = (decimal)o.Price,
 							Category = o.Category,
 							Id = o.id,
+							Gender = o.Gender,
+							IsActive = o.IsActive.HasValue ? o.IsActive.Value : false, // Convert bit to bool
 						}).ToList();
 			return Product;
 
@@ -38,7 +40,7 @@ namespace CrudOperation.Repository
 
 		public Product GetProductListById(int id)
 		{
-			var dbResp = _dataFactoryDBDataContext.procGetProductDetail_14042024(id);
+			var dbResp = _dataFactoryDBDataContext.procGetProductDetail_19042024(id);
 			var product = (from o in dbResp
 						   select new Product
 						   {
@@ -47,6 +49,7 @@ namespace CrudOperation.Repository
 							   Price = (decimal)o.Price,
 							   Category = o.Category,
 							   Id = o.id,
+							   Gender = o.Gender,
 						   }).FirstOrDefault();
 			return product;
 		}
@@ -66,7 +69,7 @@ namespace CrudOperation.Repository
 			}
 
 			// Proceed with the update operation
-			var res = _dataFactoryDBDataContext.procUpsertProduct_14042024(product.Id,product.Title, product.StockCode, product.Price,product.Category);
+			var res = _dataFactoryDBDataContext.procUpsertProduct_19042024(product.Id,product.Title, product.StockCode, product.Price,product.Category,product.Gender,product.IsActive);
 			var isValid = res.FirstOrDefault()?.isValid;
 			return isValid ?? false;
 		}
@@ -79,7 +82,7 @@ namespace CrudOperation.Repository
 		}
 		public bool SaveProduct(Product product)
 		{
-			var res = _dataFactoryDBDataContext.procSaveProduct_11042024(product.Title, product.StockCode, product.Price, product.Category);
+			var res = _dataFactoryDBDataContext.procSaveProduct_19042024(product.Title, product.StockCode, product.Price, product.Category,product.Gender,product.IsActive);
 		var isValid=res.FirstOrDefault().isValid;
 			return (bool)isValid;
 		}

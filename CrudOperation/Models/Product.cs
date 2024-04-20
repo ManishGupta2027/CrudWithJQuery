@@ -14,6 +14,8 @@ namespace CrudOperation.Models
         public decimal Price { get; set; }
 
         public string Category { get; set; }
+        public string Gender { get; set; }
+        public bool IsActive { get; set; }
        
     }
 }
