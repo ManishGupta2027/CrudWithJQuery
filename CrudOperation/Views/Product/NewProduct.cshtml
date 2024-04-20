@@ -39,26 +39,62 @@
             <span id="categoryError" class="text-danger"></span>
         </div>
 
+        <div class="mb-3">
+            <label>Gender :</label>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" onchange="validateForm()">
+                <label for="Male">Male</label>
+            </div>
+            <div class=" form-check-inline">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" onchange="validateForm()">
+                <label for="Female">Female</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" onchange="validateForm()">
+                <label for="Other">Other</label>
+            </div>
+            <span id="GenderError" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 d-flex align-items-center">
+            <label class="me-3">IsActive:</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="isActiveSwitch">
+                <label class="form-check-label" for="isActiveSwitch"></label>
+            </div>
+            <span id="isActiveValue" class="ms-2"></span> <!-- Added span to display true/false -->
+            <span id="isActiveError" class="text-danger"></span>
+        </div>
+
+
         <script>
-                function changeCategory(category) {
-                    document.getElementById('dropdownMenuButton1').innerText = category;
-                }
+            function changeCategory(category) {
+                document.getElementById('dropdownMenuButton1').innerText = category;
+            }
         </script>
 
-        <button class="d-grid btn btn-primary w-50 mx-auto" type="button" value="Submit" id="submitBtn" >Submit</button>
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="button" value="Submit" id="submitBtn">Submit</button>
     </form>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
+        $("#isActiveValue").text($("#isActiveSwitch").is(":checked") ? "True" : "False");
+
+        // Update value on switch change
+        $("#isActiveSwitch").change(function () {
+            $("#isActiveValue").text($(this).is(":checked") ? "True" : "False");
+        });
             // Function to validate form
             function validateForm() {
                 var title = $("#title").val().trim();
                 var stockcode = $("#stockcode").val().trim();
                 var category = $("#dropdownMenuButton1").text().trim();
                 var price = $("#price").val().trim();
+                var gender = $("input[name='gender']:checked").val();
+             //   var isActive = $("#isActiveSwitch").is(":checked");
 
                 // Reset previous errors
                 $(".text-danger").html("");
@@ -88,24 +124,40 @@
                     $("#priceError").html("Price cannot be empty");
                     isValid = false;
                 }
+                // Gender validation
+                var gender = $("input[name='gender']:checked").val();
+                if (!gender) {
+                    $("#GenderError").html("Please select a gender");
+                    isValid = false;
+                }
+                // IsActive validation
+                //if (!isActive) {
+                //    $("#isActiveError").html("Please activate the product");
+                //    isValid = false;
+                //}
 
                 return isValid;
             }
 
             // Bind input event listeners to clear error messages
-            $("#title, #stockcode, #price").on("input", function () {
-                $(this).siblings(".text-danger").html("");
-            });
+        $("#title, #stockcode, #price").on("input", function ()
+            { $(this).siblings(".text-danger").html(""); }).add("#dropdownMenuButton1 + .dropdown-menu .dropdown-item").on("click", function ()
+             { $("#categoryError").html(""); }).add("input[name='gender']").on("change", function ()
+             { $("#GenderError").html(""); });
+            //.add("#isActiveSwitch").on("change", function ()
+            //   { $("#isActiveError").html(""); });
 
             // Bind click event to submit button
             $("#submitBtn").click(function () {
                 if (validateForm()) {
-
+                    var isActive = $("#isActiveSwitch").is(":checked"); // Use the state of isActiveSwitch
                     var data = {
                         title: $("#title").val().trim(),
                         stockcode: $("#stockcode").val().trim(),
                         category: $("#dropdownMenuButton1").text().trim(),
-                        price: $("#price").val().trim()
+                        price: $("#price").val().trim(),
+                        gender: $("input[name='gender']:checked").val() || "",
+                        isActive: isActive
                     };
 
                     $.ajax({
