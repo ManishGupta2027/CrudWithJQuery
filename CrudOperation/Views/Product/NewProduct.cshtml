@@ -22,13 +22,13 @@
 
         <div class="mb-3">
             <label>Price</label>
-            <input type="number" class="form-control" id="price" placeholder="Price" inputmode="numeric">
+            <input type="text" class="form-control" id="price" placeholder="Price" inputmode="numeric">
             <span id="priceError" class="text-danger"></span>
         </div>
 
         <div class="dropdown mb-3">
-            <label>Category:</label>
-            <button class="btn btn-warning dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <label>Select Any Category</label>
+            <button class="form-control dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Select Any Category
             </button>
             <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
@@ -102,8 +102,8 @@
                 var isValid = true;
 
                 // Title validation
-                if (title === "") {
-                    $("#titleError").html("Title cannot be empty");
+                if (title === "" || title.length < 3) {
+                    $("#titleError").html("Title cannot be empty or less than 3 character");
                     isValid = false;
                 }
 
@@ -120,8 +120,8 @@
                 }
 
                 // Price validation
-                if (price === "") {
-                    $("#priceError").html("Price cannot be empty");
+                if (price === "" || isNaN(price)) {
+                    $("#priceError").html("Price cannot be empty or Enter valid number ");
                     isValid = false;
                 }
                 // Gender validation
@@ -181,7 +181,8 @@
 
                 }
             });
-        });
+
+    });
 </script>
 
 
