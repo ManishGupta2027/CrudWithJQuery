@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRUD" Class="DataFactoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-DH5RI22C\SQLEXPRESS;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MANISH\MSSQLSERVER2023;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.procDeleteProduct_15042024" Method="procDeleteProduct_15042024">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="procDeleteProduct_15042024Result">

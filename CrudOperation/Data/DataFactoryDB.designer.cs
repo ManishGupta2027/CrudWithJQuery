@@ -33,7 +33,7 @@ namespace CrudOperation.Data
     #endregion
 		
 		public DataFactoryDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CRUDConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CRUDConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
