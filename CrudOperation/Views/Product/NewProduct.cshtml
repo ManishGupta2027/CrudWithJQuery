@@ -88,7 +88,7 @@
             $("#isActiveValue").text($(this).is(":checked") ? "True" : "False");
         });
             // Function to validate form
-            function validateForm() {
+        $.validateForm = function () {
                 var title = $("#title").val().trim();
                 var stockcode = $("#stockcode").val().trim();
                 var category = $("#dropdownMenuButton1").text().trim();
@@ -149,7 +149,7 @@
 
             // Bind click event to submit button
             $("#submitBtn").click(function () {
-                if (validateForm()) {
+                if ($.validateForm()) {
                     var isActive = $("#isActiveSwitch").is(":checked"); // Use the state of isActiveSwitch
                     var data = {
                         title: $("#title").val().trim(),

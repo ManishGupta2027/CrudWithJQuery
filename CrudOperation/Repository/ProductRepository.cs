@@ -58,19 +58,21 @@ namespace CrudOperation.Repository
 		public Response UpsertProduct(Product product)
 		{
 			var a = new Response();
-			// Check if the new StockCode is the same as the existing StockCode
-			var existingProduct = GetProductListById(product.Id);
-			if (existingProduct == null)
+			if (product.Id != null)
 			{
-				return a;
-			}
+				// Check if the new StockCode is the same as the existing StockCode
+				var existingProduct = GetProductListById((int)product.Id);
+				if (existingProduct == null)
+				{
+					return a;
+				}
 
-			if (existingProduct.StockCode != product.StockCode)
-			{
-				return a;
+				if (existingProduct.StockCode != product.StockCode)
+				{
+					return a;
+				}
 			}
-
-			// Proceed with the update operation
+		
 
 
 
