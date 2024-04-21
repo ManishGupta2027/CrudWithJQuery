@@ -42,15 +42,15 @@
         <div class="mb-3">
             <label>Gender :</label>
             <div class="form-check-inline">
-                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" onchange="validateForm()">
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" >
                 <label for="Male">Male</label>
             </div>
             <div class=" form-check-inline">
-                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" onchange="validateForm()">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" >
                 <label for="Female">Female</label>
             </div>
             <div class="form-check-inline">
-                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" onchange="validateForm()">
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" >
                 <label for="Other">Other</label>
             </div>
             <span id="GenderError" class="text-danger"></span>
@@ -139,13 +139,19 @@
                 return isValid;
             }
 
-            // Bind input event listeners to clear error messages
-        $("#title, #stockcode, #price").on("input", function ()
-            { $(this).siblings(".text-danger").html(""); }).add("#dropdownMenuButton1 + .dropdown-menu .dropdown-item").on("click", function ()
-             { $("#categoryError").html(""); }).add("input[name='gender']").on("change", function ()
-             { $("#GenderError").html(""); });
-            //.add("#isActiveSwitch").on("change", function ()
-            //   { $("#isActiveError").html(""); });
+        // Bind input event listeners to clear error messages
+        $("#title, #stockcode, #price").on("input", function () {
+            $(this).siblings(".text-danger").html("");
+        }).add("#dropdownMenuButton1 + .dropdown-menu .dropdown-item").on("click", function () {
+            $("#categoryError").html("");
+        }).add("input[name='gender']").on("change", function () {
+            $("#GenderError").html(""); // Clear gender error
+            // Check if any gender is selected
+            if ($("input[name='gender']:checked").length === 0) {
+                $("#GenderError").html("Please select a gender"); // Show error if no gender is selected
+            }
+        });
+
 
             // Bind click event to submit button
             $("#submitBtn").click(function () {
@@ -168,11 +174,11 @@
                         success: function (response) {
                             // Handle success response
                             if (response.isValid == true) {
-                                alert(response.message);
+                                alert(response.Message);
                                 window.location.href = "/Product/GetProductList"
                             }
                             else {
-                                alert(response.message);
+                                alert(response.Message);
                             }
                         },
                         error: function (xhr, status, error) {

@@ -182,8 +182,11 @@
                     success: function (response) {
                         // Handle success response
                         if (response.isValid == true) {
-                            alert("Form submitted successfully!");
+                            alert(response.Message);
                             window.location.href = "/Product/GetProductList";
+                        }
+                        else {
+                            alert(response.Message);
                         }
                     },
                     error: function (xhr, status, error) {
