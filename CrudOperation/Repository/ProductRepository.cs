@@ -5,6 +5,7 @@ using System.Web;
 using CrudOperation.Data;
 using CrudOperation.Models;
 using CrudOperation.Data;
+using System.Drawing.Printing;
 
 namespace CrudOperation.Repository
 {
@@ -20,9 +21,9 @@ namespace CrudOperation.Repository
 
 	
 
-		public List<Product> GetProductList()
+		public List<Product> GetProductList(int currentPage, int pageSize)
 		{
-			var dbResp = _dataFactoryDBDataContext.procGetProductList_19042024();
+			var dbResp = _dataFactoryDBDataContext.procGetProductList_20240426(currentPage, pageSize);
 			var Product = (from o in dbResp
 						select new Product
 						{
@@ -33,11 +34,13 @@ namespace CrudOperation.Repository
 							Id = o.id,
 							Gender = o.Gender,
 							IsActive = o.IsActive.HasValue ? o.IsActive.Value : false, // Convert bit to bool
+							TotalRecords = (int)o.TotalRecords,
+							CurrentPage = currentPage,
+							PageSize = pageSize
 						}).ToList();
 			return Product;
 
 		}
-
 		public Product GetProductListById(int id)
 		{
 			var dbResp = _dataFactoryDBDataContext.procGetProductDetail_20240420(id);

@@ -20,11 +20,33 @@ namespace CrudOperation.Controllers
 
 
 
-		public ActionResult GetProductList()
-		{
-			var res = _productService.GetProductList();
+		//public ActionResult GetProductList()
+		//{
+		//	var res = _productService.GetProductList();
 
-			return View(res);
+		//	return View(res);
+		//}
+
+
+		public ActionResult GetProductList(int? page)
+		{
+			int currentPage = (page ?? 1); // If no page number is specified, default to the first page
+			int pageSize = 5; // Number of items per page
+
+			// Retrieve the list of users from your repository
+			var products = _productService.GetProductList(currentPage, pageSize);
+
+			// Get the total number of users
+			int totalProductsCount = products.FirstOrDefault().TotalRecords;
+
+			// Calculate the total number of pages
+			int totalPages = (int)Math.Ceiling((double)totalProductsCount / pageSize);
+
+			// Pass necessary pagination information to the view
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = currentPage;
+
+			return View(products);
 		}
 
 

@@ -17,17 +17,6 @@
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.procGetProductList_19042024" Method="procGetProductList_19042024">
-    <ElementType Name="procGetProductList_19042024Result">
-      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.procGetProductDetail_20240420" Method="procGetProductDetail_20240420">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="procGetProductDetail_20240420Result">
@@ -51,6 +40,20 @@
     <ElementType Name="procUpsertProduct_20240420Result">
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetProductList_20240426" Method="procGetProductList_20240426">
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetProductList_20240426Result">
+      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
