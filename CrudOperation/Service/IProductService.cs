@@ -10,7 +10,7 @@ namespace CrudOperation.Service
 	public interface IProductService
 	{
 		bool SaveProduct(Product product);
-		List<Product> GetProductList();
+		List<Product> GetProductList(int currentPage, int pageSize);
 		Response UpsertProduct(Product product);
 		Product GetProductListById(int id);
 		bool DeleteProduct(int id);

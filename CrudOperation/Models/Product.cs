@@ -16,6 +16,9 @@ namespace CrudOperation.Models
         public string Category { get; set; }
         public string Gender { get; set; }
         public bool IsActive { get; set; }
-       
-    }
+		public int CurrentPage { get; set; }
+		public int PageSize { get; set; }
+		public int TotalRecords { get; set; }
+
+	}
 }
