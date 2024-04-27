@@ -160,6 +160,9 @@
     <Content Include="Asset\bootstrap-5.3.0\js\bootstrap.min.js" />
     <Content Include="Asset\bootstrap-5.3.0\js\popper.min.js" />
     <Content Include="Asset\css\style.css" />
+    <Content Include="Asset\js\directive\decimal-only.js" />
+    <Content Include="Asset\js\my-app.js" />
+    <Content Include="Asset\js\controller\productCtr.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

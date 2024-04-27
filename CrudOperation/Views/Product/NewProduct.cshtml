@@ -8,191 +8,177 @@
 <h2 class="text-center">Product Details</h2>
 
 <div class="container-fluid min-vh-100 w-50 justify-content-center">
-    <form class="mb-3" action="#">
+    <form name="productForm" class="mb-3" ng-submit="submitForm()" novalidate>
         <div class="mb-3">
             <label>Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Title">
-            <span id="titleError" class="text-danger"></span>
+            <input type="text" class="form-control" name="title" ng-model="product.title" placeholder="Title" required>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.title.$dirty && productForm.title.$error.required">Title is required</span>
         </div>
         <div class="mb-3">
-            <label>StockCode</label>
-            <input type="text" class="form-control" id="stockcode" placeholder="Stock Code">
-            <span id="stockcodeError" class="text-danger"></span>
+            <label>Stock Code</label>
+            <input type="text" class="form-control" name="stockcode" ng-model="product.stockCode" placeholder="Stock Code" required>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.stockcode.$dirty && productForm.stockcode.$error.required">Stock Code is required</span>
         </div>
-
         <div class="mb-3">
             <label>Price</label>
-            <input type="text" class="form-control" id="price" placeholder="Price" inputmode="numeric">
-            <span id="priceError" class="text-danger"></span>
+            <input type="text" class="form-control" name="price" ng-model="product.price" placeholder="Price" required decimal-only>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.price.$dirty && productForm.price.$error.required">Price is required</span>
         </div>
-
         <div class="dropdown mb-3">
             <label>Select Any Category</label>
-            <button class="form-control dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Select Any Category
-            </button>
-            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#" onclick="changeCategory('Phone')">Phone</a></li>
-                <li><a class="dropdown-item" href="#" onclick="changeCategory('Clothes')">Clothes</a></li>
-                <li><a class="dropdown-item" href="#" onclick="changeCategory('Foods')">Foods</a></li>
-            </ul>
-            <span id="categoryError" class="text-danger"></span>
+            <select class="form-select" name="category" ng-model="product.category" required>
+                <option value="">Select Category</option>
+                <option value="Phone">Phone</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Foods">Foods</option>
+            </select>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.category.$dirty && productForm.category.$error.required">Category is required</span>
         </div>
-
         <div class="mb-3">
             <label>Gender :</label>
             <div class="form-check-inline">
-                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" >
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" ng-model="product.gender" required>
                 <label for="Male">Male</label>
             </div>
-            <div class=" form-check-inline">
-                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" >
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" ng-model="product.gender">
                 <label for="Female">Female</label>
             </div>
             <div class="form-check-inline">
-                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" >
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" ng-model="product.gender">
                 <label for="Other">Other</label>
             </div>
-            <span id="GenderError" class="text-danger"></span>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.gender.$dirty && productForm.gender.$error.required">Gender is required</span>
         </div>
-
         <div class="mb-3 d-flex align-items-center">
             <label class="me-3">IsActive:</label>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="isActiveSwitch">
+                <input class="form-check-input" type="checkbox" id="isActiveSwitch" ng-model="product.isActive">
                 <label class="form-check-label" for="isActiveSwitch"></label>
             </div>
-            <span id="isActiveValue" class="ms-2"></span> <!-- Added span to display true/false -->
-            <span id="isActiveError" class="text-danger"></span>
+            <span id="isActiveValue" class="ms-2"></span>
+            <span class="text-danger" ng-show="productForm.$submitted && productForm.isActive.$dirty && productForm.isActive.$error.required">Please check IsActive</span>
         </div>
-
-
-        <script>
-            function changeCategory(category) {
-                document.getElementById('dropdownMenuButton1').innerText = category;
-            }
-        </script>
-
-        <button class="d-grid btn btn-primary w-50 mx-auto" type="button" value="Submit" id="submitBtn">Submit</button>
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="submit">Submit</button>
     </form>
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#isActiveValue").text($("#isActiveSwitch").is(":checked") ? "True" : "False");
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#isActiveValue").text($("#isActiveSwitch").is(":checked") ? "True" : "False");
 
-        // Update value on switch change
-        $("#isActiveSwitch").change(function () {
-            $("#isActiveValue").text($(this).is(":checked") ? "True" : "False");
-        });
-            // Function to validate form
-        $.validateForm = function () {
-                var title = $("#title").val().trim();
-                var stockcode = $("#stockcode").val().trim();
-                var category = $("#dropdownMenuButton1").text().trim();
-                var price = $("#price").val().trim();
-                var gender = $("input[name='gender']:checked").val();
-             //   var isActive = $("#isActiveSwitch").is(":checked");
+            // Update value on switch change
+            $("#isActiveSwitch").change(function () {
+                $("#isActiveValue").text($(this).is(":checked") ? "True" : "False");
+            });
+                // Function to validate form
+            $.validateForm = function () {
+                    var title = $("#title").val().trim();
+                    var stockcode = $("#stockcode").val().trim();
+                    var category = $("#dropdownMenuButton1").text().trim();
+                    var price = $("#price").val().trim();
+                    var gender = $("input[name='gender']:checked").val();
+                 //   var isActive = $("#isActiveSwitch").is(":checked");
 
-                // Reset previous errors
-                $(".text-danger").html("");
+                    // Reset previous errors
+                    $(".text-danger").html("");
 
-                var isValid = true;
+                    var isValid = true;
 
-                // Title validation
-                if (title === "" || title.length < 3) {
-                    $("#titleError").html("Title cannot be empty or less than 3 character");
-                    isValid = false;
+                    // Title validation
+                    if (title === "" || title.length < 3) {
+                        $("#titleError").html("Title cannot be empty or less than 3 character");
+                        isValid = false;
+                    }
+
+                    // StockCode validation
+                    if (stockcode === "") {
+                        $("#stockcodeError").html("Stock Code cannot be empty");
+                        isValid = false;
+                    }
+
+                    // Category validation
+                    if (category === "Select Any Category") {
+                        $("#categoryError").html("Please select a category");
+                        isValid = false;
+                    }
+
+                    // Price validation
+                    if (price === "" || isNaN(price)) {
+                        $("#priceError").html("Price cannot be empty or Enter valid number ");
+                        isValid = false;
+                    }
+                    // Gender validation
+                    var gender = $("input[name='gender']:checked").val();
+                    if (!gender) {
+                        $("#GenderError").html("Please select a gender");
+                        isValid = false;
+                    }
+                    // IsActive validation
+                    //if (!isActive) {
+                    //    $("#isActiveError").html("Please activate the product");
+                    //    isValid = false;
+                    //}
+
+                    return isValid;
                 }
 
-                // StockCode validation
-                if (stockcode === "") {
-                    $("#stockcodeError").html("Stock Code cannot be empty");
-                    isValid = false;
-                }
-
-                // Category validation
-                if (category === "Select Any Category") {
-                    $("#categoryError").html("Please select a category");
-                    isValid = false;
-                }
-
-                // Price validation
-                if (price === "" || isNaN(price)) {
-                    $("#priceError").html("Price cannot be empty or Enter valid number ");
-                    isValid = false;
-                }
-                // Gender validation
-                var gender = $("input[name='gender']:checked").val();
-                if (!gender) {
-                    $("#GenderError").html("Please select a gender");
-                    isValid = false;
-                }
-                // IsActive validation
-                //if (!isActive) {
-                //    $("#isActiveError").html("Please activate the product");
-                //    isValid = false;
-                //}
-
-                return isValid;
-            }
-
-        // Bind input event listeners to clear error messages
-        $("#title, #stockcode, #price").on("input", function () {
-            $(this).siblings(".text-danger").html("");
-        }).add("#dropdownMenuButton1 + .dropdown-menu .dropdown-item").on("click", function () {
-            $("#categoryError").html("");
-        }).add("input[name='gender']").on("change", function () {
-            $("#GenderError").html(""); // Clear gender error
-            // Check if any gender is selected
-            if ($("input[name='gender']:checked").length === 0) {
-                $("#GenderError").html("Please select a gender"); // Show error if no gender is selected
-            }
-        });
-
-
-            // Bind click event to submit button
-            $("#submitBtn").click(function () {
-                if ($.validateForm()) {
-                    var isActive = $("#isActiveSwitch").is(":checked"); // Use the state of isActiveSwitch
-                    var data = {
-                        title: $("#title").val().trim(),
-                        stockcode: $("#stockcode").val().trim(),
-                        category: $("#dropdownMenuButton1").text().trim(),
-                        price: $("#price").val().trim(),
-                        gender: $("input[name='gender']:checked").val() || "",
-                        isActive: isActive
-                    };
-
-                    $.ajax({
-                        url: "/Product/NewProduct",
-                        type: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify(data),
-                        success: function (response) {
-                            // Handle success response
-                            if (response.isValid == true) {
-                                alert(response.Message);
-                                window.location.href = "/Product/GetProductList"
-                            }
-                            else {
-                                alert(response.Message);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            // Handle error
-                            console.error(xhr.responseText);
-                        }
-                    });
-
-
+            // Bind input event listeners to clear error messages
+            $("#title, #stockcode, #price").on("input", function () {
+                $(this).siblings(".text-danger").html("");
+            }).add("#dropdownMenuButton1 + .dropdown-menu .dropdown-item").on("click", function () {
+                $("#categoryError").html("");
+            }).add("input[name='gender']").on("change", function () {
+                $("#GenderError").html(""); // Clear gender error
+                // Check if any gender is selected
+                if ($("input[name='gender']:checked").length === 0) {
+                    $("#GenderError").html("Please select a gender"); // Show error if no gender is selected
                 }
             });
 
-    });
-</script>
+
+                // Bind click event to submit button
+                $("#submitBtn").click(function () {
+                    if ($.validateForm()) {
+                        var isActive = $("#isActiveSwitch").is(":checked"); // Use the state of isActiveSwitch
+                        var data = {
+                            title: $("#title").val().trim(),
+                            stockcode: $("#stockcode").val().trim(),
+                            category: $("#dropdownMenuButton1").text().trim(),
+                            price: $("#price").val().trim(),
+                            gender: $("input[name='gender']:checked").val() || "",
+                            isActive: isActive
+                        };
+
+                        $.ajax({
+                            url: "/Product/NewProduct",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+                            success: function (response) {
+                                // Handle success response
+                                if (response.isValid == true) {
+                                    alert(response.Message);
+                                    window.location.href = "/Product/GetProductList"
+                                }
+                                else {
+                                    alert(response.Message);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                // Handle error
+                                console.error(xhr.responseText);
+                            }
+                        });
+
+
+                    }
+                });
+
+        });
+    </script>*@
 
 
 
