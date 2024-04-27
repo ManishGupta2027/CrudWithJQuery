@@ -23,7 +23,7 @@ namespace CrudOperation.Repository
 
 		public List<Product> GetProductList(int currentPage, int pageSize)
 		{
-			var dbResp = _dataFactoryDBDataContext.procGetProductList_20240426(currentPage, pageSize);
+			var dbResp = _dataFactoryDBDataContext.procGetProductList_20240427(currentPage, pageSize);
 			var Product = (from o in dbResp
 						select new Product
 						{
@@ -36,7 +36,8 @@ namespace CrudOperation.Repository
 							IsActive = o.IsActive.HasValue ? o.IsActive.Value : false, // Convert bit to bool
 							TotalRecords = (int)o.TotalRecords,
 							CurrentPage = currentPage,
-							PageSize = pageSize
+							PageSize = pageSize,
+							CreatedBy= o.CreatedBy
 						}).ToList();
 			return Product;
 
@@ -79,7 +80,7 @@ namespace CrudOperation.Repository
 
 
 
-			var res = _dataFactoryDBDataContext.procUpsertProduct_20240420(product.Id,product.Title, product.StockCode, product.Price,product.Category,product.Gender,product.IsActive);
+			var res = _dataFactoryDBDataContext.procUpsertProduct_20240427(product.Id,product.Title, product.StockCode, product.Price,product.Category,product.Gender,product.IsActive);
 			 a = (from o in res
 						   select new Response
 						   {

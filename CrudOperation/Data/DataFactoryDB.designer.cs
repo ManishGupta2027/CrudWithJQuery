@@ -83,18 +83,18 @@ namespace CrudOperation.Data
 			return ((ISingleResult<procGetProductDetail_20240420Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertProduct_20240420")]
-		public ISingleResult<procUpsertProduct_20240420Result> procUpsertProduct_20240420([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, title, stockCode, price, category, gender, isActive);
-			return ((ISingleResult<procUpsertProduct_20240420Result>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductList_20240426")]
-		public ISingleResult<procGetProductList_20240426Result> procGetProductList_20240426([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetProductList_20240427")]
+		public ISingleResult<procGetProductList_20240427Result> procGetProductList_20240427([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentPage, pageSize);
-			return ((ISingleResult<procGetProductList_20240426Result>)(result.ReturnValue));
+			return ((ISingleResult<procGetProductList_20240427Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertProduct_20240427")]
+		public ISingleResult<procUpsertProduct_20240427Result> procUpsertProduct_20240427([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Title", DbType="NVarChar(50)")] string title, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(100)")] string stockCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(10,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Category", DbType="NVarChar(100)")] string category, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, title, stockCode, price, category, gender, isActive);
+			return ((ISingleResult<procUpsertProduct_20240427Result>)(result.ReturnValue));
 		}
 	}
 	
@@ -284,51 +284,7 @@ namespace CrudOperation.Data
 		}
 	}
 	
-	public partial class procUpsertProduct_20240420Result
-	{
-		
-		private System.Nullable<bool> _isValid;
-		
-		private string _Message;
-		
-		public procUpsertProduct_20240420Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
-		public System.Nullable<bool> isValid
-		{
-			get
-			{
-				return this._isValid;
-			}
-			set
-			{
-				if ((this._isValid != value))
-				{
-					this._isValid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(100)")]
-		public string Message
-		{
-			get
-			{
-				return this._Message;
-			}
-			set
-			{
-				if ((this._Message != value))
-				{
-					this._Message = value;
-				}
-			}
-		}
-	}
-	
-	public partial class procGetProductList_20240426Result
+	public partial class procGetProductList_20240427Result
 	{
 		
 		private string _Title;
@@ -347,7 +303,9 @@ namespace CrudOperation.Data
 		
 		private System.Nullable<int> _TotalRecords;
 		
-		public procGetProductList_20240426Result()
+		private System.Nullable<System.DateTime> _CreatedBy;
+		
+		public procGetProductList_20240427Result()
 		{
 		}
 		
@@ -475,6 +433,66 @@ namespace CrudOperation.Data
 				if ((this._TotalRecords != value))
 				{
 					this._TotalRecords = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procUpsertProduct_20240427Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		private string _Message;
+		
+		public procUpsertProduct_20240427Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(100)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
 				}
 			}
 		}

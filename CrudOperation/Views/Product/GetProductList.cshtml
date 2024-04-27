@@ -33,6 +33,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -67,6 +70,9 @@
                     {
                         <text>False</text>
                     }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", "Product", new { id = item.Id })" class="btn btn-primary">Edit</a>
