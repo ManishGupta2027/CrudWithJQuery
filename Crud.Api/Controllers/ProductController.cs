@@ -4,6 +4,7 @@ using Crud.Data.Entities;
 using System.Reflection;
 using Crud.Api.Model;
 using AutoMapper;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,18 +38,67 @@ namespace Crud.Api.Controllers
 			return productDetail;
 		}
 
-	// POST api/<ProductController>
+		// in here response is not visible in swagger ui
+		//// POST api/<ProductController>
+		//[HttpPost]
+		//public ActionResult Post(ProductModel model)
+		//{
+		//	var response = new ReposeModel<BoolResponse>();
+		//	try
+		//	{
+		//		// Map ProductModel to Product entity
+		//		var mappedProduct = _mapper.Map<Product>(model);
+
+		//		// Save the product using the service
+		//		var result = _productService.SaveProduct(mappedProduct);
+
+		//		// Prepare a successful response
+		//		response.Status = "Success";
+		//		response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+		//		response.Result = result;
+		//		response.Message = result.Message;
+		//		return Ok(response); // Return 200 OK with response data
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		// Prepare a failure response
+		//		response.Status = "Error";
+		//		response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+		//		response.Message = "An error occurred while saving the product.";
+		//		response.ErrorDetails.Add(ex.Message);
+
+		//		return StatusCode((int)HttpStatusCode.InternalServerError, response); // Return 500 Internal Server Error
+
+		//	}
+		//}
+		// POST api/<ProductController>
 		[HttpPost]
 		public ReposeModel<BoolResponse> Post(ProductModel model)
 		{
-			var res = new ReposeModel<BoolResponse>();
-			var mapped = _mapper.Map<Product>(model);
-			var response = _productService.SaveProduct(mapped);
-			res.Result = response;
-			res.StatusCode = 200;
-			res.Status = "OK";
-			res.Message = response.Message;
-			return res;
+			var response = new ReposeModel<BoolResponse>();
+			try {
+				// Map ProductModel to Product entity
+				var mappedProduct = _mapper.Map<Product>(model);
+
+				// Save the product using the service
+				var result = _productService.SaveProduct(mappedProduct);
+
+				// Prepare a successful response
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+				response.Result = result;
+				response.Message = result.Message;
+				
+			}
+			catch (Exception ex) {
+				// Prepare a failure response
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+				response.Message = "An error occurred while saving the product.";
+				response.ErrorDetails.Add(ex.Message);
+
+			}
+			return response;
 		}
 
 		// PUT api/<ProductController>/5
