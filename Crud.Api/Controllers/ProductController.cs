@@ -2,6 +2,8 @@
 using Crud.Service.ProductService;
 using Crud.Data.Entities;
 using System.Reflection;
+using Crud.Api.Model;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,8 +14,10 @@ namespace Crud.Api.Controllers
 	public class ProductController : ControllerBase
 	{
 		private IProductService _productService;
-		public ProductController(IProductService productService)
+		private readonly IMapper _mapper;
+		public ProductController(IProductService productService, IMapper mapper)
         {
+			_mapper = mapper;
 			_productService = productService;
 
 		}
@@ -33,19 +37,13 @@ namespace Crud.Api.Controllers
 			return productDetail;
 		}
 
-	//	var user = _productService.GetProductListById(id);
-	//		if (user == null)
-	//		{
-	//			return HttpNotFound(); // Or some other appropriate action
-	//}
-	//		return View(user);
-
 	// POST api/<ProductController>
-	[HttpPost]
-		public bool Post(Product model)
+		[HttpPost]
+		public bool Post(ProductModel model)
 		{
-			var res = _productService.SaveProduct(model);
-		return res;
+			var mapped = _mapper.Map<Product>(model);
+			var res = _productService.SaveProduct(mapped);
+			return res;
 		}
 
 		// PUT api/<ProductController>/5
