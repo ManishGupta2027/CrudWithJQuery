@@ -13,6 +13,6 @@ namespace Crud.Service.ProductService
 		List<Product> GetProductList(int currentPage, int pageSize);
 		BoolResponse UpsertProduct(Product product);
 		Product GetProductListById(int id);
-		bool DeleteProduct(int id);
+		BoolResponse DeleteProduct(int id);
 	}
 }

@@ -133,10 +133,35 @@ namespace Crud.Api.Controllers
 
 		// DELETE api/<ProductController>/5
 		[HttpDelete("{id}")]
-		public bool Delete(int id)
+		public ResponseModel<BoolResponse> Delete(int id)
 		{
-			var res = _productService.DeleteProduct(id);
-			return res;
+
+
+			var response = new ResponseModel<BoolResponse>();
+			try
+			{
+				// Save the product using the service
+				var result = _productService.DeleteProduct(id);
+
+				// Prepare a successful response
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+				response.Result = result;
+				response.Message = result.Message;
+			}
+			catch (Exception ex)
+			{
+				// Prepare a failure response
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+				response.Message = "An error occurred while saving the product.";
+				response.ErrorDetails.Add(ex.Message);
+
+			}
+			return response;
+
+			//var res = _productService.DeleteProduct(id);
+			//return res;
 		}
 	}
 }

@@ -168,12 +168,12 @@ namespace Crud.Data.Repository
 		//	return isValid ?? false;
 		//}
 
-		public bool DeleteProduct(int id)
+		public BoolResponse DeleteProduct(int id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });
-			var dbResponse = _dapperRepository.Update<dynamic>("procDeleteProduct_15042024", dbParams, "MasterDataConnectionStrings");
-			return dbResponse.isValid;
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProduct_15042024", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
 		}
 		
 

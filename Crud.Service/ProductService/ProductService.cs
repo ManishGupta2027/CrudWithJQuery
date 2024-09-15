@@ -30,7 +30,7 @@ namespace Crud.Service.ProductService
 		{
 			return _productRepository.UpsertProduct(product);
 		}
-		public bool DeleteProduct(int id)
+		public BoolResponse DeleteProduct(int id)
 		{
 			return _productRepository.DeleteProduct(id);
 		}
