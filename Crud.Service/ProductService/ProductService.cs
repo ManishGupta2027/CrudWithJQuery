@@ -34,7 +34,7 @@ namespace Crud.Service.ProductService
 		{
 			return _productRepository.DeleteProduct(id);
 		}
-		public bool SaveProduct(Product product)
+		public BoolResponse SaveProduct(Product product)
 		{
 			var res = _productRepository.SaveProduct(product);
 			return res;

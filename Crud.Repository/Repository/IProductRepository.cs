@@ -9,7 +9,7 @@ namespace Crud.Data.Repository
 {
 	public interface IProductRepository
 	{
-		bool SaveProduct(Product product);
+		BoolResponse SaveProduct(Product product);
 		List<Product> GetProductList(int currentPage, int pageSize);
 		Response UpsertProduct(Product product);
 		Product GetProductListById(int id);

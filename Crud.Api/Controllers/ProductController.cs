@@ -39,10 +39,15 @@ namespace Crud.Api.Controllers
 
 	// POST api/<ProductController>
 		[HttpPost]
-		public bool Post(ProductModel model)
+		public ReposeModel<BoolResponse> Post(ProductModel model)
 		{
+			var res = new ReposeModel<BoolResponse>();
 			var mapped = _mapper.Map<Product>(model);
-			var res = _productService.SaveProduct(mapped);
+			var response = _productService.SaveProduct(mapped);
+			res.Result = response;
+			res.StatusCode = 200;
+			res.Status = "OK";
+			res.Message = response.Message;
 			return res;
 		}
 

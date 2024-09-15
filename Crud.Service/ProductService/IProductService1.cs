@@ -9,7 +9,7 @@ namespace Crud.Service.ProductService
 {
 	public interface IProductService
 	{
-		bool SaveProduct(Product product);
+		BoolResponse SaveProduct(Product product);
 		List<Product> GetProductList(int currentPage, int pageSize);
 		Response UpsertProduct(Product product);
 		Product GetProductListById(int id);

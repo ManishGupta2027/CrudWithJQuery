@@ -177,7 +177,7 @@ namespace Crud.Data.Repository
 		}
 		
 
-		public bool SaveProduct(Product product)
+		public BoolResponse SaveProduct(Product product)
 		{
 			//var res = _dataFactoryDBDataContext.procSaveProduct_19042024(product.Title, product.StockCode, product.Price, product.Category, product.Gender, product.IsActive);
 			//var isValid = res.FirstOrDefault().isValid;
@@ -195,8 +195,13 @@ namespace Crud.Data.Repository
 					@IsActive =product.IsActive
 				}
 			);
-			var dbResponse = _dapperRepository.Update<dynamic>("procSaveProduct_19042024", dbParams, "MasterDataConnectionStrings");
-			return dbResponse.isValid;
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procSaveProduct_19042024", dbParams, "MasterDataConnectionStrings");
+			//var res = new {
+			//	dbResponse.isValid,
+			//	dbResponse.isValid
+			//};
+
+			return dbResponse;
 
 		}
 	}
