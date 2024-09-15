@@ -1,6 +1,6 @@
 ﻿namespace Crud.Api.Model
 {
-	public class ReposeModel<T>
+	public class ResponseModel<T>
 	{
 		public string Status { get; set; }
 		public int StatusCode { get; set; }

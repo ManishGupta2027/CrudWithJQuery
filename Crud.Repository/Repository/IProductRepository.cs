@@ -11,7 +11,7 @@ namespace Crud.Data.Repository
 	{
 		BoolResponse SaveProduct(Product product);
 		List<Product> GetProductList(int currentPage, int pageSize);
-		Response UpsertProduct(Product product);
+		BoolResponse UpsertProduct(Product product);
 		Product GetProductListById(int id);
 		bool DeleteProduct(int id);
 	}

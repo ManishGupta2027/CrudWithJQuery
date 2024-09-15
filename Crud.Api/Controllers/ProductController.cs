@@ -73,9 +73,9 @@ namespace Crud.Api.Controllers
 		//}
 		// POST api/<ProductController>
 		[HttpPost]
-		public ReposeModel<BoolResponse> Post(ProductModel model)
+		public ResponseModel<BoolResponse> Post(ProductModel model)
 		{
-			var response = new ReposeModel<BoolResponse>();
+			var response = new ResponseModel<BoolResponse>();
 			try {
 				// Map ProductModel to Product entity
 				var mappedProduct = _mapper.Map<Product>(model);
@@ -103,10 +103,32 @@ namespace Crud.Api.Controllers
 
 		// PUT api/<ProductController>/5
 		[HttpPut]
-		public Response Put(Product model)
+		public ResponseModel<BoolResponse> Put(UpdateProductModel model)
 		{
-			var res = _productService.UpsertProduct(model);
-			return res;
+			var response = new ResponseModel<BoolResponse>();
+			try
+			{
+				// Map ProductModel to Product entity
+				var mappedProduct = _mapper.Map<Product>(model);
+				// Save the product using the service
+				var result = _productService.UpsertProduct(mappedProduct);
+
+				// Prepare a successful response
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+				response.Result = result;
+				response.Message = result.Message;
+			}
+			catch (Exception ex)
+			{
+				// Prepare a failure response
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+				response.Message = "An error occurred while saving the product.";
+				response.ErrorDetails.Add(ex.Message);
+
+			}
+			return response;
 		}
 
 		// DELETE api/<ProductController>/5

@@ -26,7 +26,7 @@ namespace Crud.Service.ProductService
 		{
 			return _productRepository.GetProductListById(id);
 		}
-		public Response UpsertProduct(Product product)
+		public BoolResponse UpsertProduct(Product product)
 		{
 			return _productRepository.UpsertProduct(product);
 		}

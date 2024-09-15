@@ -118,7 +118,7 @@ namespace Crud.Data.Repository
 
 
 
-		public Response UpsertProduct(Product product)
+		public BoolResponse UpsertProduct(Product product)
 		{
 			var response = new Response();
 
@@ -136,7 +136,7 @@ namespace Crud.Data.Repository
 			});
 
 			// Execute the stored procedure using Dapper
-			var dbResponse = _dapperRepository.Update<Response>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
 
 			// Set response based on the result from the stored procedure
 			//response.IsSuccess = dbResponse.isValid;
@@ -187,6 +187,7 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(
 				new
 				{
+					@Id = product.Id,
 					@Title = product.Title,
 					@StockCode = product.StockCode,
 					@Price =product.Price,
@@ -195,7 +196,7 @@ namespace Crud.Data.Repository
 					@IsActive =product.IsActive
 				}
 			);
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procSaveProduct_19042024", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
 			//var res = new {
 			//	dbResponse.isValid,
 			//	dbResponse.isValid

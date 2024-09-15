@@ -9,7 +9,7 @@ namespace Crud.Api.Profiler
 		public MapperProfile()
 		{
 			CreateMap<ProductModel, Product>();
-				
+			CreateMap<UpdateProductModel, Product>();
 			//CreateMap<Product, ProductModel>()
 			//	.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ProductName))
 			//	.ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.ProductPrice));
