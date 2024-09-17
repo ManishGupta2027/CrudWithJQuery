@@ -32,10 +32,29 @@ namespace Crud.Api.Controllers
 
 		// GET api/<ProductController>/5
 		[HttpGet("{id}")]
-		public Product Get(int id)
+		public ResponseModel<ProductDetailModel> Get(int id)
 		{
-			var productDetail=_productService.GetProductListById(id);
-			return productDetail;
+			var response = new ResponseModel<ProductDetailModel>();
+			try
+			{
+				var result = _productService.GetProductListById(id);
+				var mappedProduct = _mapper.Map<ProductDetailModel>(result);
+				// Prepare a successful response
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+				response.Result = mappedProduct;
+				//response.Message = result.Message;
+			}
+			catch (Exception ex)
+			{
+				// Prepare a failure response
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+				response.Message = "An error occurred while saving the product.";
+				response.ErrorDetails.Add(ex.Message);
+
+			}
+			return response;
 		}
 
 		// in here response is not visible in swagger ui
