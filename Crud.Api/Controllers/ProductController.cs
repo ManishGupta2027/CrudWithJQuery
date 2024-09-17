@@ -24,9 +24,9 @@ namespace Crud.Api.Controllers
 		}
         // GET: api/<ProductController>
         [HttpGet]
-		public List<Product> GetAll()
+		public List<Product> GetAll(int currentPage ,int pageSize=40)
 		{
-			var productlist = _productService.GetProductList(1, 30);
+			var productlist = _productService.GetProductList(currentPage, pageSize);
 			return productlist;
 		}
 
