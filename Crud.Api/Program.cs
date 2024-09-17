@@ -1,6 +1,7 @@
 using Crud.Api.Profiler;
 using Crud.Data.Dapper;
 using Crud.Data.Repository;
+using Crud.Service.BrandService;
 using Crud.Service.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDapperRepository, DapperRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 // Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperProfile)); // Replace MapperProfile with the name of your profile class
 
