@@ -23,10 +23,15 @@ namespace Crud.Api.Controllers
 
         // GET: api/<BrandController>
         [HttpGet]
-		public List<Brand> GetAll(int currentPage, int pageSize = 40)
+		public ResponseModel<List<Brand>> GetAll(int currentPage, int pageSize = 40)
 		{
+			var response = new ResponseModel<List<Brand>>();
 			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
-			return brandlist;
+			// Prepare a successful response
+			response.Status = "Success";
+			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+			response.Result = brandlist;
+			return response;
 		}
 
 		// GET api/<BrandController>/5
