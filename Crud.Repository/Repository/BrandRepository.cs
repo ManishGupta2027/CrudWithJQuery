@@ -23,10 +23,10 @@ namespace Crud.Data.Repository
 		dbParams.AddDynamicParams(
 			new
 			{
-				//@Id = brand.Id,
-				@Name = brand.Name,
-				@ShortDescription = brand.ShortDescription,
-				@Description = brand.Description,
+				@Id = brand.Id,
+				@name = brand.Name,
+				@shortDescription = brand.ShortDescription,
+				@description = brand.Description,
 			}
 		);
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20240917", dbParams, "MasterDataConnectionStrings");
@@ -45,6 +45,43 @@ namespace Crud.Data.Repository
 			);
 			var dbResponse = _dapperRepository.Get<Brand>("procGetBrandDetail_20240917", dbParams, "MasterDataConnectionStrings");
 			//var a  = new List<Product>();
+			return dbResponse;
+		}
+
+		public BoolResponse UpsertBrand(Brand brand)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@id = brand.Id,
+					@name = brand.Name,
+					@shortDescription = brand.ShortDescription,
+					@description = brand.Description,
+				});
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20240917", dbParams, "MasterDataConnectionstrings");
+			return dbResponse;
+		}
+
+		public List<Brand> GetBrandList(int currentPage, int pageSize)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@CurrentPage = 1,
+					@PageSize = 40
+
+				}
+			);
+			var dbResponse = _dapperRepository.GetAll<Brand>("procGetBrandList_20240918", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
+		}
+		public BoolResponse DeleteBrand(int id)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(new { @Id = id });
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteBrand_18092024", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
 	}

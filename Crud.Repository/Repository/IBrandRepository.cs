@@ -11,5 +11,8 @@ namespace Crud.Data.Repository
 	{
 		BoolResponse SaveBrand(Brand brand);
 		Brand GetBrandListById(int id);
+		BoolResponse UpsertBrand(Brand brand);
+		List<Brand> GetBrandList(int currentPage, int pageSize);
+		BoolResponse DeleteBrand(int id);
 	}
 }

@@ -13,6 +13,7 @@ namespace Crud.Api.Profiler
 			CreateMap<Product,ProductDetailModel>();
 			CreateMap<BrandModel, Brand>();
 			CreateMap<Brand, BrandDetailModel>();
+			CreateMap<UpdateBrandModel, Brand>();
 			//	.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ProductName))
 			//	.ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.ProductPrice));
 		}
