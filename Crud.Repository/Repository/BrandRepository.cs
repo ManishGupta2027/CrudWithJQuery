@@ -23,7 +23,7 @@ namespace Crud.Data.Repository
 		dbParams.AddDynamicParams(
 			new
 			{
-				//@Id = brand.Id,
+				@Id = brand.Id,
 				@name = brand.Name,
 				@shortDescription = brand.ShortDescription,
 				@description = brand.Description,
