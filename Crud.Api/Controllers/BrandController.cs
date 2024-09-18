@@ -23,9 +23,10 @@ namespace Crud.Api.Controllers
 
         // GET: api/<BrandController>
         [HttpGet]
-		public IEnumerable<string> Get()
+		public List<Brand> GetAll(int currentPage, int pageSize = 40)
 		{
-			return new string[] { "value1", "value2" };
+			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			return brandlist;
 		}
 
 		// GET api/<BrandController>/5
@@ -62,6 +63,8 @@ namespace Crud.Api.Controllers
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
+				// The below comment line tell the what is the error in response
+				//response.ErrorDetails = new List<string>();
 				// Map ProductModel to Product entity
 				var mappedBrand = _mapper.Map<Brand>(model);
 
@@ -88,15 +91,60 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<BrandController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		[HttpPut]
+		public ResponseModel<BoolResponse> Put(UpdateBrandModel model)
 		{
+			var response = new ResponseModel<BoolResponse>();
+			try
+			{
+				response.ErrorDetails = new List<string>();
+				var mappedBrand = _mapper.Map<Brand>(model);
+				var result = _brandService.UpsertBrand(mappedBrand);
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK;
+				response.Result = result;	
+				response.Message = result.Message;
+			}
+			catch(Exception ex)
+			{
+				response.Status = "Error";	
+				response.StatusCode= (int)HttpStatusCode.InternalServerError;
+				response.Message = "An error occurred while saving the brand";
+				response.ErrorDetails.Add(ex.Message);
+
+
+			}
+			return response;
 		}
 
 		// DELETE api/<BrandController>/5
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public ResponseModel<BoolResponse> Delete(int id)
 		{
+
+
+			var response = new ResponseModel<BoolResponse>();
+			try
+			{
+				// Save the product using the service
+				var result = _brandService.DeleteBrand(id);
+
+				// Prepare a successful response
+				response.Status = "Success";
+				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
+				response.Result = result;
+				response.Message = result.Message;
+			}
+			catch (Exception ex)
+			{
+				// Prepare a failure response
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
+				response.Message = "An error occurred while saving the product.";
+				response.ErrorDetails.Add(ex.Message);
+
+			}
+			return response;
 		}
 	}
 }

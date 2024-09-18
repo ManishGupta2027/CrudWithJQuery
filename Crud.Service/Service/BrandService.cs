@@ -26,5 +26,17 @@ namespace Crud.Service.BrandService
 		{
 			return _brandRepository.GetBrandListById(id);
 		}
+		public BoolResponse UpsertBrand(Brand brand) 
+		{
+			return _brandRepository.UpsertBrand(brand);
+		}
+		public List<Brand> GetBrandList(int currentPage, int pageSize) 
+		{
+			return _brandRepository.GetBrandList(currentPage, pageSize);
+		}
+		public BoolResponse DeleteBrand(int id)
+		{ 
+			return _brandRepository.DeleteBrand(id);
+		}
 	}
 }
