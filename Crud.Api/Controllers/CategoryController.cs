@@ -3,50 +3,50 @@ using AutoMapper;
 using Crud.Api.Model;
 using Crud.Data.Entities;
 using Crud.Service.BrandService;
+using Crud.Service.CategoryService;
 using Microsoft.AspNetCore.Mvc;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Crud.Api.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class BrandController : ControllerBase
+	public class CategoryController : ControllerBase
 	{
-		private IBrandService _brandService;
+		private ICategoryService _categoryService;
 		private readonly IMapper _mapper;
-        public BrandController(IBrandService brandService, IMapper mapper)
-        {
+		public CategoryController(ICategoryService categoryService, IMapper mapper)
+		{
 			_mapper = mapper;
-			_brandService = brandService;
+			_categoryService = categoryService;
 
 		}
-
-        // GET: api/<BrandController>
-        [HttpGet]
-		public ResponseModel<List<Brand>> GetAll(int currentPage, int pageSize = 40)
+		[HttpGet]
+		public ResponseModel<List<Category>> GetAll(int currentPage, int pageSize = 40)
 		{
-			var response = new ResponseModel<List<Brand>>();
-			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			var response = new ResponseModel<List<Category>>();
+			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
-			response.Result = brandlist;
+			response.Result = categorylist;
 			return response;
 		}
 
-		// GET api/<BrandController>/5
+		// GET api/<CategoryController>/5
 		[HttpGet("{id}")]
-		public ResponseModel<BrandDetailModel> Get(int id)
+		public ResponseModel<CategoryDetailModel> Get(int id)
 		{
-			var response = new ResponseModel<BrandDetailModel>();
+			var response = new ResponseModel<CategoryDetailModel>();
 			try
 			{
-				var result = _brandService.GetBrandListById(id);
-				var mappedBrand = _mapper.Map<BrandDetailModel>(result);
+				var result = _categoryService.GetCategoryListById(id);
+				var mappedCategory = _mapper.Map<CategoryDetailModel>(result);
 				// Prepare a successful response
 				response.Status = "Success";
 				response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
-				response.Result = mappedBrand;
+				response.Result = mappedCategory;
 				//response.Message = result.Message;
 			}
 			catch (Exception ex)
@@ -54,27 +54,27 @@ namespace Crud.Api.Controllers
 				// Prepare a failure response
 				response.Status = "Error";
 				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
-				response.Message = "An error occurred while saving the brand.";
+				response.Message = "An error occurred while saving the category.";
 				//response.ErrorDetails.Add(ex.Message);
 
 			}
 			return response;
 		}
 
-		// POST api/<BrandController>
+		// POST api/<CategoryController>
 		[HttpPost]
-		public ResponseModel<BoolResponse> Post(BrandModel model)
+		public ResponseModel<BoolResponse> Post(CategoryModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
 				// The below comment line tell the what is the error in response
-				//response.ErrorDetails = new List<string>();
+			     response.ErrorDetails = new List<string>();
 				// Map ProductModel to Product entity
-				var mappedBrand = _mapper.Map<Brand>(model);
+				var mappedCategory = _mapper.Map<Category>(model);
 
 				// Save the product using the service
-				var result = _brandService.SaveBrand(mappedBrand);
+				var result = _categoryService.SaveCategory(mappedCategory);
 
 				// Prepare a successful response
 				response.Status = "Success";
@@ -88,33 +88,33 @@ namespace Crud.Api.Controllers
 				// Prepare a failure response
 				response.Status = "Error";
 				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
-				response.Message = "An error occurred while saving the product.";
+				response.Message = "An error occurred while saving the category.";
 				response.ErrorDetails.Add(ex.Message);
 
 			}
 			return response;
 		}
 
-		// PUT api/<BrandController>/5
+		// PUT api/<CategoryController>/5
 		[HttpPut]
-		public ResponseModel<BoolResponse> Put(UpdateBrandModel model)
+		public ResponseModel<BoolResponse> Put(UpdatedCategoryModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
 				response.ErrorDetails = new List<string>();
-				var mappedBrand = _mapper.Map<Brand>(model);
-				var result = _brandService.UpsertBrand(mappedBrand);
+				var mappedCategory = _mapper.Map<Category>(model);
+				var result = _categoryService.UpsertCategory(mappedCategory);
 				response.Status = "Success";
 				response.StatusCode = (int)HttpStatusCode.OK;
-				response.Result = result;	
+				response.Result = result;
 				response.Message = result.Message;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				response.Status = "Error";	
-				response.StatusCode= (int)HttpStatusCode.InternalServerError;
-				response.Message = "An error occurred while saving the brand";
+				response.Status = "Error";
+				response.StatusCode = (int)HttpStatusCode.InternalServerError;
+				response.Message = "An error occurred while saving the category";
 				response.ErrorDetails.Add(ex.Message);
 
 
@@ -122,7 +122,7 @@ namespace Crud.Api.Controllers
 			return response;
 		}
 
-		// DELETE api/<BrandController>/5
+		// DELETE api/<CategoryController>/5
 		[HttpDelete("{id}")]
 		public ResponseModel<BoolResponse> Delete(int id)
 		{
@@ -132,7 +132,7 @@ namespace Crud.Api.Controllers
 			try
 			{
 				// Save the product using the service
-				var result = _brandService.DeleteBrand(id);
+				var result = _categoryService.DeleteCategory(id);
 
 				// Prepare a successful response
 				response.Status = "Success";
@@ -145,7 +145,7 @@ namespace Crud.Api.Controllers
 				// Prepare a failure response
 				response.Status = "Error";
 				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
-				response.Message = "An error occurred while saving the product.";
+				response.Message = "An error occurred while saving the category.";
 				response.ErrorDetails.Add(ex.Message);
 
 			}
