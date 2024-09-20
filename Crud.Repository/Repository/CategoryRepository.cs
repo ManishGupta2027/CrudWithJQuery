@@ -58,9 +58,9 @@ namespace Crud.Data.Repository
 				@id = category.Id,
 				@name = category.Name,
 				@code = category.Code,
-				@created = category.Created,
+			//	@created = category.Created,
 				@createdBy = category.CreatedBy,
-				@lastUpdated = category.LastUpdated,
+			//	@lastUpdated = category.LastUpdated,
 				@lastUpdatedBy = category.LastUpdatedBy,
 			});
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertCategory_20240919", dbParams, "MasterDataConnectionstrings");
