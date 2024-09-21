@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using AutoMapper;
 using Crud.Api.Model;
+using Crud.Api.Model.Brand;
 using Crud.Data.Entities;
 using Crud.Service.BrandService;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Crud.Api.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class BrandController : ControllerBase
 	{

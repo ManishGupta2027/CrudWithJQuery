@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Crud.Api.Model;
+using Crud.Api.Model.Brand;
 using Crud.Api.Model.Category;
+using Crud.Api.Model.Product;
 using Crud.Data.Entities;
 
 namespace Crud.Api.Profiler

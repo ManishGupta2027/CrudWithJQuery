@@ -5,12 +5,13 @@ using System.Reflection;
 using Crud.Api.Model;
 using AutoMapper;
 using System.Net;
+using Crud.Api.Model.Product;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Crud.Api.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
