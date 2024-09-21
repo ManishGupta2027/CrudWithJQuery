@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Crud.Api.Model;
+using Crud.Api.Model.Category;
 using Crud.Data.Entities;
 
 namespace Crud.Api.Profiler
 {
-	public class MapperProfile : Profile
+    public class MapperProfile : Profile
 	{
 		public MapperProfile()
 		{
