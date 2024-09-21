@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Crud.Data.Repository;
 
 namespace Crud.Service.BrandService
 {
-	public class BrandService : IBrandService
+    public class BrandService : IBrandService
 	{
 		private readonly IBrandRepository _brandRepository;
 		public BrandService(IBrandRepository brandRepository)

@@ -2,7 +2,9 @@
 using AutoMapper;
 using Crud.Api.Model;
 using Crud.Api.Model.Brand;
+using Crud.Api.Model.Product;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Crud.Service.BrandService;
 using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,14 +26,18 @@ namespace Crud.Api.Controllers
 
         // GET: api/<BrandController>
         [HttpGet]
-		public ResponseModel<List<Brand>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40)
 		{
-			var response = new ResponseModel<List<Brand>>();
+			var response = new ResponsecPaginationModel<List<BrandListModel>>();
 			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			var mappedBrandList = _mapper.Map<List<BrandListModel>>(brandlist);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
-			response.Result = brandlist;
+			response.Result = mappedBrandList;
+			response.TotalRecords = brandlist[0].TotalRecords ?? 0;
+			response.CurrentPage = currentPage;
+			response.PageSize = pageSize;
 			return response;
 		}
 

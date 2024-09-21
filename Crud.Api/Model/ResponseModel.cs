@@ -8,4 +8,10 @@
 		public string Message { get; set; }
 		public List<string> ErrorDetails { get; set; }
 	}
+	public class ResponsecPaginationModel<T> : ResponseModel<T>
+	{
+		public int CurrentPage { get; set;}
+		public int PageSize { get; set; }
+		public int TotalRecords { get; set; }
+	}
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 using Crud.Data.Repository;
 using Crud.Service.BrandService;
 
 namespace Crud.Service.CategoryService
 {
-	public class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
 	{
 		private readonly ICategoryRepository _categoryRepository;
 		public CategoryService(ICategoryRepository categoryRepository)

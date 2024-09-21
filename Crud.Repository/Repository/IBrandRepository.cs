@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 
 namespace Crud.Data.Repository
 {
-	public interface IBrandRepository
+    public interface IBrandRepository
 	{
 		BoolResponse SaveBrand(Brand brand);
 		Brand GetBrandListById(int id);

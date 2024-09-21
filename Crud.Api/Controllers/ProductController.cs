@@ -6,6 +6,7 @@ using Crud.Api.Model;
 using AutoMapper;
 using System.Net;
 using Crud.Api.Model.Product;
+using Crud.Data.Entities.Product;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,10 +26,20 @@ namespace Crud.Api.Controllers
 		}
         // GET: api/<ProductController>
         [HttpGet]
-		public List<Product> GetAll(int currentPage ,int pageSize=40)
+		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40)
 		{
+			var res = new ResponsecPaginationModel<List<ProductListModel>>();
 			var productlist = _productService.GetProductList(currentPage, pageSize);
-			return productlist;
+			var mappedProductList = _mapper.Map<List<ProductListModel>>(productlist);
+			// Populate the response model
+			res.Status = "Success";
+			res.StatusCode = 200;
+			res.Result = mappedProductList;
+			res.CurrentPage = currentPage;
+			res.PageSize = pageSize;
+			res.TotalRecords = productlist[0].TotalRecords ?? 0;
+			res.Message = "Products fetched successfully";
+			return res;
 		}
 
 		// GET api/<ProductController>/5

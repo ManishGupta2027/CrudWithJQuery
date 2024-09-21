@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Dapper;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 using Dapper;
 
 namespace Crud.Data.Repository
 {
-	public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
 	{ 
 	private readonly IDapperRepository _dapperRepository;
 	public CategoryRepository(IDapperRepository dapperRepository)

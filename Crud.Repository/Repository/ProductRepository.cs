@@ -8,10 +8,11 @@ using Crud.Data.Dapper;
 using Dapper;
 using System.Diagnostics;
 using System.Reflection;
+using Crud.Data.Entities.Product;
 
 namespace Crud.Data.Repository
 {
-	public class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
 	{
 		private readonly IDapperRepository _dapperRepository;
 		public ProductRepository(IDapperRepository dapperRepository)
@@ -120,7 +121,6 @@ namespace Crud.Data.Repository
 
 		public BoolResponse UpsertProduct(Product product)
 		{
-			var response = new Response();
 
 			// Prepare the parameters for the upsert (Insert/Update)
 			DynamicParameters dbParams = new DynamicParameters();

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 
 namespace Crud.Service.CategoryService
 {
-	public interface ICategoryService
+    public interface ICategoryService
 	{
 		BoolResponse SaveCategory(Category category);
 		Category GetCategoryListById(int id);

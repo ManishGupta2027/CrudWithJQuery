@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Product;
 using Crud.Data.Repository;
 
 namespace Crud.Service.ProductService
 {
-	public class ProductService : IProductService
+    public class ProductService : IProductService
 	{
 		private readonly IProductRepository _productRepository;
 		public ProductService(IProductRepository productRepository)

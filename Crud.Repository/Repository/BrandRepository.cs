@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Dapper;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Dapper;
 
 namespace Crud.Data.Repository
 {
-	public class BrandRepository : IBrandRepository
+    public class BrandRepository : IBrandRepository
 	{
 	private readonly IDapperRepository _dapperRepository;
 	public BrandRepository(IDapperRepository dapperRepository)
