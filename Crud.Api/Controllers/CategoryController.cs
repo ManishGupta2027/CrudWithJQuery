@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using AutoMapper;
 using Crud.Api.Model;
+using Crud.Api.Model.Category;
 using Crud.Data.Entities;
 using Crud.Service.BrandService;
 using Crud.Service.CategoryService;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Crud.Api.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class CategoryController : ControllerBase
 	{
@@ -99,7 +100,7 @@ namespace Crud.Api.Controllers
 		[HttpPut]
 		public ResponseModel<BoolResponse> Put(UpdatedCategoryModel model)
 		{
-			var response = new ResponseModel<BoolResponse>();
+			          var response = new ResponseModel<BoolResponse>();
 			try
 			{
 				response.ErrorDetails = new List<string>();
