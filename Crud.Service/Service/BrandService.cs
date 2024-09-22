@@ -23,9 +23,9 @@ namespace Crud.Service.BrandService
 			var res = _brandRepository.SaveBrand(brand);
 			return res;
 		}
-		public Brand GetBrandListById(int id)
+		public Brand GetBrandById(Guid id)
 		{
-			return _brandRepository.GetBrandListById(id);
+			return _brandRepository.GetBrandById(id);
 		}
 		public BoolResponse UpsertBrand(Brand brand) 
 		{
@@ -35,7 +35,7 @@ namespace Crud.Service.BrandService
 		{
 			return _brandRepository.GetBrandList(currentPage, pageSize);
 		}
-		public BoolResponse DeleteBrand(int id)
+		public BoolResponse DeleteBrand(Guid id)
 		{ 
 			return _brandRepository.DeleteBrand(id);
 		}

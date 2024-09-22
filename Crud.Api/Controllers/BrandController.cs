@@ -43,12 +43,12 @@ namespace Crud.Api.Controllers
 
 		// GET api/<BrandController>/5
 		[HttpGet("{id}")]
-		public ResponseModel<BrandDetailModel> Get(int id)
+		public ResponseModel<BrandDetailModel> Get(Guid id)
 		{
 			var response = new ResponseModel<BrandDetailModel>();
 			try
 			{
-				var result = _brandService.GetBrandListById(id);
+				var result = _brandService.GetBrandById(id);
 				var mappedBrand = _mapper.Map<BrandDetailModel>(result);
 				// Prepare a successful response
 				response.Status = "Success";
@@ -76,7 +76,6 @@ namespace Crud.Api.Controllers
 			try
 			{
 				// The below comment line tell the what is the error in response
-				//response.ErrorDetails = new List<string>();
 				// Map ProductModel to Product entity
 				var mappedBrand = _mapper.Map<Brand>(model);
 
@@ -131,7 +130,7 @@ namespace Crud.Api.Controllers
 
 		// DELETE api/<BrandController>/5
 		[HttpDelete("{id}")]
-		public ResponseModel<BoolResponse> Delete(int id)
+		public ResponseModel<BoolResponse> Delete(Guid id)
 		{
 
 

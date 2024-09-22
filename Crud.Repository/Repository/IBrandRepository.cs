@@ -11,9 +11,9 @@ namespace Crud.Data.Repository
     public interface IBrandRepository
 	{
 		BoolResponse SaveBrand(Brand brand);
-		Brand GetBrandListById(int id);
+		Brand GetBrandById(Guid id);
 		BoolResponse UpsertBrand(Brand brand);
 		List<Brand> GetBrandList(int currentPage, int pageSize);
-		BoolResponse DeleteBrand(int id);
+		BoolResponse DeleteBrand(Guid id);
 	}
 }
