@@ -2,7 +2,9 @@
 using AutoMapper;
 using Crud.Api.Model;
 using Crud.Api.Model.Category;
+using Crud.Api.Model.Product;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 using Crud.Service.BrandService;
 using Crud.Service.CategoryService;
 using Microsoft.AspNetCore.Mvc;
@@ -24,20 +26,24 @@ namespace Crud.Api.Controllers
 
 		}
 		[HttpGet]
-		public ResponseModel<List<Category>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<CategoryListModel>> GetAll(int currentPage, int pageSize = 40)
 		{
-			var response = new ResponseModel<List<Category>>();
+			var response = new ResponsecPaginationModel<List<CategoryListModel>>();
 			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize);
+			var mappedCategoryList = _mapper.Map<List<CategoryListModel>>(categorylist);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
-			response.Result = categorylist;
+			response.Result = mappedCategoryList;
+			response.TotalRecords = categorylist[0].TotalRecords ?? 0;
+			response.CurrentPage = currentPage;
+			response.PageSize = pageSize;
 			return response;
 		}
 
 		// GET api/<CategoryController>/5
 		[HttpGet("{id}")]
-		public ResponseModel<CategoryDetailModel> Get(int id)
+		public ResponseModel<CategoryDetailModel> Get(Guid id)
 		{
 			var response = new ResponseModel<CategoryDetailModel>();
 			try
@@ -125,7 +131,7 @@ namespace Crud.Api.Controllers
 
 		// DELETE api/<CategoryController>/5
 		[HttpDelete("{id}")]
-		public ResponseModel<BoolResponse> Delete(int id)
+		public ResponseModel<BoolResponse> Delete(Guid id)
 		{
 
 

@@ -2,7 +2,9 @@
 using AutoMapper;
 using Crud.Api.Model;
 using Crud.Api.Model.Brand;
+using Crud.Api.Model.Product;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Crud.Service.BrandService;
 using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,25 +26,29 @@ namespace Crud.Api.Controllers
 
         // GET: api/<BrandController>
         [HttpGet]
-		public ResponseModel<List<Brand>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40)
 		{
-			var response = new ResponseModel<List<Brand>>();
+			var response = new ResponsecPaginationModel<List<BrandListModel>>();
 			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			var mappedBrandList = _mapper.Map<List<BrandListModel>>(brandlist);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
-			response.Result = brandlist;
+			response.Result = mappedBrandList;
+			response.TotalRecords = brandlist[0].TotalRecords ?? 0;
+			response.CurrentPage = currentPage;
+			response.PageSize = pageSize;
 			return response;
 		}
 
 		// GET api/<BrandController>/5
 		[HttpGet("{id}")]
-		public ResponseModel<BrandDetailModel> Get(int id)
+		public ResponseModel<BrandDetailModel> Get(Guid id)
 		{
 			var response = new ResponseModel<BrandDetailModel>();
 			try
 			{
-				var result = _brandService.GetBrandListById(id);
+				var result = _brandService.GetBrandById(id);
 				var mappedBrand = _mapper.Map<BrandDetailModel>(result);
 				// Prepare a successful response
 				response.Status = "Success";
@@ -70,7 +76,6 @@ namespace Crud.Api.Controllers
 			try
 			{
 				// The below comment line tell the what is the error in response
-				//response.ErrorDetails = new List<string>();
 				// Map ProductModel to Product entity
 				var mappedBrand = _mapper.Map<Brand>(model);
 
@@ -125,7 +130,7 @@ namespace Crud.Api.Controllers
 
 		// DELETE api/<BrandController>/5
 		[HttpDelete("{id}")]
-		public ResponseModel<BoolResponse> Delete(int id)
+		public ResponseModel<BoolResponse> Delete(Guid id)
 		{
 
 

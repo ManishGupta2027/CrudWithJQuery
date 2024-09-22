@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 
 namespace Crud.Data.Repository
 {
-	public interface ICategoryRepository
+    public interface ICategoryRepository
 	{
 		BoolResponse SaveCategory(Category category);
-		Category GetCategoryListById(int id);
+		Category GetCategoryListById(Guid id);
 		BoolResponse UpsertCategory(Category category);
 		List<Category> GetCategoryList(int currentPage, int pageSize);
-		BoolResponse DeleteCategory(int id);
+		BoolResponse DeleteCategory(Guid id);
 	}
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Category;
 using Crud.Data.Repository;
 using Crud.Service.BrandService;
 
 namespace Crud.Service.CategoryService
 {
-	public class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
 	{
 		private readonly ICategoryRepository _categoryRepository;
 		public CategoryService(ICategoryRepository categoryRepository)
@@ -23,7 +24,7 @@ namespace Crud.Service.CategoryService
 			var res = _categoryRepository.SaveCategory(category);
 			return res;
 		}
-		public Category GetCategoryListById(int id)
+		public Category GetCategoryListById(Guid id)
 		{
 			return _categoryRepository.GetCategoryListById(id);
 		}
@@ -35,7 +36,7 @@ namespace Crud.Service.CategoryService
 		{
 			return _categoryRepository.GetCategoryList(currentPage, pageSize);
 		}
-		public BoolResponse DeleteCategory(int id)
+		public BoolResponse DeleteCategory(Guid id)
 		{
 			return _categoryRepository.DeleteCategory(id);
 		}

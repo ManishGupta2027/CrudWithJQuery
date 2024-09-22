@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Dapper;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Dapper;
 
 namespace Crud.Data.Repository
 {
-	public class BrandRepository : IBrandRepository
+    public class BrandRepository : IBrandRepository
 	{
 	private readonly IDapperRepository _dapperRepository;
 	public BrandRepository(IDapperRepository dapperRepository)
@@ -32,7 +33,7 @@ namespace Crud.Data.Repository
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20240917", dbParams, "MasterDataConnectionStrings");
 		return dbResponse;
 	}
-		public Brand GetBrandListById(int id)
+		public Brand GetBrandById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
@@ -69,15 +70,15 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(
 				new
 				{
-					@CurrentPage = 1,
-					@PageSize = 40
+					@CurrentPage = currentPage,
+					@PageSize = pageSize
 
 				}
 			);
 			var dbResponse = _dapperRepository.GetAll<Brand>("procGetBrandList_20240918", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
-		public BoolResponse DeleteBrand(int id)
+		public BoolResponse DeleteBrand(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });

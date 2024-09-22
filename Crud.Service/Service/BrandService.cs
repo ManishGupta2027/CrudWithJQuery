@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
+using Crud.Data.Entities.Brand;
 using Crud.Data.Repository;
 
 namespace Crud.Service.BrandService
 {
-	public class BrandService : IBrandService
+    public class BrandService : IBrandService
 	{
 		private readonly IBrandRepository _brandRepository;
 		public BrandService(IBrandRepository brandRepository)
@@ -22,9 +23,9 @@ namespace Crud.Service.BrandService
 			var res = _brandRepository.SaveBrand(brand);
 			return res;
 		}
-		public Brand GetBrandListById(int id)
+		public Brand GetBrandById(Guid id)
 		{
-			return _brandRepository.GetBrandListById(id);
+			return _brandRepository.GetBrandById(id);
 		}
 		public BoolResponse UpsertBrand(Brand brand) 
 		{
@@ -34,7 +35,7 @@ namespace Crud.Service.BrandService
 		{
 			return _brandRepository.GetBrandList(currentPage, pageSize);
 		}
-		public BoolResponse DeleteBrand(int id)
+		public BoolResponse DeleteBrand(Guid id)
 		{ 
 			return _brandRepository.DeleteBrand(id);
 		}
