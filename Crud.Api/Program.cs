@@ -10,6 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+// Add CORS configuration
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowReactApp", policy =>
+	{
+		policy.WithOrigins("http://localhost:3000")  // Specify the React app's URL
+			  .AllowAnyMethod()
+			  .AllowAnyHeader();
+	});
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,6 +48,8 @@ if (app.Environment.IsDevelopment())
 		o.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
 	});
 }
+// Enable CORS for development
+app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
 
