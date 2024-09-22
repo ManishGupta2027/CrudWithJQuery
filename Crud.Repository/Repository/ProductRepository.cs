@@ -37,7 +37,7 @@ namespace Crud.Data.Repository
 			return dbResponse;
 
 		}
-		public Product GetProductListById(int id)
+		public Product GetProductById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
@@ -51,7 +51,26 @@ namespace Crud.Data.Repository
 			var dbResponse = _dapperRepository.Get<Product>("procGetProductDetail_20240420", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
+		public BoolResponse SaveProduct(Product product)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@Id = product.Id,
+					@Name = product.Name,
+					@StockCode = product.StockCode,
+					@Price = product.Price,
+					@CategoryId = product.CategoryId,
+					@BrandId = product.BrandId,
+					@Gender = product.Gender,
+					@IsActive = product.IsActive
+				}
+			);
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
 
+		}
 
 		public BoolResponse UpsertProduct(Product product)
 		{
@@ -61,54 +80,26 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(new
 			{
 				@Id = product.Id,  // Null for insert, populated for update
-				@Title = product.Name,
+				@Name = product.Name,
 				@StockCode = product.StockCode,
 				@Price = product.Price,
-				@Category = product.CategoryId,
+				@CategoryId = product.CategoryId,
+				@BrandId = product.BrandId,
 				@Gender = product.Gender,
 				@IsActive = product.IsActive
 			});
 
 			// Execute the stored procedure using Dapper
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
-
-			// Set response based on the result from the stored procedure
-			//response.IsSuccess = dbResponse.isValid;
-			//response.Message = dbResponse.Message;
-
 			return dbResponse;
 		}
 
-
-
-
-		public BoolResponse DeleteProduct(int id)
+		public BoolResponse DeleteProduct(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProduct_15042024", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
-		}
-		
-
-		public BoolResponse SaveProduct(Product product)
-		{
-			DynamicParameters dbParams = new DynamicParameters();
-			dbParams.AddDynamicParams(
-				new
-				{
-					@Id = product.Id,
-					@Title = product.Name,
-					@StockCode = product.StockCode,
-					@Price =product.Price,
-					@Category =product.CategoryId,
-					@Gender =product.Gender,
-					@IsActive =product.IsActive
-				}
-			);
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
-			return dbResponse;
-
 		}
 	}
 }

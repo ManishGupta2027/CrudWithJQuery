@@ -12,7 +12,7 @@ namespace Crud.Api.Profiler
 	{
 		public MapperProfile()
 		{
-			CreateMap<ProductModel, Product>();
+			CreateMap<ProductCreateModel, Product>();
 			CreateMap<UpdateProductModel, Product>();
 			CreateMap<Product,ProductDetailModel>();
 			CreateMap<BrandModel, Brand>();

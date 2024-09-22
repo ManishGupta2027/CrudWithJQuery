@@ -23,15 +23,15 @@ namespace Crud.Service.ProductService
 			return res;
 		}
 
-		public Product GetProductListById(int id)
+		public Product GetProductById(Guid id)
 		{
-			return _productRepository.GetProductListById(id);
+			return _productRepository.GetProductById(id);
 		}
 		public BoolResponse UpsertProduct(Product product)
 		{
 			return _productRepository.UpsertProduct(product);
 		}
-		public BoolResponse DeleteProduct(int id)
+		public BoolResponse DeleteProduct(Guid id)
 		{
 			return _productRepository.DeleteProduct(id);
 		}

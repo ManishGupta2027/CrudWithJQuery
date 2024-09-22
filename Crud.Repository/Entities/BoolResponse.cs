@@ -10,6 +10,6 @@ namespace Crud.Data.Entities
 	{
 		public bool IsValid { get; set; }
 		public string Message { get; set; }
-		public int? RecordId { get; set; }
+		public Guid? RecordId { get; set; }
 	}
 }
