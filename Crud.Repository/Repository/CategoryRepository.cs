@@ -26,15 +26,13 @@ namespace Crud.Data.Repository
 			{
 				@Id = category.Id,
 				@name = category.Name,
-				@code = category.Code,
-				@createdBy = category.CreatedBy,
-				@lastUpdatedBy = category.LastUpdatedBy,
-			}
+				@code = category.Code
+							}
 		);
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertCategory_20240919", dbParams, "MasterDataConnectionStrings");
 		return dbResponse;
 	}
-	public Category GetCategoryListById(int id)
+	public Category GetCategoryListById(Guid id)
 	{
 		DynamicParameters dbParams = new DynamicParameters();
 		dbParams.AddDynamicParams(
@@ -58,11 +56,8 @@ namespace Crud.Data.Repository
 			{
 				@id = category.Id,
 				@name = category.Name,
-				@code = category.Code,
-			//	@created = category.Created,
-				@createdBy = category.CreatedBy,
-			//	@lastUpdated = category.LastUpdated,
-				@lastUpdatedBy = category.LastUpdatedBy,
+				@code = category.Code
+			
 			});
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertCategory_20240919", dbParams, "MasterDataConnectionstrings");
 		return dbResponse;
@@ -82,7 +77,7 @@ namespace Crud.Data.Repository
 		var dbResponse = _dapperRepository.GetAll<Category>("procGetCategoryList_20240919", dbParams, "MasterDataConnectionStrings");
 		return dbResponse;
 	}
-	public BoolResponse DeleteCategory(int id)
+	public BoolResponse DeleteCategory(Guid id)
 	{
 		DynamicParameters dbParams = new DynamicParameters();
 		dbParams.AddDynamicParams(new { @Id = id });

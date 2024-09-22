@@ -43,7 +43,7 @@ namespace Crud.Api.Controllers
 
 		// GET api/<CategoryController>/5
 		[HttpGet("{id}")]
-		public ResponseModel<CategoryDetailModel> Get(int id)
+		public ResponseModel<CategoryDetailModel> Get(Guid id)
 		{
 			var response = new ResponseModel<CategoryDetailModel>();
 			try
@@ -131,7 +131,7 @@ namespace Crud.Api.Controllers
 
 		// DELETE api/<CategoryController>/5
 		[HttpDelete("{id}")]
-		public ResponseModel<BoolResponse> Delete(int id)
+		public ResponseModel<BoolResponse> Delete(Guid id)
 		{
 
 

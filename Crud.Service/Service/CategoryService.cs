@@ -24,7 +24,7 @@ namespace Crud.Service.CategoryService
 			var res = _categoryRepository.SaveCategory(category);
 			return res;
 		}
-		public Category GetCategoryListById(int id)
+		public Category GetCategoryListById(Guid id)
 		{
 			return _categoryRepository.GetCategoryListById(id);
 		}
@@ -36,7 +36,7 @@ namespace Crud.Service.CategoryService
 		{
 			return _categoryRepository.GetCategoryList(currentPage, pageSize);
 		}
-		public BoolResponse DeleteCategory(int id)
+		public BoolResponse DeleteCategory(Guid id)
 		{
 			return _categoryRepository.DeleteCategory(id);
 		}
