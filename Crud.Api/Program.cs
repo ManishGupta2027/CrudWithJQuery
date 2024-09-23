@@ -4,6 +4,7 @@ using Crud.Data.Repository;
 using Crud.Service.BrandService;
 using Crud.Service.CategoryService;
 using Crud.Service.ProductService;
+using Crud.Service.Service.List;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IListService, ListService>();
 // Register AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperProfile)); // Replace MapperProfile with the name of your profile class
 
