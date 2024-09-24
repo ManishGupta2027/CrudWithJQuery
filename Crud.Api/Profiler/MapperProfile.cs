@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Crud.Api.Model.Brand;
 using Crud.Api.Model.Category;
+using Crud.Api.Model.List;
 using Crud.Api.Model.Product;
 using Crud.Data.Entities.Brand;
 using Crud.Data.Entities.Category;
@@ -20,6 +21,7 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateBrandModel, Brand>();
 			CreateMap<CategoryModel, Category>();
 			CreateMap<Category, CategoryDetailModel>();
+			CreateMap<Category, ListModel>();
 			CreateMap<UpdatedCategoryModel, Category>();
 			CreateMap<Product, ProductListModel>();
 			CreateMap<Brand, BrandListModel>();
