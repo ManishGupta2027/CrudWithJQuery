@@ -311,14 +311,14 @@ namespace Crud.Service.Service.asset
             var result = await _cloudinary.ListResourcesByPublicIdsAsync(publicIds);
             return result.Resources.ToList();
         }
-        public async Task<IList<CloudinaryDotNet.Actions.Resource>> GetResourcesByAssetFolderAsync(string folder)
-        {
-            // Call Cloudinary API to list resources by the specified folder
-            var result = await _cloudinary.ListResourceByAssetFolderAsync(folder,false,false,false);
+        //public async Task<IList<CloudinaryDotNet.Actions.Resource>> GetResourcesByAssetFolderAsync(string folder)
+        //{
+        //    // Call Cloudinary API to list resources by the specified folder
+        //    var result = await _cloudinary.ListResourceByAssetFolderAsync(folder,false,false,false);
 
-            // Return the list of resources
-            return result.Resources.ToList();
-        }
+        //    // Return the list of resources
+        //    return result.Resources.ToList();
+        //}
 
     }
 
