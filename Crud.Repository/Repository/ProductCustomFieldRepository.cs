@@ -53,14 +53,13 @@ namespace Crud.Data.Repository
 
 		public BoolResponse UpsertProductCustomField(ProductCustomField productCustomField)
 		{
+			var json = JsonConvert.SerializeObject(productCustomField);
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
-					@id = productCustomField.Id,
-					@fieldCode = productCustomField.FieldCode,
-					@fieldName = productCustomField.FieldName,
-					@inputType = productCustomField.InputType,
+					@Id = productCustomField.Id,
+					@ProductCustomFieldJson = json
 				});
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20241002", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
