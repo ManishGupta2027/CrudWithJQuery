@@ -1,4 +1,5 @@
-﻿using Crud.Data.Entities.Category;
+﻿using Crud.Data.Entities.Brand;
+using Crud.Data.Entities.Category;
 using Crud.Data.Entities.List;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace Crud.Service.Service.List
     public interface IListService
     {
         List<Category> GetAllCategory(int currentPage , int pageSize);
+        List<Brand> GetAllBrand(int currentPage , int pageSize);
     }
 }
