@@ -44,7 +44,7 @@ namespace Crud.Api.Controllers
         public ResponsecPaginationModel<List<ListModel>> GetAllBrand()
         {
             var response = new ResponsecPaginationModel<List<ListModel>>();
-			var result = _listService.GetAllCategory(1, 10000);
+			var result = _listService.GetAllBrand(1, 10000);
 			var mappedCategoryList = _mapper.Map<List<ListModel>>(result);
 
 			response.Status = "Success";

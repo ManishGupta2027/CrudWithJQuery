@@ -63,14 +63,16 @@ namespace Crud.Data.Repository
 		return dbResponse;
 	}
 
-	public List<Category> GetCategoryList(int currentPage, int pageSize)
+	public List<Category> GetCategoryList(int currentPage, int pageSize, string name)
 	{
 		DynamicParameters dbParams = new DynamicParameters();
 		dbParams.AddDynamicParams(
 			new
 			{
+				@Name=  name,
 				@CurrentPage = 1,
 				@PageSize = 40
+
 
 			}
 		);

@@ -26,10 +26,10 @@ namespace Crud.Api.Controllers
 
 		}
 		[HttpGet]
-		public ResponsecPaginationModel<List<CategoryListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<CategoryListModel>> GetAll(int currentPage=1, int pageSize = 40,string name=null)
 		{
 			var response = new ResponsecPaginationModel<List<CategoryListModel>>();
-			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize);
+			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize, name);
 			var mappedCategoryList = _mapper.Map<List<CategoryListModel>>(categorylist);
 			// Prepare a successful response
 			response.Status = "Success";

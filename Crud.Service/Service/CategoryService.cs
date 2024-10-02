@@ -32,9 +32,9 @@ namespace Crud.Service.CategoryService
 		{
 			return _categoryRepository.UpsertCategory(category);
 		}
-		public List<Category> GetCategoryList(int currentPage, int pageSize)
+		public List<Category> GetCategoryList(int currentPage, int pageSize, string name)
 		{
-			return _categoryRepository.GetCategoryList(currentPage, pageSize);
+			return _categoryRepository.GetCategoryList(currentPage, pageSize,name);
 		}
 		public BoolResponse DeleteCategory(Guid id)
 		{

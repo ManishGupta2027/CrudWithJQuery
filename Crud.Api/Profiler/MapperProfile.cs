@@ -24,6 +24,7 @@ namespace Crud.Api.Profiler
 			CreateMap<CategoryModel, Category>();
 			CreateMap<Category, CategoryDetailModel>();
 			CreateMap<Category, ListModel>();
+			CreateMap<Brand, ListModel>();
 			CreateMap<UpdatedCategoryModel, Category>();
 			CreateMap<Product, ProductListModel>();
 			CreateMap<Brand, BrandListModel>();

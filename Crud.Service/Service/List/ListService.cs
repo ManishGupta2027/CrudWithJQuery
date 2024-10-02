@@ -23,7 +23,7 @@ namespace Crud.Service.Service.List
 		}
         public List<Category> GetAllCategory(int currentPage, int pageSize)
         {
-            var list = _categoryService.GetCategoryList(currentPage, pageSize);
+            var list = _categoryService.GetCategoryList(currentPage, pageSize,null);
             return list;
 
         }
