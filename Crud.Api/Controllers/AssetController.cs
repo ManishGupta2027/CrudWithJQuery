@@ -205,24 +205,15 @@ namespace Crud.Api.Controllers
             return Ok(new { resources });
         }
 
-        //[HttpGet("folders/{folder}/resources")]
-        //public async Task<IActionResult> GetResourcesByAssetFolder(string folder)
-        //{
-        //    if (string.IsNullOrWhiteSpace(folder))
-        //    {
-        //        return BadRequest(new { message = "Folder name is required." });
-        //    }
+        [HttpGet("folders/{folder}/resources")]
+        public  void GetResourcesByAssetFolder(string folder)
+        {
+     
 
-        //    // Call the service method to get resources by folder name
-        //    var resources = await _cloudinaryService.GetResourcesByAssetFolderAsync(folder);
+            // Call the service method to get resources by folder name
+           _cloudinaryService.GetResourcesByAssetFolderAsync(folder);
 
-        //    if (resources == null || !resources.Any())
-        //    {
-        //        return NotFound(new { message = $"No resources found in the folder '{folder}'." });
-        //    }
-
-        //    return Ok(new { resources });
-        //}
+        }
 
 
     }
