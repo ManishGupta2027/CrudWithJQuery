@@ -5,6 +5,6 @@
 		public string FieldCode { get; set; }
 		public string FieldName { get; set; }
 		public byte InputType { get; set; }
-		//public string CreatedBy { get; set; }
 	}
+	
 }

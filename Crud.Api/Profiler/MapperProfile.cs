@@ -32,6 +32,7 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateProductCustomFieldModel, ProductCustomField>();
 			CreateMap<ProductCustomField , ProductCustomFieldListModel>();
 			CreateMap<ProductCustomField, ProductCustomFieldDetailModel>();
+			CreateMap<CustomFieldOption, CustomFieldOptionModel>().ReverseMap();
 			//	.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ProductName))
 			//	.ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.ProductPrice));
 		}

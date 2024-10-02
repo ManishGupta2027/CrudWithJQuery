@@ -8,6 +8,7 @@ using Crud.Data.Entities.Brand;
 using Crud.Data.Entities;
 using Dapper;
 using Crud.Data.Entities.ProductCustomField;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -21,17 +22,16 @@ namespace Crud.Data.Repository
 		}
 		public BoolResponse SaveProductCustomField(ProductCustomField productCustomField)
 		{
+			var json= JsonConvert.SerializeObject(productCustomField);
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@Id = productCustomField.Id,
-					@fieldCode = productCustomField.FieldCode,
-					@fieldName = productCustomField.FieldName,
-					@inputType = productCustomField.InputType,
+					@ProductCustomFieldJson= json
 				}
 			);
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20240927", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20241002", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
 
@@ -62,7 +62,7 @@ namespace Crud.Data.Repository
 					@fieldName = productCustomField.FieldName,
 					@inputType = productCustomField.InputType,
 				});
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20240927", dbParams, "MasterDataConnectionstrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20241002", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
 		}
 
