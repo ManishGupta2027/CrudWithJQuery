@@ -34,22 +34,29 @@ namespace Crud.Data.Repository
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomField_20241002", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
-
 		public ProductCustomField GetProductCustomFieldById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
-			dbParams.AddDynamicParams(
-				new
-				{
-					@Id = id,
+			dbParams.AddDynamicParams(new { @Id = id });
 
+			// Execute the stored procedure
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetJsonProductCustomFieldDetail_20241003", dbParams, "MasterDataConnectionStrings");
 
-				}
-			);
-			var dbResponse = _dapperRepository.Get<ProductCustomField>("procGetProductCustomFieldDetail_20240928", dbParams, "MasterDataConnectionStrings");
-			//var a  = new List<Product>();
-			return dbResponse;
+			// Check if dbResponse is not null
+			if (dbResponse != null)
+			{
+				// Access the JsonResult property that contains the JSON string
+				var json = dbResponse.JsonResult;
+
+				// Deserialize the JSON into the ProductCustomField object
+				var data = JsonConvert.DeserializeObject<ProductCustomField>(json);
+
+				return data;
+			}
+
+			return null; // Return null if no data is found
 		}
+
 
 		public BoolResponse UpsertProductCustomField(ProductCustomField productCustomField)
 		{
