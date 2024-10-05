@@ -30,7 +30,7 @@ namespace Crud.Api.Controllers
 	
 		// GET: api/<ProductCustomFieldController>
 		[HttpGet]
-		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(int currentPage=1, int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<ProductCustomFieldListModel>>();
 			var productCustomFieldlist = _productCustomFieldService.GetProductCustomFieldList(currentPage, pageSize);
@@ -39,7 +39,7 @@ namespace Crud.Api.Controllers
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
 			response.Result = mappedProductCustomFieldList;
-			response.TotalRecords = productCustomFieldlist[0].TotalRecords ?? 0;
+			response.TotalRecords = productCustomFieldlist.Count() > 0 ? productCustomFieldlist[0].TotalRecords ?? 0 : 0;
 			response.CurrentPage = currentPage;
 			response.PageSize = pageSize;
 			return response;
