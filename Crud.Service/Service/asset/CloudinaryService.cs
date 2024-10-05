@@ -311,20 +311,40 @@ namespace Crud.Service.Service.asset
             var result = await _cloudinary.ListResourcesByPublicIdsAsync(publicIds);
             return result.Resources.ToList();
         }
-        public  void GetResourcesByAssetFolderAsync(string folder)
+        public async Task<ListResourcesResult> AllResources()
         {
-            var assetFolderParams = new ListResourcesByAssetFolderParams()
+
+
+            // List all resources starting with the given folderPath (simulate folders with PublicId)
+            var resources = await _cloudinary.ListResourcesAsync(new ListResourcesParams
             {
-                AssetFolder = "technology",
-                Tags = true,
-                Metadata = true
-            };
-            var assetFolderResult = _cloudinary.ListResourcesByAssetFolder(folder);
+                Type = "upload",
+                MaxResults = 1000 // Adjust as necessary (pagination can be handled for more results)
+            });
+            return resources;
+            // var assetFolderParams = new ListResourcesByAssetFolderParams()
+            // {
+            //     AssetFolder = "technology",
+            //     Tags = true,
+            //     Metadata = true
+            // };
+            // var assetFolderResult = _cloudinary.ListResourcesByAssetFolder(folder);
+            //var result = _cloudinary.GetResource("sample");
+
+            // var f = _cloudinary.ListResourcesByAssetFolder("avatars");
+            //var aa= _cloudinary.GetResource()
+
+            // var a = new GetResourceParamsBase()
+            // {
+            //     Prefix="Sa"
+            // };
+            //var b= _cloudinary.GetResourceAsync(a);
+
             // Call Cloudinary API to list resources by the specified folder
-           // var result = await _cloudinary.ListResourceByAssetFolderAsync(folder, false, false, false);
+            // var result = await _cloudinary.ListResourceByAssetFolderAsync(folder, false, false, false);
 
             // Return the list of resources
-           // return result.Resources.ToList();
+            // return result.Resources.ToList();
         }
 
     }

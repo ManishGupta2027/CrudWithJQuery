@@ -1,4 +1,5 @@
-﻿using Crud.Data.Entities.Asset;
+﻿using CloudinaryDotNet.Actions;
+using Crud.Data.Entities.Asset;
 using Crud.Service.Service.asset;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
@@ -205,13 +206,13 @@ namespace Crud.Api.Controllers
             return Ok(new { resources });
         }
 
-        [HttpGet("folders/{folder}/resources")]
-        public  void GetResourcesByAssetFolder(string folder)
+        [HttpGet("all-resources")]
+        public async Task<ListResourcesResult> GetAllResources()
         {
      
 
             // Call the service method to get resources by folder name
-           _cloudinaryService.GetResourcesByAssetFolderAsync(folder);
+           return await _cloudinaryService.AllResources();
 
         }
 
