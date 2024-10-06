@@ -16,5 +16,14 @@ namespace Crud.Data.Repository
 		BoolResponse UpsertProductCustomField(ProductCustomField productCustomField);
 		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize);
 		BoolResponse DeleteProductCustomField(Guid id);
+
+
+		// CustomAttributeSet
+		BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet);
+		BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet);
+		CustomAttributeSet GetCustomAttributeSetById(Guid id);
+		List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize);
+		BoolResponse DeleteCustomAttributeSet(Guid id);
+
 	}
 }
