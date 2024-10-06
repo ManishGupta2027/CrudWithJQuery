@@ -40,5 +40,29 @@ namespace Crud.Service.ProductCustomfieldService
 		{
 			return _productCustomFieldRepository.DeleteProductCustomField(id);
 		}
+
+		//                    CustomAttributeSet
+
+		public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		{
+			var res = _productCustomFieldRepository.SaveCustomAttributeSet(customAttributeSet);
+			return res;
+		}
+		public BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		{
+			return _productCustomFieldRepository.UpsertCustomAttributeSet(customAttributeSet);
+		}
+		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize)
+		{
+			return _productCustomFieldRepository.GetCustomAttributeSetList(currentPage, pageSize);
+		}
+		public CustomAttributeSet GetCustomAttributeSetById(Guid id)
+		{
+			return _productCustomFieldRepository.GetCustomAttributeSetById(id);
+		}
+		public BoolResponse DeleteCustomAttributeSet(Guid id)
+		{
+			return _productCustomFieldRepository.DeleteCustomAttributeSet(id);
+		}
 	}
 }
