@@ -53,9 +53,9 @@ namespace Crud.Service.ProductCustomfieldService
 		{
 			return _productCustomFieldRepository.UpsertCustomAttributeSet(customAttributeSet);
 		}
-		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize)
+		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize, string setName)
 		{
-			return _productCustomFieldRepository.GetCustomAttributeSetList(currentPage, pageSize);
+			return _productCustomFieldRepository.GetCustomAttributeSetList(currentPage, pageSize, setName);
 		}
 		public CustomAttributeSet GetCustomAttributeSetById(Guid id)
 		{

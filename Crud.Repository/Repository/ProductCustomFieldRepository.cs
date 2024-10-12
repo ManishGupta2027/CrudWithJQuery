@@ -98,19 +98,19 @@ namespace Crud.Data.Repository
 
 		//          CustomAttributeSet
 
-		public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
-		{
-			DynamicParameters dbParams = new DynamicParameters();
-			dbParams.AddDynamicParams(
-				new
-				{
-					@id = customAttributeSet.Id,
-					@Name = customAttributeSet.SetName,
-				}
-			);
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomFieldSet_20241005", dbParams, "MasterDataConnectionStrings");
-			return dbResponse;
-		}
+		//public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		//{
+		//	DynamicParameters dbParams = new DynamicParameters();
+		//	dbParams.AddDynamicParams(
+		//		new
+		//		{
+		//			@id = customAttributeSet.Id,
+		//			@Name = customAttributeSet.SetName,
+		//		}
+		//	);
+		//	var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomFieldSet_20241005", dbParams, "MasterDataConnectionStrings");
+		//	return dbResponse;
+		//}
 		public CustomAttributeSet GetCustomAttributeSetById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
@@ -146,8 +146,8 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(
 				new
 				{
-					@CurrentPage = 1,
-					@PageSize = 40,
+					@CurrentPage = currentPage,
+					@PageSize = pageSize,
 					@Name = setName
 				}
 			);

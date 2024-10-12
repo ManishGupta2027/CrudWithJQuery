@@ -19,10 +19,10 @@ namespace Crud.Service.ProductCustomFieldService
 		BoolResponse DeleteProductCustomField(Guid id);
 
 		// CustomAttributeSet
-		BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet);
+		//BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet);
 		BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet);
 		CustomAttributeSet GetCustomAttributeSetById(Guid id);
-		List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize);
+		List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize,string setName);
 		BoolResponse DeleteCustomAttributeSet(Guid id);
 	}
 }

@@ -8,7 +8,7 @@ namespace Crud.Data.Entities.CustomAttributeSet
 {
 	public class CustomAttributeSet : BaseEntity
 	{
-		public Guid Id { get; set; }
+		public Guid? Id { get; set; }
 		public string SetName { get; set; }
 	}
 }

@@ -10,6 +10,7 @@ using Crud.Service.BrandService;
 using Crud.Service.ProductCustomFieldService;
 using Crud.Service.ProductCustomfieldService;
 using Crud.Data.Entities.ProductCustomField;
+using Crud.Data.Entities.CustomAttributeSet;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +31,7 @@ namespace Crud.Api.Controllers
 	
 		// GET: api/<ProductCustomFieldController>
 		[HttpGet]
-		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(string name ,int currentPage=1, int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<ProductCustomFieldListModel>>();
 			var productCustomFieldlist = _productCustomFieldService.GetProductCustomFieldList(currentPage, pageSize);
@@ -84,7 +85,7 @@ namespace Crud.Api.Controllers
                 var mappedProductCustomField = _mapper.Map<ProductCustomField>(model);
 
 				// Save the product using the service
-				var result = _productCustomFieldService.SaveProductCustomField(mappedProductCustomField);
+				var result = _productCustomFieldService.UpsertProductCustomField(mappedProductCustomField);
 
 				// Prepare a successful response
 				response.Status = "Success";
@@ -167,10 +168,10 @@ namespace Crud.Api.Controllers
 
 		// GET: api/<ProductCustomFieldController>
 		[HttpGet("Set")]
-		public ResponsecPaginationModel<List<CustomAttributeSetListModel>> GetAllCustomAttributeSets(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<CustomAttributeSetListModel>> GetAllCustomAttributeSets(string setName,int currentPage = 1 , int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<CustomAttributeSetListModel>>();
-			var customAttriuteSetList = _productCustomFieldService.GetCustomAttributeSetList(currentPage, pageSize);
+			var customAttriuteSetList = _productCustomFieldService.GetCustomAttributeSetList(currentPage, pageSize, setName);
 			var mappedCustomAttriuteSetList = _mapper.Map<List<CustomAttributeSetListModel>>(customAttriuteSetList);
 			// Prepare a successful response
 			response.Status = "Success";
@@ -222,7 +223,7 @@ namespace Crud.Api.Controllers
 				var mappedCustomAttributeSet = _mapper.Map<CustomAttributeSet>(model);
 
 				// Save the product using the service
-				var result = _productCustomFieldService.SaveCustomAttributeSet(mappedCustomAttributeSet);
+				var result = _productCustomFieldService.UpsertCustomAttributeSet(mappedCustomAttributeSet);
 
 				// Prepare a successful response
 				response.Status = "Success";

@@ -6,6 +6,7 @@ using Crud.Api.Model.Product;
 using Crud.Api.Model.ProductCustomField;
 using Crud.Data.Entities.Brand;
 using Crud.Data.Entities.Category;
+using Crud.Data.Entities.CustomAttributeSet;
 using Crud.Data.Entities.Product;
 using Crud.Data.Entities.ProductCustomField;
 
