@@ -8,6 +8,7 @@ using Crud.Data.Entities;
 using Crud.Data.Repository;
 using Crud.Data.Entities.ProductCustomField;
 using Crud.Service.ProductCustomFieldService;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Service.ProductCustomfieldService
 {
@@ -43,11 +44,11 @@ namespace Crud.Service.ProductCustomfieldService
 
 		//                    CustomAttributeSet
 
-		public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
-		{
-			var res = _productCustomFieldRepository.SaveCustomAttributeSet(customAttributeSet);
-			return res;
-		}
+		//public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		//{
+		//	var res = _productCustomFieldRepository.SaveCustomAttributeSet(customAttributeSet);
+		//	return res;
+		//}
 		public BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet)
 		{
 			return _productCustomFieldRepository.UpsertCustomAttributeSet(customAttributeSet);

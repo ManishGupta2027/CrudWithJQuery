@@ -10,6 +10,7 @@ using Dapper;
 using Crud.Data.Entities.ProductCustomField;
 using Newtonsoft.Json;
 using Crud.Data.Entities.Category;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Data.Repository
 {
@@ -79,8 +80,8 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(
 				new
 				{
-					@CurrentPage = currentPage,
-					@PageSize = pageSize
+					@CurrentPage = 1,
+					@PageSize = 40
 
 				}
 			);
@@ -139,15 +140,15 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
-		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize)
+		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize, string setName)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
-					@CurrentPage = currentPage,
-					@PageSize = pageSize
-
+					@CurrentPage = 1,
+					@PageSize = 40,
+					@Name = setName
 				}
 			);
 			var dbResponse = _dapperRepository.GetAll<CustomAttributeSet>("procGetProductCustomFieldSetList_20241006", dbParams, "MasterDataConnectionStrings");

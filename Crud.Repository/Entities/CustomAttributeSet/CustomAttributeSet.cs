@@ -10,6 +10,5 @@ namespace Crud.Data.Entities.CustomAttributeSet
 	{
 		public Guid Id { get; set; }
 		public string SetName { get; set; }
-		public int? TotalRecords { get; set; }
 	}
 }

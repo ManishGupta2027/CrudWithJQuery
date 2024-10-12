@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Crud.Data.Entities.Brand;
 using Crud.Data.Entities;
 using Crud.Data.Entities.ProductCustomField;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Data.Repository
 {

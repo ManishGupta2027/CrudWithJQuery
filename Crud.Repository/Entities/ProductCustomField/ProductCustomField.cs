@@ -21,11 +21,4 @@ namespace Crud.Data.Entities.ProductCustomField
 		public bool IsDefault { get; set; }
 		public int DisplayOrder { get; set; }
 	}
-	public class CustomAttributeSet 
-	{
-		public Guid Id { get; set; }	
-		public string SetName { get; set;}
-		public int? TotalRecords { get; set; }
-	}
-
 }
