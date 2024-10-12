@@ -30,7 +30,7 @@ namespace Crud.Api.Controllers
 	
 		// GET: api/<ProductCustomFieldController>
 		[HttpGet]
-		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(int currentPage=1, int pageSize = 40)
+		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(string name, int currentPage=1, int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<ProductCustomFieldListModel>>();
 			var productCustomFieldlist = _productCustomFieldService.GetProductCustomFieldList(currentPage, pageSize);
