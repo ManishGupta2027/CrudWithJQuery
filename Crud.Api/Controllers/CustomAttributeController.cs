@@ -234,7 +234,7 @@ namespace Crud.Api.Controllers
             return response;
         }
         // PUT api/<ProductCustomFieldController>/5
-        [HttpPut("Set/{id}")]
+        [HttpPut("Set")]
         public ResponseModel<BoolResponse> PutCustomAttributeSet(UpdateCustomAttributeSet model)
         {
             var response = new ResponseModel<BoolResponse>();
