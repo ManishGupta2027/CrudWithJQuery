@@ -166,7 +166,7 @@ namespace Crud.Api.Controllers
 
 
 		// GET: api/<ProductCustomFieldController>
-		[HttpGet("CustomAttributeSets")]
+		[HttpGet("Set")]
 		public ResponsecPaginationModel<List<CustomAttributeSetListModel>> GetAllCustomAttributeSets(int currentPage, int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<CustomAttributeSetListModel>>();
@@ -184,7 +184,7 @@ namespace Crud.Api.Controllers
 		}
 
 		// GET api/<ProductCustomFieldController>/5
-		[HttpGet("CustomAttributeSets/{id}")]
+		[HttpGet("Set/{id}")]
 		public ResponseModel<CustomAttributeSetDetailModel> GetCustomAttributeSetById(Guid id)
 		{
 			var response = new ResponseModel<CustomAttributeSetDetailModel>();
@@ -211,7 +211,7 @@ namespace Crud.Api.Controllers
 		}
 
 		// POST api/<ProductCustomFieldController>
-		[HttpPost("CustomAttributeSets")]
+		[HttpPost("Set")]
 		public ResponseModel<BoolResponse> CreateCustomAttributeSet(CustomAttributeSetModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
@@ -244,7 +244,7 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<ProductCustomFieldController>/5
-		[HttpPut("customAttributeSet/{id}")]
+		[HttpPut("Set/{id}")]
 		public ResponseModel<BoolResponse> PutCustomAttributeSet(UpdateCustomAttributeSet model)
 		{
 			var response = new ResponseModel<BoolResponse>();
@@ -272,7 +272,7 @@ namespace Crud.Api.Controllers
 
 
 		// DELETE api/<ProductCustomFieldController>/5
-		[HttpDelete("CustomAttributeSets/{id}")]
+		[HttpDelete("Set/{id}")]
 		public ResponseModel<BoolResponse> DeleteCustomAttributeSet(Guid id)
 		{
 
