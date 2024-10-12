@@ -21,5 +21,4 @@ namespace Crud.Data.Entities.ProductCustomField
 		public bool IsDefault { get; set; }
 		public int DisplayOrder { get; set; }
 	}
-
 }

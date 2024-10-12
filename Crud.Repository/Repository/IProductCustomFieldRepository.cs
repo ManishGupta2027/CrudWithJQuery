@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Crud.Data.Entities.Brand;
 using Crud.Data.Entities;
 using Crud.Data.Entities.ProductCustomField;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Data.Repository
 {
@@ -16,5 +17,14 @@ namespace Crud.Data.Repository
 		BoolResponse UpsertProductCustomField(ProductCustomField productCustomField);
 		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize);
 		BoolResponse DeleteProductCustomField(Guid id);
+
+
+		// CustomAttributeSet
+	//	BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet);
+		BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet);
+		CustomAttributeSet GetCustomAttributeSetById(Guid id);
+		List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize,string setName);
+		BoolResponse DeleteCustomAttributeSet(Guid id);
+
 	}
 }

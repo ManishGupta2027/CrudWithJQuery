@@ -8,6 +8,7 @@ using Crud.Data.Entities;
 using Crud.Data.Repository;
 using Crud.Data.Entities.ProductCustomField;
 using Crud.Service.ProductCustomFieldService;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Service.ProductCustomfieldService
 {
@@ -39,6 +40,30 @@ namespace Crud.Service.ProductCustomfieldService
 		public BoolResponse DeleteProductCustomField(Guid id)
 		{
 			return _productCustomFieldRepository.DeleteProductCustomField(id);
+		}
+
+		//                    CustomAttributeSet
+
+		//public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		//{
+		//	var res = _productCustomFieldRepository.SaveCustomAttributeSet(customAttributeSet);
+		//	return res;
+		//}
+		public BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		{
+			return _productCustomFieldRepository.UpsertCustomAttributeSet(customAttributeSet);
+		}
+		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize, string setName)
+		{
+			return _productCustomFieldRepository.GetCustomAttributeSetList(currentPage, pageSize, setName);
+		}
+		public CustomAttributeSet GetCustomAttributeSetById(Guid id)
+		{
+			return _productCustomFieldRepository.GetCustomAttributeSetById(id);
+		}
+		public BoolResponse DeleteCustomAttributeSet(Guid id)
+		{
+			return _productCustomFieldRepository.DeleteCustomAttributeSet(id);
 		}
 	}
 }

@@ -9,11 +9,13 @@ using Crud.Data.Entities;
 using Dapper;
 using Crud.Data.Entities.ProductCustomField;
 using Newtonsoft.Json;
+using Crud.Data.Entities.Category;
+using Crud.Data.Entities.CustomAttributeSet;
 
 namespace Crud.Data.Repository
 {
 	public class ProductCustomFieldRepository : IProductCustomFieldRepository
-	{
+	{ 
 		private readonly IDapperRepository _dapperRepository;
 		public ProductCustomFieldRepository(IDapperRepository dapperRepository)
 		{
@@ -78,8 +80,8 @@ namespace Crud.Data.Repository
 			dbParams.AddDynamicParams(
 				new
 				{
-					@CurrentPage = currentPage,
-					@PageSize = pageSize
+					@CurrentPage = 1,
+					@PageSize = 40
 
 				}
 			);
@@ -93,5 +95,72 @@ namespace Crud.Data.Repository
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProductCustomField_20240928", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
+
+		//          CustomAttributeSet
+
+		//public BoolResponse SaveCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		//{
+		//	DynamicParameters dbParams = new DynamicParameters();
+		//	dbParams.AddDynamicParams(
+		//		new
+		//		{
+		//			@id = customAttributeSet.Id,
+		//			@Name = customAttributeSet.SetName,
+		//		}
+		//	);
+		//	var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomFieldSet_20241005", dbParams, "MasterDataConnectionStrings");
+		//	return dbResponse;
+		//}
+		public CustomAttributeSet GetCustomAttributeSetById(Guid id)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@Id = id,
+				}
+			);
+			var dbResponse = _dapperRepository.Get<CustomAttributeSet>("procGetProductCustomFieldSetDetail_20241006", dbParams, "MasterDataConnectionStrings");
+			//var a  = new List<Product>();
+			return dbResponse;
+		}
+
+
+		public BoolResponse UpsertCustomAttributeSet(CustomAttributeSet customAttributeSet)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@id = customAttributeSet.Id,
+					@Name = customAttributeSet.SetName,
+
+				});
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductCustomFieldSet_20241005", dbParams, "MasterDataConnectionstrings");
+			return dbResponse;
+		}
+
+		public List<CustomAttributeSet> GetCustomAttributeSetList(int currentPage, int pageSize, string setName)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+				new
+				{
+					@CurrentPage = currentPage,
+					@PageSize = pageSize,
+					@Name = setName
+				}
+			);
+			var dbResponse = _dapperRepository.GetAll<CustomAttributeSet>("procGetProductCustomFieldSetList_20241006", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
+		}
+		public BoolResponse DeleteCustomAttributeSet(Guid id)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(new { @Id = id });
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProductCustomFieldSet_20241006", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
+		}
+
 	}
 }
