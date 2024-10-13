@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Crud.Data.Dapper;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Brand;
+using Crud.Data.Entities.Category;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -44,9 +46,26 @@ namespace Crud.Data.Repository
 
 				}
 			);
-			var dbResponse = _dapperRepository.Get<Brand>("procGetBrandDetail_20240917", dbParams, "MasterDataConnectionStrings");
-			//var a  = new List<Product>();
-			return dbResponse;
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetBrandDetail_20241013", dbParams, "MasterDataConnectionStrings");
+			if (dbResponse != null)
+			{
+
+				var brand = new Brand
+				{
+					Id = dbResponse.Id,
+					Name = dbResponse.Name,
+					ShortDescription = dbResponse.ShortDescription,
+					Description = dbResponse.Description,
+					LogoPreview = dbResponse.LogoPreview,
+					// Deserialize the Flags JSON
+					Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags.ToString()),
+					// Deserialize the Images JSON array
+					Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images.ToString() ?? "")
+				};
+				//var a  = new List<Product>();
+				return brand;
+			}
+			return null;
 		}
 
 		public BoolResponse UpsertBrand(Brand brand)

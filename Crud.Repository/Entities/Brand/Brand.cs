@@ -12,6 +12,11 @@ namespace Crud.Data.Entities.Brand
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-      
+        public string LogoPreview { get; set; }
+        public Configuration Flags { get; set; }    
+        public List<Image> Images { get; set; }
+        public List<Video> Videos { get; set; }
+
+
     }
 }

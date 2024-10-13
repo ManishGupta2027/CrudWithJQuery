@@ -20,7 +20,7 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateProductModel, Product>();
 			CreateMap<Product,ProductDetailModel>();
 			CreateMap<BrandModel, Brand>();
-			CreateMap<Brand, BrandDetailModel>();
+			CreateMap<Brand, BrandDetailModel>().ReverseMap();
 			CreateMap<UpdateBrandModel, Brand>();
 			CreateMap<CategoryModel, Category>();
 			CreateMap<Category, CategoryDetailModel>();
@@ -39,6 +39,8 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateCustomAttributeSet, CustomAttributeSet>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetDetailModel>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetListModel>();
+			CreateMap<ImageDetailModel, Image>().ReverseMap();
+			CreateMap<Configuration, ConfigurationModel>().ReverseMap();
 		}
 	}
 }
