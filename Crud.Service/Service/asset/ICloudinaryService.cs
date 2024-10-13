@@ -15,7 +15,9 @@ namespace Crud.Service.Service.asset
         Task<FolderResult> CreateFolderAsync(string folderPath);
         Task<Data.Entities.Asset.DeleteFolderResult> DeleteFolderAsync(string folderPath);  // New method for deleting a folder
         Task<ImageUploadResult> UploadImageAsync(string base64Image);  // New method for uploading images
-
+      
+        Task<string> UploadImageAsync(string base64, string fileName, string folderName);
+       
     }
 
 }

@@ -305,6 +305,34 @@ namespace Crud.Service.Service.asset
             var uploadResult = await _cloudinary.UploadAsync(uploadParams);
             return uploadResult;
         }
+        // Upload base64 image
+        public async Task<string> UploadImageAsync(string base64, string fileName, string folderName)
+        {
+            try
+            {
+                // Ensure the base64 string does not contain any prefix like 'data:image/jpeg;base64,'
+                var cleanBase64 = base64.Contains(",") ? base64.Split(',')[1] : base64;
+
+                // Set the upload parameters for the image
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription($"data:image/jpeg;base64,{cleanBase64}"),
+                    PublicId = fileName,
+                    //PublicId = $"{folderName}/{fileName}",
+                    Folder = folderName
+                };
+
+                // Upload the image to Cloudinary
+                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+                // Return the secure URL of the uploaded image
+                return uploadResult.SecureUrl.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to upload image to Cloudinary", ex);
+            }
+        }
         public async Task<IList<CloudinaryDotNet.Actions.Resource>> GetResourcesByPublicIdsAsync(string[] publicIds)
         {
            // var a = _cloudinary.ListResourceTypes();

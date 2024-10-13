@@ -133,59 +133,82 @@ namespace Crud.Api.Controllers
 
             return Ok(response);
         }
-//        {
-//    "base64Image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
-//    "folder": "tsestayush/tsestayush"
-//}
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
-    [HttpPost("upload")]
-        public async Task<IActionResult> UploadImage([FromBody] UploadImageRequest request)
+        //        {
+        //    "base64Image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+        //    "folder": "tsestayush/tsestayush"
+        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        //[HttpPost("upload")]
+        //public async Task<IActionResult> UploadImage([FromBody] UploadImageRequest request)
+        //{
+        //    if (string.IsNullOrWhiteSpace(request.Base64Image))
+        //    {
+        //        return BadRequest(new { message = "Image data is required." });
+        //    }
+
+        //    if (string.IsNullOrWhiteSpace(request.Folder))
+        //    {
+        //        return BadRequest(new { message = "Folder name is required." });
+        //    }
+
+        //    var uploadResult = await _cloudinaryService.UploadImageAsync(request.Base64Image, request.Folder);
+        //    if (uploadResult == null)
+        //    {
+        //        return BadRequest(new { message = "Failed to upload image." });
+        //    }
+
+        //    var response = new
+        //    {
+        //        asset_id = uploadResult.AssetId,
+        //        public_id = uploadResult.PublicId,
+        //        version = uploadResult.Version,
+        //        // version_id = uploadResult.VersionId,
+        //        signature = uploadResult.Signature,
+        //        width = uploadResult.Width,
+        //        height = uploadResult.Height,
+        //        format = uploadResult.Format,
+        //        resource_type = uploadResult.ResourceType,
+        //        created_at = uploadResult.CreatedAt,
+        //        tags = uploadResult.Tags,
+        //        bytes = uploadResult.Bytes,
+        //        type = uploadResult.Type,
+        //        etag = uploadResult.Etag,
+        //        placeholder = uploadResult.Placeholder,
+        //        url = uploadResult.Url.ToString(),
+        //        secure_url = uploadResult.SecureUrl.ToString(),
+        //        // folder = uploadResult.Folder,
+        //        // existing = uploadResult.Existing,
+        //        original_filename = uploadResult.OriginalFilename
+        //    };
+
+        //    return Ok(response);
+        //}
+
+        // POST: api/upload
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadImage([FromBody] UploadRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Base64Image))
+            if (request == null || string.IsNullOrEmpty(request.Base64) || string.IsNullOrEmpty(request.FileName) || string.IsNullOrEmpty(request.FolderName))
             {
-                return BadRequest(new { message = "Image data is required." });
+                return BadRequest("Invalid upload request");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Folder))
+            try
             {
-                return BadRequest(new { message = "Folder name is required." });
+                // Use the CloudinaryService to upload the image
+                var uploadedUrl = await _cloudinaryService.UploadImageAsync(request.Base64, request.FileName, request.FolderName);
+
+                // Return the URL of the uploaded image
+                return Ok(new { Url = uploadedUrl });
             }
-
-            var uploadResult = await _cloudinaryService.UploadImageAsync(request.Base64Image, request.Folder);
-            if (uploadResult == null)
+            catch (Exception ex)
             {
-                return BadRequest(new { message = "Failed to upload image." });
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-
-            var response = new
-            {
-                asset_id = uploadResult.AssetId,
-                public_id = uploadResult.PublicId,
-                version = uploadResult.Version,
-               // version_id = uploadResult.VersionId,
-                signature = uploadResult.Signature,
-                width = uploadResult.Width,
-                height = uploadResult.Height,
-                format = uploadResult.Format,
-                resource_type = uploadResult.ResourceType,
-                created_at = uploadResult.CreatedAt,
-                tags = uploadResult.Tags,
-                bytes = uploadResult.Bytes,
-                type = uploadResult.Type,
-                etag = uploadResult.Etag,
-                placeholder = uploadResult.Placeholder,
-                url = uploadResult.Url.ToString(),
-                secure_url = uploadResult.SecureUrl.ToString(),
-               // folder = uploadResult.Folder,
-               // existing = uploadResult.Existing,
-                original_filename = uploadResult.OriginalFilename
-            };
-
-            return Ok(response);
         }
         [HttpGet("resources")]
         public async Task<IActionResult> GetResourcesByPublicIds([FromQuery] string publicIds)
