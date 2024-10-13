@@ -58,9 +58,9 @@ namespace Crud.Data.Repository
 					Description = dbResponse.Description,
 					LogoPreview = dbResponse.LogoPreview,
 					// Deserialize the Flags JSON
-					Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags.ToString()),
+					Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags ?? ""),
 					// Deserialize the Images JSON array
-					Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images.ToString() ?? "")
+					Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images ?? "")
 				};
 				//var a  = new List<Product>();
 				return brand;
