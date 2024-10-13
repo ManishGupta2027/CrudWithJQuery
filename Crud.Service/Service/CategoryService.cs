@@ -40,5 +40,10 @@ namespace Crud.Service.CategoryService
 		{
 			return _categoryRepository.DeleteCategory(id);
 		}
-	}
+
+        public BoolResponse Media(Guid categoryId, Image model)
+        {
+            return _categoryRepository.Media(categoryId, model);
+        }
+    }
 }

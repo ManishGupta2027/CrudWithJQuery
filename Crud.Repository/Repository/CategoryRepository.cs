@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Crud.Data.Dapper;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Category;
+using Crud.Data.Entities.ProductCustomField;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -43,10 +45,31 @@ namespace Crud.Data.Repository
 
 			}
 		);
-		var dbResponse = _dapperRepository.Get<Category>("procGetCategoryDetail_20240919", dbParams, "MasterDataConnectionStrings");
-		//var a  = new List<Product>();
-		return dbResponse;
-	}
+		var dbResponse = _dapperRepository.Get<dynamic>("procGetCategoryDetail_20241013", dbParams, "MasterDataConnectionStrings");
+        if (dbResponse != null)
+        {
+            // Convert the dynamic response to a Category object
+            var category = new Category
+            {
+                Id = dbResponse.Id,
+                Name = dbResponse.Name,
+                Code = dbResponse.Code,
+                ShortDescription = dbResponse.ShortDescription,
+                Description = dbResponse.Description,
+                LogoUrl = dbResponse.LogoUrl,
+                CreatedBy = dbResponse.CreatedBy,
+                LastUpdatedBy = dbResponse.LastUpdatedBy,
+                // Deserialize the Flags JSON
+                Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags.ToString()),
+                // Deserialize the Images JSON array
+                Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images.ToString())
+            };
+
+            return category;
+        }
+
+        return null;
+        }
 
 	public BoolResponse UpsertCategory(Category category)
 	{
@@ -56,10 +79,15 @@ namespace Crud.Data.Repository
 			{
 				@id = category.Id,
 				@name = category.Name,
-				@code = category.Code
+				@code = category.Code,
+                @description = category.Description,
+                @shortDescription = category.ShortDescription,
+                @logoUrl = category.LogoUrl,
+                @isActive = category.Flags.IsActive,
+                @isFeatured = category.Flags.IsFeatured
 			
 			});
-		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertCategory_20240919", dbParams, "MasterDataConnectionstrings");
+		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertCategory_20241013", dbParams, "MasterDataConnectionstrings");
 		return dbResponse;
 	}
 
@@ -87,5 +115,18 @@ namespace Crud.Data.Repository
 		return dbResponse;
 	}
 
+        public BoolResponse Media(Guid categoryId, Image model)
+        {
+            DynamicParameters dbParams = new DynamicParameters();
+            dbParams.AddDynamicParams(
+            new
+            {
+                @id = categoryId,
+                @MediaJson=  JsonConvert.SerializeObject(model)
+
+        });
+            var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpsertCategoryMedia", dbParams, "MasterDataConnectionstrings");
+            return dbResponse;
+        }
     }
 }
