@@ -115,13 +115,13 @@ namespace Crud.Data.Repository
 		return dbResponse;
 	}
 
-        public BoolResponse Media(Guid categoryId, Image model)
+        public BoolResponse Media(Guid categoryId, List<Image> model)
         {
             DynamicParameters dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(
             new
             {
-                @id = categoryId,
+                @CategoryId = categoryId,
                 @MediaJson=  JsonConvert.SerializeObject(model)
 
         });

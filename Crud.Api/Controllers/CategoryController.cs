@@ -7,6 +7,7 @@ using Crud.Data.Entities;
 using Crud.Data.Entities.Category;
 using Crud.Service.BrandService;
 using Crud.Service.CategoryService;
+using Crud.Service.Service.asset;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,10 +20,12 @@ namespace Crud.Api.Controllers
 	{
 		private ICategoryService _categoryService;
 		private readonly IMapper _mapper;
-		public CategoryController(ICategoryService categoryService, IMapper mapper)
+        private readonly CloudinaryService _cloudinaryService;
+        public CategoryController(ICategoryService categoryService, IMapper mapper, CloudinaryService cloudinaryService)
 		{
 			_mapper = mapper;
 			_categoryService = categoryService;
+            _cloudinaryService = cloudinaryService;
 
 		}
 		[HttpGet]
@@ -110,9 +113,21 @@ namespace Crud.Api.Controllers
 			try
 			{
 				response.ErrorDetails = new List<string>();
-				var mappedCategory = _mapper.Map<Category>(model);
-				var result = _categoryService.UpsertCategory(mappedCategory);
-				response.Status = "Success";
+                if(model.LogoPreview != null && model.LogoPreview != "")
+                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoPreview, "Logo1332", "Manjit");
+                foreach (var item in model.Images)
+                {
+					if (item.Base64 != null && item.Base64 != "")
+                        item.Url = _cloudinaryService.UploadImage(item.Base64, item.Name, "Manjit");
+
+                }
+               
+                var mappedCategory = _mapper.Map<Category>(model);
+
+                var result = _categoryService.UpsertCategory(mappedCategory);
+				_categoryService.Media(model.Id,mappedCategory.Images);
+
+                response.Status = "Success";
 				response.StatusCode = (int)HttpStatusCode.OK;
 				response.Result = result;
 				response.Message = result.Message;
