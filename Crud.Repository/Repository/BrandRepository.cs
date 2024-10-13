@@ -59,8 +59,12 @@ namespace Crud.Data.Repository
 					@name = brand.Name,
 					@shortDescription = brand.ShortDescription,
 					@description = brand.Description,
+
+					@isActive = brand.IsActive,
+					@isFeatured = brand.IsFeatured,
+					@logo = brand.Logo,
 				});
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20240917", dbParams, "MasterDataConnectionstrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20241013", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
 		}
 

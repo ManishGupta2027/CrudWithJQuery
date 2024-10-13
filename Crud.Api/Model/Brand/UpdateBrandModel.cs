@@ -7,11 +7,11 @@
         public string ShortDescription { get; set; }
         public string Description { get; set; }
         public string LogoPreview { get; set; }
-        public Configuration Flags { get; set; }
+        public ConfigurationModel Flags { get; set; }
         public ImageModel Images { get; set; }
         public VideoModel Videos { get; set; }
     }
-    public class Configuration{
+    public class ConfigurationModel{
       public bool IsActive { get; set; }
       public string IsFeatured { get; set; }
     }

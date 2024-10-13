@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace Crud.Data.Entities.Brand
 {
-    public class Brand : BaseEntity
+	public class Configuration
 	{
-      
-        public string Name { get; set; }
-        public string ShortDescription { get; set; }
-        public string Description { get; set; }
 		public bool IsActive { get; set; }
 		public bool IsFeatured { get; set; }
-        public string Logo { get; set; }
-
 	}
 }
