@@ -113,12 +113,12 @@ namespace Crud.Api.Controllers
 			try
 			{
 				response.ErrorDetails = new List<string>();
-                if(model.LogoPreview != null && model.LogoPreview != "")
-                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoPreview, "Logo1332", "Manjit");
+                if(!string.IsNullOrEmpty(model.LogoBase64))
+                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoBase64, "Logo1332", "Store");
                 foreach (var item in model.Images)
                 {
-					if (item.Base64 != null && item.Base64 != "")
-                        item.Url = _cloudinaryService.UploadImage(item.Base64, item.Name, "Manjit");
+					if (!string.IsNullOrEmpty(item.Base64))
+                        item.Url = _cloudinaryService.UploadImage(item.Base64, item.Name, "Store");
 
                 }
                
