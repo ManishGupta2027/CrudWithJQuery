@@ -113,6 +113,7 @@ namespace Crud.Api.Controllers
 			try
 			{
 				response.ErrorDetails = new List<string>();
+				var category = "Category";
                 if(!string.IsNullOrEmpty(model.LogoBase64))
                 model.LogoUrl= _cloudinaryService.UploadImage(model.LogoBase64, "Logo"+model.Code, "Store");
                 foreach (var item in model.Images)
@@ -122,7 +123,7 @@ namespace Crud.Api.Controllers
 						// Name like abc.jpg than abc
 						var splitFileName = item.Name.Split('.');
                         string name = splitFileName[0];
-                        item.Url = _cloudinaryService.UploadImage(item.Base64, name, "Store");
+                        item.Url = _cloudinaryService.UploadImage(item.Base64, $"{category}/{name}", "Store");
 					}
 
                 }
