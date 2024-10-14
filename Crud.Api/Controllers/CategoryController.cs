@@ -114,7 +114,7 @@ namespace Crud.Api.Controllers
 			{
 				response.ErrorDetails = new List<string>();
                 if(!string.IsNullOrEmpty(model.LogoBase64))
-                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoBase64, "Logo1332", "Store");
+                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoBase64, "Logo"+model.Code, "Store");
                 foreach (var item in model.Images)
                 {
 					if (!string.IsNullOrEmpty(item.Base64))
