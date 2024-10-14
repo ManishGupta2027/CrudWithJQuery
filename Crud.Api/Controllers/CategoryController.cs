@@ -118,7 +118,12 @@ namespace Crud.Api.Controllers
                 foreach (var item in model.Images)
                 {
 					if (!string.IsNullOrEmpty(item.Base64))
-                        item.Url = _cloudinaryService.UploadImage(item.Base64, item.Name, "Store");
+					{
+						// Name like abc.jpg than abc
+						var splitFileName = item.Name.Split('.');
+                        string name = splitFileName[0];
+                        item.Url = _cloudinaryService.UploadImage(item.Base64, name, "Store");
+					}
 
                 }
                
