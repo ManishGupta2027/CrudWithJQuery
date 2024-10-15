@@ -15,6 +15,7 @@ namespace Crud.Data.Entities.Brand
 		public bool IsActive { get; set; }
 		public bool IsFeatured { get; set; }
         public string Logo { get; set; }
-
+        public string LogoURL { get; set; }
+        public string LogoBase64 { get; set; }
 	}
 }
