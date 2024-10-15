@@ -64,7 +64,7 @@ namespace Crud.Api.Controllers
 				// Prepare a failure response
 				response.Status = "Error";
 				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
-				response.Message = "An error occurred while saving the category.";
+				response.Message = "An error occurred while getting the category.";
 				//response.ErrorDetails.Add(ex.Message);
 
 			}

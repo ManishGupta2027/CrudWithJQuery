@@ -60,9 +60,9 @@ namespace Crud.Data.Repository
                 CreatedBy = dbResponse.CreatedBy,
                 LastUpdatedBy = dbResponse.LastUpdatedBy,
                 // Deserialize the Flags JSON
-                Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags.ToString()),
+                Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags??""),
                 // Deserialize the Images JSON array
-                Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images.ToString())
+                Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images??"")
             };
 
             return category;
