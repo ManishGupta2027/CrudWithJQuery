@@ -15,5 +15,6 @@ namespace Crud.Data.Repository
 		BoolResponse UpsertCategory(Category category);
 		List<Category> GetCategoryList(int currentPage, int pageSize, string name);
 		BoolResponse DeleteCategory(Guid id);
+		BoolResponse Media(Guid categoryId, List<Image> model);
 	}
 }

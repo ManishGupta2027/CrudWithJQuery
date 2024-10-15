@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Crud.Api.Model.Brand;
 using Crud.Api.Model.Category;
+using Crud.Api.Model.CommanModals;
 using Crud.Api.Model.List;
 using Crud.Api.Model.Product;
 using Crud.Api.Model.ProductCustomField;
+using Crud.Data.Entities;
 using Crud.Data.Entities.Brand;
 using Crud.Data.Entities.Category;
 using Crud.Data.Entities.CustomAttributeSet;
@@ -23,7 +25,7 @@ namespace Crud.Api.Profiler
 			CreateMap<Brand, BrandDetailModel>();
 			CreateMap<UpdateBrandModel, Brand>();
 			CreateMap<CategoryModel, Category>();
-			CreateMap<Category, CategoryDetailModel>();
+			CreateMap<Category, CategoryDetailModel>().ReverseMap();
 			CreateMap<Category, ListModel>();
 			CreateMap<Brand, ListModel>();
 			CreateMap<UpdatedCategoryModel, Category>();
@@ -39,6 +41,9 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateCustomAttributeSet, CustomAttributeSet>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetDetailModel>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetListModel>();
-		}
+			CreateMap<ImageDetailModel, Image>().ReverseMap();
+			CreateMap<ConfigurationModel, Configuration>().ReverseMap();
+			CreateMap<ImageUpsertModel, Image>().ReverseMap();
+        }
 	}
 }
