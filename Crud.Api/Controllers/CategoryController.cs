@@ -106,12 +106,13 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<CategoryController>/5
-		[HttpPut]
-		public ResponseModel<BoolResponse> Put(UpdatedCategoryModel model)
+		[HttpPut("{id}")]
+		public ResponseModel<BoolResponse> Put( Guid id,UpdatedCategoryModel model)
 		{
 			          var response = new ResponseModel<BoolResponse>();
 			try
 			{
+				model.Id = id;
 				response.ErrorDetails = new List<string>();
 				var category = "Category";
                 if(!string.IsNullOrEmpty(model.LogoBase64))
