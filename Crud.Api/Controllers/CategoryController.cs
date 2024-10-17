@@ -7,6 +7,7 @@ using Crud.Data.Entities;
 using Crud.Data.Entities.Category;
 using Crud.Service.BrandService;
 using Crud.Service.CategoryService;
+using Crud.Service.Service.asset;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,17 +20,19 @@ namespace Crud.Api.Controllers
 	{
 		private ICategoryService _categoryService;
 		private readonly IMapper _mapper;
-		public CategoryController(ICategoryService categoryService, IMapper mapper)
+        private readonly CloudinaryService _cloudinaryService;
+        public CategoryController(ICategoryService categoryService, IMapper mapper, CloudinaryService cloudinaryService)
 		{
 			_mapper = mapper;
 			_categoryService = categoryService;
+            _cloudinaryService = cloudinaryService;
 
 		}
 		[HttpGet]
-		public ResponsecPaginationModel<List<CategoryListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<CategoryListModel>> GetAll(int currentPage=1, int pageSize = 40,string name=null)
 		{
 			var response = new ResponsecPaginationModel<List<CategoryListModel>>();
-			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize);
+			var categorylist = _categoryService.GetCategoryList(currentPage, pageSize, name);
 			var mappedCategoryList = _mapper.Map<List<CategoryListModel>>(categorylist);
 			// Prepare a successful response
 			response.Status = "Success";
@@ -61,7 +64,7 @@ namespace Crud.Api.Controllers
 				// Prepare a failure response
 				response.Status = "Error";
 				response.StatusCode = (int)HttpStatusCode.InternalServerError; // Using HttpStatusCode
-				response.Message = "An error occurred while saving the category.";
+				response.Message = "An error occurred while getting the category.";
 				//response.ErrorDetails.Add(ex.Message);
 
 			}
@@ -103,16 +106,35 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<CategoryController>/5
-		[HttpPut]
-		public ResponseModel<BoolResponse> Put(UpdatedCategoryModel model)
+		[HttpPut("{id}")]
+		public ResponseModel<BoolResponse> Put( Guid id,UpdatedCategoryModel model)
 		{
 			          var response = new ResponseModel<BoolResponse>();
 			try
 			{
+				model.Id = id;
 				response.ErrorDetails = new List<string>();
-				var mappedCategory = _mapper.Map<Category>(model);
-				var result = _categoryService.UpsertCategory(mappedCategory);
-				response.Status = "Success";
+				var category = "Category";
+                if(!string.IsNullOrEmpty(model.LogoBase64))
+                model.LogoUrl= _cloudinaryService.UploadImage(model.LogoBase64, "Logo"+model.Code, "Store");
+                foreach (var item in model.Images)
+                {
+					if (!string.IsNullOrEmpty(item.Base64))
+					{
+						// Name like abc.jpg than abc
+						var splitFileName = item.Name.Split('.');
+                        string name = splitFileName[0];
+                        item.Url = _cloudinaryService.UploadImage(item.Base64, $"{category}/{name}", "Store");
+					}
+
+                }
+               
+                var mappedCategory = _mapper.Map<Category>(model);
+
+                var result = _categoryService.UpsertCategory(mappedCategory);
+				_categoryService.Media(model.Id,mappedCategory.Images);
+
+                response.Status = "Success";
 				response.StatusCode = (int)HttpStatusCode.OK;
 				response.Result = result;
 				response.Message = result.Message;

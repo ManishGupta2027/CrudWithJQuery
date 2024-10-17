@@ -44,7 +44,7 @@ namespace Crud.Api.Controllers
         public ResponsecPaginationModel<List<ListModel>> GetAllBrand()
         {
             var response = new ResponsecPaginationModel<List<ListModel>>();
-			var result = _listService.GetAllCategory(1, 10000);
+			var result = _listService.GetAllBrand(1, 10000);
 			var mappedCategoryList = _mapper.Map<List<ListModel>>(result);
 
 			response.Status = "Success";
@@ -56,22 +56,22 @@ namespace Crud.Api.Controllers
 			return response;
         }
 
-        // POST api/<ListController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/<ListController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/<ListController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<ListController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<ListController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<ListController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
