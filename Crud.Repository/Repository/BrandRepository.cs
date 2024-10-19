@@ -7,6 +7,7 @@ using Crud.Data.Dapper;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Brand;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -59,12 +60,11 @@ namespace Crud.Data.Repository
 					@name = brand.Name,
 					@shortDescription = brand.ShortDescription,
 					@description = brand.Description,
-
+					@logoName = brand.LogoName,
+					@logoUrl = brand.LogoUrl,
 					@isActive = brand.IsActive,
 					@isFeatured = brand.IsFeatured,
-					@logo = brand.Logo,
-					@logoURL = brand.LogoURL,
-					@logoBase64 = brand.LogoBase64,
+				
 				});
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20241014", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
@@ -89,6 +89,19 @@ namespace Crud.Data.Repository
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteBrand_18092024", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
+		}
+		public BoolResponse BrandMedia(Guid brandId, List<Image> model)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+			new
+			{
+				@BrandId = brandId,
+				@BrandMediaJson = JsonConvert.SerializeObject(model)
+
+			});
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpsertBrandMedia", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
 		}
 	}

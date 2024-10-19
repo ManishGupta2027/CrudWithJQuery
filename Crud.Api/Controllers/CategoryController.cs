@@ -145,8 +145,6 @@ namespace Crud.Api.Controllers
 				response.StatusCode = (int)HttpStatusCode.InternalServerError;
 				response.Message = "An error occurred while saving the category";
 				response.ErrorDetails.Add(ex.Message);
-
-
 			}
 			return response;
 		}

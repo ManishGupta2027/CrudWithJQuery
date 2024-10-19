@@ -3,6 +3,7 @@
     public class ImageModel
     {
         public string Name { get; set; }
+        public string LogoName { get; set; }
         public string Description { get; set; }
         public  int DisplayOrder {  get; set; }
     }

@@ -333,7 +333,15 @@ namespace Crud.Service.Service.asset
                 throw new ApplicationException("Failed to upload image to Cloudinary", ex);
             }
         }
-        public  string UploadImage(string base64, string fileName, string folderName)
+		/// <summary>
+		/// base64 ,fileName = prefixfolderName/filename,folderName=container Name
+		/// </summary>
+		/// <param name="base64"></param>
+		/// <param name="fileName"></param>
+		/// <param name="folderName"></param>
+		/// <returns></returns>
+		/// <exception cref="ApplicationException"></exception>
+		public string UploadImage(string base64, string fileName, string folderName)
         {
             try
             {
