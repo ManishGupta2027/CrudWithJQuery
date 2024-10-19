@@ -1,10 +1,11 @@
 ﻿Create table BrandMedia(
-	Id uniqueidentifier not null CONSTRAINT [pk_BrandMedia_Id] PRIMARY KEY CLUSTERED,
+	Id uniqueidentifier not null default newsequentialid() CONSTRAINT [pk_BrandMedia_Id] PRIMARY KEY CLUSTERED,
 	BrandId uniqueidentifier,
 	Name nvarchar(100) not null,  
 	DisplayOrder bit not null,
 	Description nvarchar(max) null,
 	Url nvarchar(100) not null,
+	MediaType tinyint ,
 	OrgId uniqueidentifier NULL,
 	DomainId uniqueidentifier NULL,
 	Created datetime NOT NULL default getutcdate(),

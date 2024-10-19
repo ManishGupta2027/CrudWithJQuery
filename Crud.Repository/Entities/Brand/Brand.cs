@@ -18,5 +18,7 @@ namespace Crud.Data.Entities.Brand
         public string LogoUrl { get; set; }
 		public List<Image> Images { get; set; }
 		public string LogoBase64 { get; set; }
-	}
+        public Configuration Flags { get; set; }
+
+    }
 }

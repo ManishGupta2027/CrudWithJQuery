@@ -22,7 +22,7 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateProductModel, Product>();
 			CreateMap<Product,ProductDetailModel>();
 			CreateMap<BrandModel, Brand>();
-			CreateMap<Brand, BrandDetailModel>();
+			CreateMap<Brand, BrandDetailModel>().ReverseMap();
 			CreateMap<UpdateBrandModel, Brand>();
 			CreateMap<CategoryModel, Category>();
 			CreateMap<Category, CategoryDetailModel>().ReverseMap();
