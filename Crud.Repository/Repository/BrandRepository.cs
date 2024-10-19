@@ -7,6 +7,7 @@ using Crud.Data.Dapper;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Brand;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -33,23 +34,40 @@ namespace Crud.Data.Repository
 		var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20240917", dbParams, "MasterDataConnectionStrings");
 		return dbResponse;
 	}
-		public Brand GetBrandById(Guid id)
-		{
-			DynamicParameters dbParams = new DynamicParameters();
-			dbParams.AddDynamicParams(
-				new
-				{
-					@Id = id,
+        public Brand GetBrandById(Guid id)
+        {
+            DynamicParameters dbParams = new DynamicParameters();
+            dbParams.AddDynamicParams(
+                new
+                {
+                    @Id = id,
 
 
-				}
-			);
-			var dbResponse = _dapperRepository.Get<Brand>("procGetBrandDetail_20240917", dbParams, "MasterDataConnectionStrings");
-			//var a  = new List<Product>();
-			return dbResponse;
-		}
+                }
+            );
+            var dbResponse = _dapperRepository.Get<dynamic>("procGetBrandDetail_20241013", dbParams, "MasterDataConnectionStrings");
+            if (dbResponse != null)
+            {
 
-		public BoolResponse UpsertBrand(Brand brand)
+                var brand = new Brand
+                {
+                    Id = dbResponse.Id,
+                    Name = dbResponse.Name,
+                    ShortDescription = dbResponse.ShortDescription,
+                    Description = dbResponse.Description,
+                    LogoUrl = dbResponse.LogoPreview,
+                    // Deserialize the Flags JSON
+                    Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags ?? ""),
+                    // Deserialize the Images JSON array
+                    Images = JsonConvert.DeserializeObject<List<Image>>(dbResponse.Images ?? "")
+                };
+                //var a  = new List<Product>();
+                return brand;
+            }
+            return null;
+        }
+
+        public BoolResponse UpsertBrand(Brand brand)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
@@ -59,12 +77,11 @@ namespace Crud.Data.Repository
 					@name = brand.Name,
 					@shortDescription = brand.ShortDescription,
 					@description = brand.Description,
-
+					@logoName = brand.LogoName,
+					@logoUrl = brand.LogoUrl,
 					@isActive = brand.IsActive,
 					@isFeatured = brand.IsFeatured,
-					@logo = brand.Logo,
-					@logoURL = brand.LogoURL,
-					@logoBase64 = brand.LogoBase64,
+				
 				});
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20241014", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
@@ -89,6 +106,19 @@ namespace Crud.Data.Repository
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteBrand_18092024", dbParams, "MasterDataConnectionStrings");
+			return dbResponse;
+		}
+		public BoolResponse BrandMedia(Guid brandId, List<Image> model)
+		{
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(
+			new
+			{
+				@BrandId = brandId,
+				@BrandMediaJson = JsonConvert.SerializeObject(model)
+
+			});
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpsertBrandMedia", dbParams, "MasterDataConnectionstrings");
 			return dbResponse;
 		}
 	}
