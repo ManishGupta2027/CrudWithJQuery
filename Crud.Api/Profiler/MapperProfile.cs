@@ -41,9 +41,10 @@ namespace Crud.Api.Profiler
 			CreateMap<UpdateCustomAttributeSet, CustomAttributeSet>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetDetailModel>();
 			CreateMap<CustomAttributeSet, CustomAttributeSetListModel>();
-			CreateMap<ImageDetailModel, Image>().ReverseMap();
+			CreateMap<Image,ImageDetailModel> ().ReverseMap();
+			CreateMap<Image, ImageUpsertModel>().ReverseMap();
 			CreateMap<ConfigurationModel, Configuration>().ReverseMap();
-			CreateMap<ImageUpsertModel, Image>().ReverseMap();
-        }
+			
+		}
 	}
 }
