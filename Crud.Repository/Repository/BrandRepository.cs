@@ -55,7 +55,7 @@ namespace Crud.Data.Repository
                     Name = dbResponse.Name,
                     ShortDescription = dbResponse.ShortDescription,
                     Description = dbResponse.Description,
-                    LogoUrl = dbResponse.LogoPreview,
+                    LogoUrl = dbResponse.LogoURL,
                     // Deserialize the Flags JSON
                     Flags = JsonConvert.DeserializeObject<Configuration>(dbResponse.Flags ?? ""),
                     // Deserialize the Images JSON array
@@ -79,8 +79,8 @@ namespace Crud.Data.Repository
 					@description = brand.Description,
 					@logoName = brand.LogoName,
 					@logoUrl = brand.LogoUrl,
-					@isActive = brand.IsActive,
-					@isFeatured = brand.IsFeatured,
+					@isActive = brand.Flags.IsActive,
+					@isFeatured = brand.Flags.IsFeatured,
 				
 				});
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertBrand_20241014", dbParams, "MasterDataConnectionstrings");

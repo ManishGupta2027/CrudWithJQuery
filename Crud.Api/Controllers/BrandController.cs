@@ -118,9 +118,9 @@ namespace Crud.Api.Controllers
 				if (!string.IsNullOrEmpty(model.LogoBase64))
 				{
 					// Name like abc.jpg than abc
-					var splitLogoName = model.LogoName.Split(".");
-					string logoName = splitLogoName[0];
-					model.LogoUrl = _cloudinaryService.UploadImage(model.LogoBase64, $"{brand}/{logoName}", "Store");
+					//var splitLogoName = model.LogoName.Split(".");
+					//string logoName = splitLogoName[0];
+					model.LogoUrl = _cloudinaryService.UploadImage(model.LogoBase64, $"{brand}/{model.LogoName}", "Store");
 				}
 				foreach (var item in model.Images)
 				{

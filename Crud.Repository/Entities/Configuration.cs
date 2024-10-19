@@ -8,7 +8,7 @@ namespace Crud.Data.Entities
 {
     public class Configuration
     {
-        public bool IsActive { get; set; }
-        public bool IsFeatured { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsFeatured { get; set; }
     }
 }
