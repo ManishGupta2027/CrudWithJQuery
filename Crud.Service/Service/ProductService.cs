@@ -27,9 +27,9 @@ namespace Crud.Service.ProductService
 		{
 			return _productRepository.GetProductById(id);
 		}
-		public BoolResponse UpsertProduct(Product product)
+		public BoolResponse UpdateProduct(Guid id, UpdateProduct product)
 		{
-			return _productRepository.UpsertProduct(product);
+			return _productRepository.UpdateProduct(id,product);
 		}
 		public BoolResponse DeleteProduct(Guid id)
 		{

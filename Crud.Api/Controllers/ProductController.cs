@@ -7,6 +7,8 @@ using AutoMapper;
 using System.Net;
 using Crud.Api.Model.Product;
 using Crud.Data.Entities.Product;
+using Crud.Service.Service.asset;
+using Crud.Data.Entities.Brand;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,12 +20,13 @@ namespace Crud.Api.Controllers
 	{
 		private IProductService _productService;
 		private readonly IMapper _mapper;
-		public ProductController(IProductService productService, IMapper mapper)
+        private readonly CloudinaryService _cloudinaryService;
+        public ProductController(IProductService productService, IMapper mapper, CloudinaryService cloudinaryService)
         {
 			_mapper = mapper;
 			_productService = productService;
-
-		}
+			_cloudinaryService = cloudinaryService;
+        }
         // GET: api/<ProductController>
         [HttpGet]
 		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40)
@@ -104,16 +107,33 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<ProductController>/5
-		[HttpPut]
-		public ResponseModel<BoolResponse> Put(UpdateProductModel model)
+		[HttpPut("{id}")]
+		public ResponseModel<BoolResponse> Put(Guid id,UpdateProductModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
-				// Map ProductModel to Product entity
-				var mappedProduct = _mapper.Map<Product>(model);
+				var prefixedFolder = "Product";
+				if (model?.Media?.Files != null && model.Media.Files.Any())
+				{
+					
+                    foreach (var item in model?.Media?.Files)
+                    {
+                        if (!string.IsNullOrEmpty(item.Base64))
+                        {
+                            // Name like abc.jpg than abc
+                            var splitFileName = item.Name.Split('.');
+                            string name = splitFileName[0];
+                            item.Url = _cloudinaryService.UploadImage(item.Base64, $"{prefixedFolder}/{name}", "Store");
+                        }
+
+                    }
+                }
+            
+                // Map ProductModel to Product entity
+                var mappedProduct = _mapper.Map<UpdateProduct>(model);
 				// Save the product using the service
-				var result = _productService.UpsertProduct(mappedProduct);
+				var result = _productService.UpdateProduct(id,mappedProduct);
 
 				// Prepare a successful response
 				response.Status = "Success";
