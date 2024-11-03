@@ -83,6 +83,7 @@ namespace Crud.Data.Repository
                 @description = category.Description,
                 @shortDescription = category.ShortDescription,
                 @logoUrl = category.LogoUrl,
+				@logo = category.Logo,
                 @isActive = category.Flags.IsActive,
                 @isFeatured = category.Flags.IsFeatured
 			
