@@ -13,7 +13,7 @@ namespace Crud.Service.ProductService
 		BoolResponse SaveProduct(Product product);
 		List<Product> GetProductList(int currentPage, int pageSize);
 		BoolResponse UpdateProduct(Guid id, UpdateProduct product);
-		Product GetProductById(Guid id);
+		UpdateProduct GetProductById(Guid id);
 		BoolResponse DeleteProduct(Guid id);
 	}
 }

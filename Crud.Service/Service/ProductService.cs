@@ -23,7 +23,7 @@ namespace Crud.Service.ProductService
 			return res;
 		}
 
-		public Product GetProductById(Guid id)
+		public UpdateProduct GetProductById(Guid id)
 		{
 			return _productRepository.GetProductById(id);
 		}

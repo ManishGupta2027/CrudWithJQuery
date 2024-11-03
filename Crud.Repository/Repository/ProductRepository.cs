@@ -39,18 +39,23 @@ namespace Crud.Data.Repository
 			return dbResponse;
 
 		}
-		public Product GetProductById(Guid id)
+		public UpdateProduct GetProductById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@Id = id,
-					
-
 				}
 			);
-			var dbResponse = _dapperRepository.Get<Product>("procGetProductDetail_20240420", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetail_20241103", dbParams, "MasterDataConnectionStrings");
+			if( dbResponse != null )
+			{
+				// Deserialize the JSON into the ProductCustomField object
+				var data = JsonConvert.DeserializeObject<UpdateProduct>(dbResponse.JsonResult ?? "");
+
+				return data;
+			}
 			return dbResponse;
         }
 		public BoolResponse SaveProduct(Product product)

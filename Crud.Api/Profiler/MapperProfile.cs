@@ -45,6 +45,7 @@ namespace Crud.Api.Profiler
 			CreateMap<Image, ImageUpsertModel>().ReverseMap();
 			CreateMap<ConfigurationModel, Configuration>().ReverseMap();
 			CreateMap<UpdateProductModel, UpdateProduct>().ReverseMap();
+			CreateMap<ProductDetailModel, UpdateProduct>().ReverseMap();
 			CreateMap<BasicInfoModel, BasicInfo>().ReverseMap();
 			CreateMap<InventoryModel, Inventory>().ReverseMap();
 			CreateMap<MediaModel, Media>().ReverseMap();
