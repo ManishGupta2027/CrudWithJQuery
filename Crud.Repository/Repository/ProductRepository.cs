@@ -86,12 +86,12 @@ namespace Crud.Data.Repository
             DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new
 			{
-				@Id = id,  
-                @JsonData = json
+				@Id = id,
+				@ProductJson = json
             });
 
 			// Execute the stored procedure using Dapper
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpdateProductDetail_20241102", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
 
