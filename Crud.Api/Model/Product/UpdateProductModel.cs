@@ -8,7 +8,7 @@ namespace Crud.Api.Model.Product
         public BasicInfoModel BasicInfo { get; set; }
         public IdentifierModel Identifier { get; set; }
         public MediaModel Media { get; set; }
-        public InventoryModel Inventory { get; set; }
+        public InventoryModel? Inventory { get; set; }
         public bool IsActive { get; set; }
     }
     // Basic Information about the product
