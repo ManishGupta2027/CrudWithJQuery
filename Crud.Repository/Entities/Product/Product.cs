@@ -16,10 +16,10 @@ namespace Crud.Data.Entities.Product
 		public string BrandName { get; set; }
 		public Guid? CategoryId { get; set; }
 		public Guid? BrandId { get; set; }
-		public string Gender { get; set; }
+        public string Gender { get; set; }
         public bool IsActive { get; set; }
         public bool IsVisible { get; set; }
-   
 
-    }
+
+}
 }

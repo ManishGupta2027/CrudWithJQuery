@@ -9,6 +9,8 @@ using Dapper;
 using System.Diagnostics;
 using System.Reflection;
 using Crud.Data.Entities.Product;
+using Crud.Data.Entities.ProductCustomField;
+using Newtonsoft.Json;
 
 namespace Crud.Data.Repository
 {
@@ -37,23 +39,28 @@ namespace Crud.Data.Repository
 			return dbResponse;
 
 		}
-		public Product GetProductById(Guid id)
+		public UpdateProduct GetProductById(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@Id = id,
-					
-
 				}
 			);
-			var dbResponse = _dapperRepository.Get<Product>("procGetProductDetail_20240420", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetail_20241103", dbParams, "MasterDataConnectionStrings");
+			if( dbResponse != null )
+			{
+				// Deserialize the JSON into the ProductCustomField object
+				var data = JsonConvert.DeserializeObject<UpdateProduct>(dbResponse.JsonResult ?? "");
+
+				return data;
+			}
 			return dbResponse;
-		}
+        }
 		public BoolResponse SaveProduct(Product product)
 		{
-			DynamicParameters dbParams = new DynamicParameters();
+            DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
@@ -65,29 +72,23 @@ namespace Crud.Data.Repository
 					@BrandId = product.BrandId,
 					@Gender = product.Gender,
 					@IsActive = product.IsActive
-				}
+                }
 			);
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 
 		}
 
-		public BoolResponse UpsertProduct(Product product)
+		public BoolResponse UpdateProduct(Guid id, UpdateProduct product)
 		{
-
-			// Prepare the parameters for the upsert (Insert/Update)
-			DynamicParameters dbParams = new DynamicParameters();
+            var json = JsonConvert.SerializeObject(product);
+            // Prepare the parameters for the upsert (Insert/Update)
+            DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new
 			{
-				@Id = product.Id,  // Null for insert, populated for update
-				@Name = product.Name,
-				@StockCode = product.StockCode,
-				@Price = product.Price,
-				@CategoryId = product.CategoryId,
-				@BrandId = product.BrandId,
-				@Gender = product.Gender,
-				@IsActive = product.IsActive
-			});
+				@Id = id,  
+                @JsonData = json
+            });
 
 			// Execute the stored procedure using Dapper
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");

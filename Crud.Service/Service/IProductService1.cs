@@ -12,8 +12,8 @@ namespace Crud.Service.ProductService
 	{
 		BoolResponse SaveProduct(Product product);
 		List<Product> GetProductList(int currentPage, int pageSize);
-		BoolResponse UpsertProduct(Product product);
-		Product GetProductById(Guid id);
+		BoolResponse UpdateProduct(Guid id, UpdateProduct product);
+		UpdateProduct GetProductById(Guid id);
 		BoolResponse DeleteProduct(Guid id);
 	}
 }
