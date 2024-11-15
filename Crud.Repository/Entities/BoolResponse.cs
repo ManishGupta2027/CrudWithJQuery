@@ -11,5 +11,6 @@ namespace Crud.Data.Entities
 		public bool IsValid { get; set; }
 		public string Message { get; set; }
 		public Guid? RecordId { get; set; }
+		public bool Success { get; set; }
 	}
 }

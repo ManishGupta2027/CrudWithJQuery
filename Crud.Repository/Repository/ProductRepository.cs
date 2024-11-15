@@ -11,6 +11,7 @@ using System.Reflection;
 using Crud.Data.Entities.Product;
 using Crud.Data.Entities.ProductCustomField;
 using Newtonsoft.Json;
+using Crud.Data.Enums;
 
 namespace Crud.Data.Repository
 {
@@ -95,6 +96,21 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
+		public BoolResponse UpsertProductStatus(Guid productId, ProductStatus status)
+		{
+			// Prepare the parameters for the stored procedure
+			DynamicParameters dbParams = new DynamicParameters();
+			dbParams.AddDynamicParams(new
+			{
+				@Id = productId,
+				@Status = status.GetHashCode()  // Convert the enum to its integer value
+			});
+
+			// Execute the stored procedure using Dapper
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductStatus_20241114", dbParams, "MasterDataConnectionStrings");
+
+			return dbResponse;
+		}
 		public BoolResponse DeleteProduct(Guid id)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
