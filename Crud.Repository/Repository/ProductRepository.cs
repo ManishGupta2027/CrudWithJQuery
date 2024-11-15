@@ -96,7 +96,7 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
-		public BoolResponse UpsertProductStatus(Guid productId, ProductStatus status)
+		public BoolResponse UpdateProductStatus(Guid productId, ProductStatus status)
 		{
 			// Prepare the parameters for the stored procedure
 			DynamicParameters dbParams = new DynamicParameters();

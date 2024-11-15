@@ -153,7 +153,7 @@ namespace Crud.Api.Controllers
 			return response;
 		}
 
-		[HttpPut("{id}status")]
+		[HttpPut("{id}/status")]
 		//public IActionResult UpdateProductStatus(Guid id, [FromBody] UpdateProductStatusModel model)
 		//{
 		//	if (model == null)
@@ -171,7 +171,7 @@ namespace Crud.Api.Controllers
 		//	return BadRequest(response.Message);
 		//}
 
-		public ResponseModel<BoolResponse> Put(Guid id, UpdateProductStatusModel model)
+		public ResponseModel<BoolResponse> UpdateStatus(Guid id, UpdateProductStatusModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try

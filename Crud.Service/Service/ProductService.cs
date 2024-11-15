@@ -43,7 +43,7 @@ namespace Crud.Service.ProductService
 		}
 		public BoolResponse UpdateProductStatus(Guid id, ProductStatus status)
 		{
-			return _productRepository.UpsertProductStatus(id, status);
+			return _productRepository.UpdateProductStatus(id, status);
 		}
 	}
 }

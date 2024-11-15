@@ -16,6 +16,6 @@ namespace Crud.Data.Repository
 		BoolResponse UpdateProduct(Guid id, UpdateProduct product);
 		UpdateProduct GetProductById(Guid id);
 		BoolResponse DeleteProduct(Guid id);
-		BoolResponse UpsertProductStatus(Guid id, ProductStatus status);
+		BoolResponse UpdateProductStatus(Guid id, ProductStatus status);
 	}
 }
