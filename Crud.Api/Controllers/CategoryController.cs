@@ -38,7 +38,7 @@ namespace Crud.Api.Controllers
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
 			response.Result = mappedCategoryList;
-			response.TotalRecords = categorylist[0].TotalRecords ?? 0;
+			response.TotalRecords = categorylist.Count > 0 ? categorylist[0].TotalRecords ?? 0 : 0;
 			response.CurrentPage = currentPage;
 			response.PageSize = pageSize;
 			return response;
