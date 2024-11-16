@@ -8,6 +8,7 @@
 		public MediaModel Media { get; set; }
 		public InventoryModel Inventory { get; set; }
 		public bool IsActive { get; set; }
+		public bool IsVisible { get; set; }
         public int Status { get; set; }
 
     }

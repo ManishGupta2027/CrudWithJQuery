@@ -14,6 +14,7 @@ namespace Crud.Data.Entities.Product
         public Media Media { get; set; }
         public Inventory Inventory { get; set; }
         public bool IsActive { get; set; }
+        public bool IsVisible { get; set; }
         public int Status { get; set; }
     }
     public class BasicInfo

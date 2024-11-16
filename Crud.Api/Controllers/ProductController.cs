@@ -176,7 +176,7 @@ namespace Crud.Api.Controllers
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
-				var result = _productService.UpdateProductStatus(id, model.Status);
+				var result = _productService.UpdateProductStatus(id, model);
 				response.Status = "Success";
 				response.StatusCode= (int)HttpStatusCode.OK;
 				response.Result = result;

@@ -10,5 +10,6 @@ namespace Crud.Data.Entities.Product
 	public class UpdateProductStatusModel
 	{
 		public ProductStatus Status { get; set; }
+		public bool? IsVisible { get; set; }	
 	}
 }

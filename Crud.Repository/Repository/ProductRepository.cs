@@ -96,15 +96,16 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
-		public BoolResponse UpdateProductStatus(Guid productId, ProductStatus status)
+		public BoolResponse UpdateProductStatus(Guid productId, UpdateProductStatusModel model)
 		{
 			// Prepare the parameters for the stored procedure
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new
 			{
 				@Id = productId,
-				@Status = status.GetHashCode()  // Convert the enum to its integer value
-			});
+				@Status = model.Status.GetHashCode(),  // Convert the enum to its integer value
+                @IsVisible = model.IsVisible,
+            });
 
 			// Execute the stored procedure using Dapper
 			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductStatus_20241114", dbParams, "MasterDataConnectionStrings");

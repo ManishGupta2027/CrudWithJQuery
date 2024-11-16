@@ -41,9 +41,9 @@ namespace Crud.Service.ProductService
 			var res = _productRepository.SaveProduct(product);
 			return res;
 		}
-		public BoolResponse UpdateProductStatus(Guid id, ProductStatus status)
+		public BoolResponse UpdateProductStatus(Guid id, UpdateProductStatusModel model)
 		{
-			return _productRepository.UpdateProductStatus(id, status);
+			return _productRepository.UpdateProductStatus(id, model);
 		}
 	}
 }
