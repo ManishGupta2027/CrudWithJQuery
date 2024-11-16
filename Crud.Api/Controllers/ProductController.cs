@@ -153,6 +153,45 @@ namespace Crud.Api.Controllers
 			return response;
 		}
 
+		[HttpPut("{id}/status")]
+		//public IActionResult UpdateProductStatus(Guid id, [FromBody] UpdateProductStatusModel model)
+		//{
+		//	if (model == null)
+		//	{
+		//		return BadRequest("Invalid request body.");
+		//	}
+
+		//	var response = _productService.UpdateProductStatus(id, model.Status);
+
+		//	if (response.Success)
+		//	{
+		//		return Ok(response.Message);
+		//	}
+
+		//	return BadRequest(response.Message);
+		//}
+
+		public ResponseModel<BoolResponse> UpdateStatus(Guid id, UpdateProductStatusModel model)
+		{
+			var response = new ResponseModel<BoolResponse>();
+			try
+			{
+				var result = _productService.UpdateProductStatus(id, model.Status);
+				response.Status = "Success";
+				response.StatusCode= (int)HttpStatusCode.OK;
+				response.Result = result;
+				response.Message = result.Message;
+			}
+			catch (Exception ex) 
+			{
+				response.Status = "Error";
+				response.StatusCode =(int)HttpStatusCode.InternalServerError;
+				response.Message= ex.Message;
+				response.ErrorDetails.Add(ex.Message);
+			}
+			return response;
+		}
+
 		// DELETE api/<ProductController>/5
 		[HttpDelete("{id}")]
 		public ResponseModel<BoolResponse> Delete(Guid id)

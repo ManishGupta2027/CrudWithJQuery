@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Product;
+using Crud.Data.Enums;
 using Crud.Data.Repository;
 
 namespace Crud.Service.ProductService
@@ -39,6 +40,10 @@ namespace Crud.Service.ProductService
 		{
 			var res = _productRepository.SaveProduct(product);
 			return res;
+		}
+		public BoolResponse UpdateProductStatus(Guid id, ProductStatus status)
+		{
+			return _productRepository.UpdateProductStatus(id, status);
 		}
 	}
 }
