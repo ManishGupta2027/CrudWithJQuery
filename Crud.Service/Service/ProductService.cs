@@ -17,9 +17,9 @@ namespace Crud.Service.ProductService
 			_productRepository = productRepository;
 		}
 
-		public List<Product> GetProductList(int currentPage, int pageSize)
+		public List<Product> GetProductList(int currentPage, int pageSize, string name=null)
 		{
-			var res = _productRepository.GetProductList(currentPage, pageSize);
+			var res = _productRepository.GetProductList(currentPage, pageSize, name);
 			return res;
 		}
 

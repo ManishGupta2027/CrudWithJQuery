@@ -15,7 +15,7 @@ namespace Crud.Data.Repository
 		BoolResponse SaveProductCustomField(ProductCustomField productCustomField);
 		ProductCustomField GetProductCustomFieldById(Guid id);
 		BoolResponse UpsertProductCustomField(ProductCustomField productCustomField);
-		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize);
+		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize, string name=null);
 		BoolResponse DeleteProductCustomField(Guid id);
 
 

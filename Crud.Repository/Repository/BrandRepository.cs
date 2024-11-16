@@ -87,17 +87,17 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
-		public List<Brand> GetBrandList(int currentPage, int pageSize)
+		public List<Brand> GetBrandList(int currentPage, int pageSize, string name=null)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@CurrentPage = currentPage,
-					@PageSize = pageSize
-
+					@PageSize = pageSize,
+					@Name = name
 				}
-			);
+			); ;
 			var dbResponse = _dapperRepository.GetAll<Brand>("procGetBrandList_20240918", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}

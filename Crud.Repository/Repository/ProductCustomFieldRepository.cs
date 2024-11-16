@@ -74,15 +74,15 @@ namespace Crud.Data.Repository
 			return dbResponse;
 		}
 
-		public List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize)
+		public List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize, string name=null)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@CurrentPage = 1,
-					@PageSize = 40
-
+					@PageSize = 40,
+					@Name = name
 				}
 			);
 			var dbResponse = _dapperRepository.GetAll<ProductCustomField>("procGetProductCustomFieldList_20240928", dbParams, "MasterDataConnectionStrings");
