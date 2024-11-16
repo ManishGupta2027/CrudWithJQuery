@@ -11,7 +11,7 @@ namespace Crud.Data.Entities.Product
 
         public BasicInfo BasicInfo { get; set; }
         public Identifier Identifier { get; set; }
-        public Media Media { get; set; }
+        public Media? Media { get; set; }
         public Inventory Inventory { get; set; }
         public bool IsActive { get; set; }
         public bool IsVisible { get; set; }
@@ -41,7 +41,7 @@ namespace Crud.Data.Entities.Product
     // Media details, such as images and videos
     public class Media
     {
-        public List<Image> Files { get; set; }
+        public List<Image>? Files { get; set; }
         // public List<string> VideoUrls { get; set; } = new List<string>();
     }
 

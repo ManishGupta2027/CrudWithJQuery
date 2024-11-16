@@ -4,6 +4,6 @@ namespace Crud.Api.Model.Product
 {
     public class MediaModel
     {
-        public List<ImageUpsertModel> Files { get; set; }
+        public List<ImageUpsertModel>? Files { get; set; }
     }
 }
