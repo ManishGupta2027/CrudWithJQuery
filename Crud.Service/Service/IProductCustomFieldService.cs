@@ -15,7 +15,7 @@ namespace Crud.Service.ProductCustomFieldService
 		BoolResponse SaveProductCustomField(ProductCustomField productCustomField);
 		BoolResponse UpsertProductCustomField(ProductCustomField productCustomField);
 		ProductCustomField GetProductCustomFieldById(Guid id);
-		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize);
+		List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize, string name);
 		BoolResponse DeleteProductCustomField(Guid id);
 
 		// CustomAttributeSet

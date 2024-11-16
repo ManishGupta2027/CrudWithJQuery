@@ -30,7 +30,7 @@ namespace Crud.Api.Controllers
 
         // GET: api/<BrandController>
         [HttpGet]
-		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40, string name=null)
 		{
 			var response = new ResponsecPaginationModel<List<BrandListModel>>();
 			var brandlist = _brandService.GetBrandList(currentPage, pageSize);

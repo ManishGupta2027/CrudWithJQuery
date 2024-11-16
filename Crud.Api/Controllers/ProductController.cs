@@ -29,10 +29,10 @@ namespace Crud.Api.Controllers
         }
         // GET: api/<ProductController>
         [HttpGet]
-		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40)
+		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40, string name=null)
 		{
 			var res = new ResponsecPaginationModel<List<ProductListModel>>();
-			var productlist = _productService.GetProductList(currentPage, pageSize);
+			var productlist = _productService.GetProductList(currentPage, pageSize,name);
 			var mappedProductList = _mapper.Map<List<ProductListModel>>(productlist);
 			// Populate the response model
 			res.Status = "Success";

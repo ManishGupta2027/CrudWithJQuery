@@ -29,9 +29,9 @@ namespace Crud.Service.ProductCustomfieldService
 		{
 			return _productCustomFieldRepository.UpsertProductCustomField(productCustomField);
 		}
-		public List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize)
+		public List<ProductCustomField> GetProductCustomFieldList(int currentPage, int pageSize, string name=null)
 		{
-			return _productCustomFieldRepository.GetProductCustomFieldList(currentPage, pageSize);
+			return _productCustomFieldRepository.GetProductCustomFieldList(currentPage, pageSize, name);
 		}
 		public ProductCustomField GetProductCustomFieldById(Guid id)
 		{

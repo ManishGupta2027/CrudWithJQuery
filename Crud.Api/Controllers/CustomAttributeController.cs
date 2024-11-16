@@ -34,7 +34,7 @@ namespace Crud.Api.Controllers
 		public ResponsecPaginationModel<List<ProductCustomFieldListModel>> GetAll(string name= null, int currentPage=1, int pageSize = 40)
 		{
 			var response = new ResponsecPaginationModel<List<ProductCustomFieldListModel>>();
-			var productCustomFieldlist = _productCustomFieldService.GetProductCustomFieldList(currentPage, pageSize);
+			var productCustomFieldlist = _productCustomFieldService.GetProductCustomFieldList(currentPage, pageSize, name);
 			var mappedProductCustomFieldList = _mapper.Map<List<ProductCustomFieldListModel>>(productCustomFieldlist);
 			// Prepare a successful response
 			response.Status = "Success";

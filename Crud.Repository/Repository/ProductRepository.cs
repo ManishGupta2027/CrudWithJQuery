@@ -25,15 +25,15 @@ namespace Crud.Data.Repository
 
 
 
-		public List<Product> GetProductList(int currentPage, int pageSize)
+		public List<Product> GetProductList(int currentPage, int pageSize, string name=null)
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(
 				new
 				{
 					@CurrentPage = currentPage,
-					@PageSize = pageSize
-
+					@PageSize = pageSize,
+					@Name = name
 				}
 			);
 			var dbResponse = _dapperRepository.GetAll<Product>("procGetProductList_20240427", dbParams, "MasterDataConnectionStrings");
