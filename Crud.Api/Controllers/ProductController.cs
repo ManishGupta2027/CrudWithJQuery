@@ -78,7 +78,7 @@ namespace Crud.Api.Controllers
 		/// <param name="model"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public ResponseModel<BoolResponse> Post(ProductCreateModel model)
+		public ResponseModel<BoolResponse> Create(ProductCreateModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try {
@@ -108,7 +108,7 @@ namespace Crud.Api.Controllers
 
 		// PUT api/<ProductController>/5
 		[HttpPut("{id}")]
-		public ResponseModel<BoolResponse> Put(Guid id,UpdateProductModel model)
+		public ResponseModel<BoolResponse> Update(Guid id,UpdateProductModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try

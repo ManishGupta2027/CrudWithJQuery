@@ -14,10 +14,12 @@ namespace Crud.Data.Entities.Product
         public Media Media { get; set; }
         public Inventory Inventory { get; set; }
         public bool IsActive { get; set; }
+        public int Status { get; set; }
     }
     public class BasicInfo
     {
         public string Name { get; set; }
+        public string StockCode { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -30,7 +32,7 @@ namespace Crud.Data.Entities.Product
     public class Identifier
     {
         public string SKU { get; set; }
-        public string StockCode { get; set; }
+        //public string StockCode { get; set; }
         public string EAN { get; set; }  // European Article Number
         public string UPC { get; set; }  // Universal Product Code
     }
