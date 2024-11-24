@@ -27,19 +27,24 @@ namespace Crud.Api.Controllers
 			_cloudinaryService = cloudinaryService;
 
 		}
-
-        // GET: api/<BrandController>
+		/// <summary>
+		/// Get All Brands with pagination and search by Name
+		/// </summary>
+		/// <param name="currentPage"></param>
+		/// <param name="pageSize"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
         [HttpGet]
 		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40, string name=null)
 		{
 			var response = new ResponsecPaginationModel<List<BrandListModel>>();
-			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			var brandlist = _brandService.GetBrandList(currentPage, pageSize,name);
 			var mappedBrandList = _mapper.Map<List<BrandListModel>>(brandlist);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
 			response.Result = mappedBrandList;
-			response.TotalRecords = brandlist[0].TotalRecords ?? 0;
+			response.TotalRecords = brandlist.Count() > 0 ? brandlist[0].TotalRecords ?? 0 :0;
 			response.CurrentPage = currentPage;
 			response.PageSize = pageSize;
 			return response;
