@@ -135,6 +135,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\TrayController.cs" />
     <Compile Include="Data\DataFactory.cs" />
     <Compile Include="Data\DataFactoryDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -178,7 +179,16 @@
     <Content Include="Asset\bootstrap-5.3.0\js\bootstrap.min.js" />
     <Content Include="Asset\bootstrap-5.3.0\js\popper.min.js" />
     <Content Include="Asset\css\style.css" />
+    <Content Include="Asset\js\controller\trayCtrl.js" />
+    <Content Include="Asset\js\directive\btAutoComplete.js" />
     <Content Include="Asset\js\directive\decimal-only.js" />
+    <Content Include="Asset\js\directive\futureCalendar.js" />
+    <Content Include="Asset\js\directive\loader.js" />
+    <Content Include="Asset\js\directive\ng-file-upload.js" />
+    <Content Include="Asset\js\directive\ng-table.js" />
+    <Content Include="Asset\js\directive\ngBootbox.js" />
+    <Content Include="Asset\js\directive\paging.js" />
+    <Content Include="Asset\js\directive\select.js" />
     <Content Include="Asset\js\my-app.js" />
     <Content Include="Asset\js\controller\productCtr.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -234,6 +244,7 @@
     <Content Include="Views\Product\NewProduct.cshtml" />
     <Content Include="Views\Product\GetProductList.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Tray\Trays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
