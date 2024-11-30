@@ -36,7 +36,7 @@ namespace Crud.Data.Repository
 					@Name = name
 				}
 			);
-			var dbResponse = _dapperRepository.GetAll<Product>("procGetProductList_20240427", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.GetAll<Product>("procGetProductList_V1_20241130", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 
 		}
@@ -49,7 +49,7 @@ namespace Crud.Data.Repository
 					@Id = id,
 				}
 			);
-			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetail_20241103", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetail_V1_20241130", dbParams, "MasterDataConnectionStrings");
 			if( dbResponse != null )
 			{
 				// Deserialize the JSON into the ProductCustomField object
@@ -75,7 +75,7 @@ namespace Crud.Data.Repository
 					@IsActive = product.IsActive
                 }
 			);
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_20240427", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProduct_V1_20241130", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 
 		}
@@ -92,7 +92,7 @@ namespace Crud.Data.Repository
             });
 
 			// Execute the stored procedure using Dapper
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpdateProductDetail_20241102", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procJsonUpdateProductDetail_V1_20241130", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
 
@@ -108,7 +108,7 @@ namespace Crud.Data.Repository
             });
 
 			// Execute the stored procedure using Dapper
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductStatus_20241114", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procUpsertProductStatus_V1_20241130", dbParams, "MasterDataConnectionStrings");
 
 			return dbResponse;
 		}
@@ -116,7 +116,7 @@ namespace Crud.Data.Repository
 		{
 			DynamicParameters dbParams = new DynamicParameters();
 			dbParams.AddDynamicParams(new { @Id = id });
-			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProduct_15042024", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Update<BoolResponse>("procDeleteProduct_V1_20241130", dbParams, "MasterDataConnectionStrings");
 			return dbResponse;
 		}
 	}
