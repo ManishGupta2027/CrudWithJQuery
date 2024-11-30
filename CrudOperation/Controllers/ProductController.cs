@@ -37,7 +37,7 @@ namespace CrudOperation.Controllers
 			var products = _productService.GetProductList(currentPage, pageSize);
 
 			// Get the total number of users
-			int totalProductsCount = products.FirstOrDefault().TotalRecords;
+			int totalProductsCount = products.Count()>0?  products.FirstOrDefault().TotalRecords:0;
 
 			// Calculate the total number of pages
 			int totalPages = (int)Math.Ceiling((double)totalProductsCount / pageSize);
