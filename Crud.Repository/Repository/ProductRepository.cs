@@ -49,7 +49,7 @@ namespace Crud.Data.Repository
 					@Id = id,
 				}
 			);
-			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetail_V1_20241130", dbParams, "MasterDataConnectionStrings");
+			var dbResponse = _dapperRepository.Get<dynamic>("procGetProductDetailV1_20241103", dbParams, "MasterDataConnectionStrings");
 			if( dbResponse != null )
 			{
 				// Deserialize the JSON into the ProductCustomField object
