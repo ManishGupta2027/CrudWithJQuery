@@ -49,7 +49,7 @@
                     <div class="col-10 col-sm-10" ng-if="pm.trayforBarCodePrint.length > 0">
                         <ul class="pt-2 p-0">
                             <li class="badge badge-light font-13 mr-1" ng-repeat="loc in pm.trayforBarCodePrint track by $index">
-                                <span ng-bind="loc.code"></span>
+                                <span ng-bind="loc.code" class="text-dark"></span>
                                 <a href="" class="text-right pl-1 text-dark" ng-click="pm.clearSelectedTray(loc.recordId,$index);" data-toggle="tab">&times;</a>
                             </li>
                             <li class="badge badge-light font-13">
@@ -85,16 +85,16 @@
                                                 <label></label>
                                             </div>
                                         </td>
-                                        <td><a href="/Setting/DetailTray/{{sr.recordId}}" class="font-weight-bold font-13" ng-bind="sr.name"></a></td>
+                                        <td><a href="/Tray/DetailTray/{{sr.recordId}}" class="font-weight-bold font-13" ng-bind="sr.name"></a></td>
                                         <td>
                                             <span ng-bind="sr.code"></span>
                                         </td>
                                         <td>
-                                            <span class="d-block font-weight-bold text-dark" ng-bind="sr.created | ocxDateTime"></span>
+                                            <span class="d-block font-weight-bold text-dark" ng-bind="sr.created"></span>
                                         </td>
                                         <td><span ng-bind="sr.createdBy"></span></td>
                                         <td align="right">
-                                            <a href="/Setting/DetailTray/{{sr.recordId}}" class="show-on-hover"><i class="mdi mdi-square-edit-outline action-icon"></i></a>
+                                            <a href="/Tray/DetailTray/{{sr.recordId}}" class="show-on-hover"><i class="mdi mdi-square-edit-outline action-icon"></i></a>
                                             <a href="" ng-bootbox-confirm="You are about to delete {{sr.name}} tray. Deleted tray can`t be restored?" ng-bootbox-confirm-action="pm.deleteTray(sr.recordId)" class="show-on-hover text-danger"><i class="icon-trash action-icon text-danger"></i></a>
                                         </td>
                                     </tr>
@@ -191,4 +191,3 @@
             });
         </script>
     }*@
-<script src="~/Asset/js/controller/trayCtrl.js"></script>

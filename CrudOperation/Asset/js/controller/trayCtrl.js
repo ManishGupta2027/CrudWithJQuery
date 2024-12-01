@@ -1,14 +1,15 @@
 ﻿(function () {
     'use strict';
 
-    myApp.constant('TRAY_CONSTANTS', {
-        'SUCCESS_MSG': 'Operation completed successfully.',
-        'DELETE_MSG': 'Deleted successfully.',
-        'MANDATORY_MSG': 'Please fill all mandatory fields.',
-        'ERROR_MSG': 'An error occurred. Please try again.'
-    });
+    angular.module('myApp')
+        .constant('TRAY_CONSTANTS', {
+            'SUCCESS_MSG': 'Operation completed successfully.',
+            'DELETE_MSG': 'Deleted successfully.',
+            'MANDATORY_MSG': 'Please fill all mandatory fields.',
+            'ERROR_MSG': 'An error occurred. Please try again.'
+        })
+        .controller('trayCtrl', trayCtrl);
 
-    myApp.controller('trayCtrl', trayCtrl);
     trayCtrl.$inject = ['$scope', '$http', '$timeout', '$window', 'alerts', 'TRAY_CONSTANTS'];
 
     function trayCtrl($scope, $http, $timeout, $window, alerts, TRAY_CONSTANTS) {
@@ -43,7 +44,7 @@
         pm.printBarCode = printBarCode;
 
         function initAddTray() {
-            $http.get('/Setting/GetAllWarehouses') //Get all Warehouses
+            $http.get('/Tray/GetAllWarehouses') //Get all Warehouses
                 .then(function (response) {
                     pm.warehouses = response.data;
                 })
@@ -66,9 +67,9 @@
         */
         function initTrays() {
             pm.initAddTray();
-            $http.post('/Setting/GetTrays') // Assumes an API to get all trays
+            $http.post('/Tray/GetTrays') // Assumes an API to get all trays
                 .then(function (response) {
-                    // console.log(response.data);
+                     console.log(response.data);
 
                     pm.pageFilter.currentPage = 1;
                     pm.pageFilter.pageSize = 0;
@@ -88,7 +89,7 @@
                 });
         }
         function getTrayList(model) {
-            $http.post('/Setting/GetTrays', model) // Assumes an API to get all trays
+            $http.post('/Tray/GetTrays', model) // Assumes an API to get all trays
                 .then(function (response) {
                     pm.trays = response.data;
                     if (response != null && response != undefined && response.data.length > 0) {
@@ -114,14 +115,14 @@
                 return;
             }
 
-            $http.post('/Setting/SaveTray', pm.tray)
+            $http.post('/Tray/SaveTray', pm.tray)
                 .then(function (response) {
 
                     if (response.data.isValid == true) {
-                        alerts.success(response.data.message);
+                       // alerts.success(response.data.message);
                         // Redirect to the Detail view with the tray ID
                         var trayId = response.data.recordId;
-                        $window.location.href = '/Setting/DetailTray?id=' + trayId;
+                        $window.location.href = '/Tray/DetailTray?id=' + trayId;
                     } else {
                         alerts.error(response.data.message);
                         return;
