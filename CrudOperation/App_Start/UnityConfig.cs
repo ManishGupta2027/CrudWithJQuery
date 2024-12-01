@@ -3,6 +3,7 @@ using CrudOperation.Data;
 using CrudOperation.Repository;
 using CrudOperation.Repository.Tray;
 using CrudOperation.Service;
+using CrudOperation.Service.Content;
 using CrudOperation.Service.Tray;
 using Unity;
 using Unity.Mvc5;
@@ -23,6 +24,7 @@ namespace CrudOperation
 			container.RegisterType<IProductService, ProductService>();
 			container.RegisterType<ITrayRepository, TrayRepository>();
 			container.RegisterType<ITrayService, TrayService>();
+			container.RegisterType<IContentService, ContentService>();
 
 			DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

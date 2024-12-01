@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using CrudOperation.Helper;
+using CrudOperation.Entities;
 
 
 namespace CrudOperation.Controllers
@@ -128,17 +129,17 @@ namespace CrudOperation.Controllers
             //return Json(new { success = true, data = warehousesList }, JsonRequestBehavior.AllowGet);
 
         }
-        //[HttpPost]
-        //public ActionResult SetTrayForBarCodePrint(List<TrayForBarCodePrint> tray)
-        //{
-        //    var resp = new BoolResponse();
-        //    resp.IsValid = true;
-        //    if (tray != null && tray.Any())
-        //        TempData["trayforBarcCodePrint"] = tray;
-        //    else
-        //        resp.Message = "Please select tray.";
-        //    return JsonSuccess(new { result = resp }, JsonRequestBehavior.DenyGet);
-        //}
+        [HttpPost]
+        public ActionResult SetTrayForBarCodePrint(List<TrayForBarCodePrint> tray)
+        {
+            var resp = new BoolResponse();
+            resp.IsValid = true;
+            if (tray != null && tray.Any())
+                TempData["trayforBarcCodePrint"] = tray;
+            else
+                resp.Message = "Please select tray.";
+            return JsonHelper.JsonSuccess(new { result = resp }, JsonRequestBehavior.DenyGet);
+        }
 
         //public JsonResult JsonSuccess(object data)
         //{
@@ -158,7 +159,7 @@ namespace CrudOperation.Controllers
         //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
         //    };
         //}
-     
+
 
 
 

@@ -289,7 +289,7 @@
         function printBarCode(documentType) {
             var data = { tray: pm.trayForBarCode }
 
-            $http.post('/Setting/SetTrayForBarCodePrint', data)
+            $http.post('/Tray/SetTrayForBarCodePrint', data)
                 .then(function (resp) {
 
                     if (resp.data.result.isValid) {

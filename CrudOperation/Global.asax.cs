@@ -25,11 +25,11 @@ namespace CrudOperation
             // Configure JSON serialization
             // ConfigureJsonSerialization();
             // Enable global camelCase serialization
-            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Formatting.Indented
-            };
+            //JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            //{
+            //    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            //    Formatting = Formatting.Indented
+            //};
         }
 
         //private void ConfigureJsonSerialization()

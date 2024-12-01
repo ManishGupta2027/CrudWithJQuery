@@ -15,6 +15,10 @@
             <a href="@Url.Action("AddTray","Setting")" class="btn btn-blue">Add New</a>
         </div>
     }*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 <div ng-controller="trayCtrl as pm">
     <div class="col-12 col-sm-12 text-right">
         <a href="@Url.Action("AddTray","Tray")" class="btn btn-blue">Add New</a>
@@ -168,7 +172,38 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade bs-example-modal-lg" id="printJsReportPDF" tabindex="-1" role="dialog" aria-labelledby="printJsReportPDF" aria-hidden="true" style="display:none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">{{pm.jsReportTitle}} </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-12 text-center" ng-show="pm.showPdfReportIframe">
+                            <iframe id="iframeJSPDF" width="100%" height="450" frameborder="0"></iframe>
+                        </div>
+                        <div class="col-sm-12 col-12 text-center" ng-show="pm.showPdfUrlIframe">
+                            <iframe id="iframePDF" width="100%" height="550" frameborder="0"></iframe>
+                        </div>
+                        @*<div class="col-sm-12 col-12 text-center" ng-repeat="or in pm.pdfLabelData track by $index">
+                                <iframe  width="100%" height="550" frameborder="0" src="{{pm.trustedUrl(or.labelImagePath)}}"></iframe>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+@*@section scripts{
+    <script src="~/Asset/js-lib/qz-tray.js"></script>
+    }*@
 @*@Html.Partial("~/Views/Shared/_JsReportPdfExport.cshtml")
     @section scripts{
         @Scripts.Render("~/bundles/tray-js")
