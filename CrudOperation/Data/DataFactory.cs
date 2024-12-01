@@ -17,5 +17,11 @@ namespace CrudOperation.Data
 			_connectionString = ConfigurationManager.ConnectionStrings["CRUDConnectionString"].ConnectionString;
 			return new DataFactoryDBDataContext(_connectionString, _sharedMappingSource);
 		}
-	}
+
+        public OMSDBDataContext OMSDBDataContext()
+        {
+            _connectionString = ConfigurationManager.ConnectionStrings["omsConnectionString"].ConnectionString;
+            return new OMSDBDataContext(_connectionString, _sharedMappingSource);
+        }
+    }
 }
