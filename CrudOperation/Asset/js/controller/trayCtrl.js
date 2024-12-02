@@ -1,6 +1,18 @@
 ﻿(function () {
     'use strict';
 
+    // this is not working in this version later test
+    //myApp.constant('TRAY_CONSTANTS', {
+    //    'SUCCESS_MSG': 'Operation completed successfully.',
+    //    'DELETE_MSG': 'Deleted successfully.',
+    //    'MANDATORY_MSG': 'Please fill all mandatory fields.',
+    //    'ERROR_MSG': 'An error occurred. Please try again.'
+    //});
+
+    //myApp.controller('trayCtrl', trayCtrl);
+    //trayCtrl.$inject = ['$scope', '$http', '$timeout', '$window', 'alerts', 'TRAY_CONSTANTS'];
+
+
     angular.module('myApp')
         .constant('TRAY_CONSTANTS', {
             'SUCCESS_MSG': 'Operation completed successfully.',
