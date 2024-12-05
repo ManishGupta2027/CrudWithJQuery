@@ -18,20 +18,23 @@ namespace Crud.Api.Controllers
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
-		private IProductService _productService;
+        readonly ILogger<ProductController> _logger;
+        private IProductService _productService;
 		private readonly IMapper _mapper;
         private readonly CloudinaryService _cloudinaryService;
-        public ProductController(IProductService productService, IMapper mapper, CloudinaryService cloudinaryService)
+        public ProductController(ILogger<ProductController> logger,IProductService productService, IMapper mapper, CloudinaryService cloudinaryService)
         {
 			_mapper = mapper;
 			_productService = productService;
 			_cloudinaryService = cloudinaryService;
+			_logger = logger;
         }
         // GET: api/<ProductController>
         [HttpGet]
 		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40, string name=null)
 		{
-			var res = new ResponsecPaginationModel<List<ProductListModel>>();
+            _logger.LogInformation("Information level log");
+            var res = new ResponsecPaginationModel<List<ProductListModel>>();
 			var productlist = _productService.GetProductList(currentPage, pageSize,name);
 			var mappedProductList = _mapper.Map<List<ProductListModel>>(productlist);
 			// Populate the response model
@@ -49,7 +52,8 @@ namespace Crud.Api.Controllers
 		[HttpGet("{id}")]
 		public ResponseModel<ProductDetailModel> Get(Guid id)
 		{
-			var response = new ResponseModel<ProductDetailModel>();
+            _logger.LogInformation("Get product id:{@id}");
+            var response = new ResponseModel<ProductDetailModel>();
 			try
 			{
 				var result = _productService.GetProductById(id);
