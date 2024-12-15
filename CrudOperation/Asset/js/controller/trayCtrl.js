@@ -74,16 +74,16 @@
         pm.deleteTrayGroup = deleteTrayGroup;
         pm.saveTrayGroup = saveTrayGroup;
         pm.addTray = addTray;
-        pm.removeTray = removeTray;
-        pm.trayNotAdded = trayNotAdded;
+        //pm.removeTray = removeTray;
+        //pm.trayNotAdded = trayNotAdded;
         pm.removeSelectedTray = removeSelectedTray;
         pm.initTrayGroup = initTrayGroup;
         pm.initTrayGroupDetail = initTrayGroupDetail;
         pm.updateTrayGroup = updateTrayGroup;
         pm.getAvailableTrays = getAvailableTrays;
         // New tray name input
-        pm.newTrayName = '';
-        pm.traySearch = '';
+        //pm.newTrayName = '';
+        //pm.traySearch = '';
         //traygroup end
 
         function initAddTray() {
@@ -428,11 +428,11 @@
                 });
         }
         // Filter trays that are not already added
-        function trayNotAdded(tray) {
-            return !pm.trayGroup.TrayId.some(function (addedTray) {
-                return addedTray.recordId === tray.recordId;
-            });
-        };
+        //function trayNotAdded(tray) {
+        //    return !pm.trayGroup.TrayId.some(function (addedTray) {
+        //        return addedTray.recordId === tray.recordId;
+        //    });
+        //};
         // Add Tray Name Method
         function addTray(tray) {
 
@@ -455,11 +455,11 @@
             }
         }
         // Remove a tray from the tray group
-        function removeTray(tray) {
-            pm.trayGroup.TrayIds = pm.trayGroup.TrayIds.filter(function (addedTray) {
-                return addedTray.recordId !== tray.recordId;
-            });
-        };
+        //function removeTray(tray) {
+        //    pm.trayGroup.TrayIds = pm.trayGroup.TrayIds.filter(function (addedTray) {
+        //        return addedTray.recordId !== tray.recordId;
+        //    });
+        //};
     
         function initTrayGroup(deliveryCenterId) {
             var a = deliveryCenterId;
