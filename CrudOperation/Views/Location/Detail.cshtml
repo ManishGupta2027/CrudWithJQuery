@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-12 bg-soft-blue border border-blue py-2 mob-btn-section">
+            <a class="btn btn-sm float-right mr-0 mr-sm-2 btn-light" href='@Url.Action("Trays","Tray",new {deliveryCenterId = Model.DeliveryCenterId})'>View All Trays</a>
+            <a class="btn btn-sm float-right mr-0 mr-sm-2 btn-light" href='@Url.Action("TrayGroups","Tray",new {deliveryCenterId = Model.DeliveryCenterId})'>View All TrayGroup</a>
+            <a class="btn btn-sm float-right mr-0 mr-sm-2 btn-light" href='@Url.Action("Index","DeliveryCenterLocation",new {deliveryCenterId = Model.DeliveryCenterId})'>View All Bins</a>
+        </div>
+    </div>
+   </div>
+

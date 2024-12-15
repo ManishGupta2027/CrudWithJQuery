@@ -12,7 +12,10 @@ using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using CrudOperation.Helper;
 using CrudOperation.Entities;
-
+using CrudOperation.Entities.Common;
+using System.Web.Services.Description;
+using CrudOperation.Models;
+using System.Collections;
 
 namespace CrudOperation.Controllers
 {
@@ -23,7 +26,18 @@ namespace CrudOperation.Controllers
         {
             _trayService=trayService;
         }
+        private DeliveryCenterLocationsModel GetDeliveryCenterDetailModel(Guid deliveryCenterId)
+        {
+            // Find the delivery center by RecordId
+            var deliveryCenter = DemoData.DeliveryCenters.FirstOrDefault(dc => dc.DeliveryCenterId == deliveryCenterId);
 
+          //  var delCenter = DemoData.DeliveryCenters.FirstOrDefault();// _deliveryCenterService.GetDeliveryCenterDetail(deliveryCenterId);
+            return new DeliveryCenterLocationsModel
+            {
+                DeliveryCenterId = deliveryCenter.DeliveryCenterId,
+                DeliveryCenterName = deliveryCenter.DeliveryCenterName
+            };
+        }
         public ActionResult Trays()
         {
             return View();
@@ -76,7 +90,7 @@ namespace CrudOperation.Controllers
 
             // Map the TrayAddModel to Tray
             var mappedModel = mapper.Map<Tray>(model);
-            var resp = _trayService.UpsertTray(Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), mappedModel, "Avi");
+            var resp = _trayService.UpsertTray(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, mappedModel, "Avi");
             return JsonHelper.JsonSuccess(resp, JsonRequestBehavior.DenyGet);
         }
         [HttpPut]
@@ -88,7 +102,7 @@ namespace CrudOperation.Controllers
             // Ensure RecordId is properly set
             if (mappedModel.RecordId == Guid.Empty)
                 mappedModel.RecordId = model.RecordId;
-            var resp = _trayService.UpsertTray(Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), mappedModel,string.Empty);
+            var resp = _trayService.UpsertTray(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, mappedModel,string.Empty);
             return Json(resp, JsonRequestBehavior.DenyGet);
         }
         [HttpPost]
@@ -96,7 +110,7 @@ namespace CrudOperation.Controllers
         {
             model.CurrentPage = model.CurrentPage != 0 ? model.CurrentPage : 1;
             model.PageSize = model.PageSize != 0 ? model.PageSize : 40;//ConfigKeys.PageSize;
-            var resp = _trayService.GetTrays(Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), Guid.Parse("30231bed-c539-41f0-a369-c895da36566c"), model.CurrentPage, model.PageSize, model.Name, model.DeliveryCenterId);
+            var resp = _trayService.GetTrays(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, model.CurrentPage, model.PageSize, model.Name, model.DeliveryCenterId);
             // Debug the response here
             Debug.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
 
@@ -161,7 +175,129 @@ namespace CrudOperation.Controllers
         //}
 
 
+        #region TrayGroup
+        public ActionResult TrayGroups(Guid deliveryCenterId)
+        {
+            var model = GetDeliveryCenterDetailModel(deliveryCenterId);
+            return View(model);
+        }
+        [HttpPost]
+        public JsonResult TrayGroupList(TrayGroup model)
+        {
+            model.CurrentPage = model.CurrentPage != 0 ? model.CurrentPage : 1;
+            model.PageSize = model.PageSize != 0 ? model.PageSize : 40;
+            var resp = _trayService.GetTrayGroups(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, model.DeliveryCenterId, model.CurrentPage, model.PageSize, model.Name);
+            return JsonHelper.JsonSuccess(resp, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AddTrayGroup(Guid deliveryCenterId)
+        {
+            var model = GetDeliveryCenterDetailModel(deliveryCenterId);
+            return View(model);
+        }
+        [HttpDelete]
+        public JsonResult DeleteTrayGroup(Guid id)
+        {
+            var response = _trayService.DeleteTrayGroup(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, id, DemoData._sessionContext.UserEmail);
+            return JsonHelper.JsonSuccess(response, JsonRequestBehavior.DenyGet);
+        }
+        [HttpPost]
+        public JsonResult SaveTrayGroup(TrayGroupAddModel model)
+        {
+            var mapper = (IMapper)HttpContext.Application["Mapper"];
+            var mappedModel = mapper.Map<TrayGroup>(model);
+            var resp = _trayService.UpsertTrayGroup(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, mappedModel, DemoData._sessionContext.UserEmail);
+            return JsonHelper.JsonSuccess(resp, JsonRequestBehavior.DenyGet);
+        }
+        [HttpPut]
+        public JsonResult UpdateTrayGroup(TrayGroupUpdateModel model)
+        {
+            // Retrieve the AutoMapper instance
+            var mapper = (IMapper)HttpContext.Application["Mapper"];
+            var mappedModel = mapper.Map<TrayGroup>(model);
+            // Ensure RecordId is properly set
+            if (mappedModel.RecordId == Guid.Empty)
+                mappedModel.RecordId = model.RecordId;
+            var resp = _trayService.UpsertTrayGroup(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, mappedModel, DemoData._sessionContext.UserEmail);
+            return JsonHelper.JsonSuccess(resp, JsonRequestBehavior.DenyGet);
+        }
+        public ActionResult TrayGroupDetail(Guid id)
+        {
+            var mapper = (IMapper)HttpContext.Application["Mapper"];
+            var containerName = "v3";//BlobConstants.OMS_BASE_FOLDER;
+            byte[] downloadedData = null;
+            var resp = _trayService.GetTrayGroupDetail(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, id);
+            var mappedModel = mapper.Map<TrayGroupDetailModel>(resp);
+            //if (!string.IsNullOrEmpty(mappedModel.BarCode))
+            //{
+            //    if (!mappedModel.BarCode.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        //get Org settings
+            //        var orgSetting = _orgService.GetOrg(DemoData._sessionContext.OrgId);
+            //        //if org uses general blob then add OrgCode as prefix with container name
+            //        if (orgSetting.UseGeneralBlob)
+            //            containerName = orgSetting.OrgCode.Replace(" ", "_").ToLower() + "-" + BlobConstants.OMS_BASE_FOLDER;
+            //        var fileName = BlobConstants.TRAY_FOLDER + "/" + mappedModel.Code;
+            //        mappedModel.BarCode = _commonService.UploadBarCode(fileName, containerName);
+            //        //Update barCodeUrl
+            //        if (!string.IsNullOrEmpty(mappedModel.BarCode))
+            //            _trayService.UpdateTrayBarCode(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, mappedModel.RecordId, mappedModel.BarCode, DemoData._sessionContext.UserEmail);
+            //    }
 
+
+            //    downloadedData = DownloadByte(mappedModel.BarCode, Services.Helper.Utils.DomainStorageSettings.StorageConnectionString);
+
+            //    // Convert the downloaded data (byte array) into Base64
+            //    string base64 = Convert.ToBase64String(downloadedData);
+
+            //    // Assign the Base64 string to the model
+            //    mappedModel.Base64 = base64;
+
+            //    var delCenter = GetDeliveryCenterDetailModel(mappedModel.DeliveryCenterId);
+            //    mappedModel.DeliveryCenterName = delCenter.DeliveryCenterName;
+            //}
+            return View(mappedModel);
+        }
+
+
+        /// <summary>
+        /// Searches the tray list by name.
+        /// </summary>
+        /// <param name="name">The name to search for.</param>
+        /// <returns>A list of trays that match the search term.</returns>
+        /// 
+        [HttpGet]
+        public JsonResult GetTrayList(string name)
+        {
+            // If name is null or empty, return all trays
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return JsonHelper.JsonSuccess( DemoData.TrayList ,JsonRequestBehavior.AllowGet);
+            }
+
+            // Perform case-insensitive search
+            //var list= DemoData.TrayList
+            //    .Where(tray => tray.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            //      return DemoData.TrayList
+            //.Where(tray => tray.Name != null && tray.Name.ToLower().Contains(name.ToLower())).ToList();
+            // Perform case-insensitive exact match
+            var list= DemoData.TrayList
+                .Where(tray => !string.IsNullOrEmpty(tray.Name) &&
+                               string.Equals(tray.Name, name, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            return JsonHelper.JsonSuccess(list, JsonRequestBehavior.AllowGet);
+
+        }
+        [HttpPost]
+        public JsonResult GetAvailableTrays(TrayGroup model)
+        {
+            // If name is null or empty, return all trays
+            model.CurrentPage = model.CurrentPage != 0 ? model.CurrentPage : 1;
+            model.PageSize = model.PageSize != 0 ? model.PageSize : 40;
+            var resp = _trayService.GetAvailableTrays(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, model.DeliveryCenterId, model.CurrentPage, model.PageSize, model.Name);
+            return JsonHelper.JsonSuccess(resp, JsonRequestBehavior.AllowGet);
+
+        }
+        #endregion
 
 
 

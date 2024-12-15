@@ -1,6 +1,7 @@
 ﻿using CrudOperation.Data;
 using CrudOperation.Entities;
 using CrudOperation.Entities.Trays;
+using CrudOperation.Models.Tray;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -104,6 +105,103 @@ namespace CrudOperation.Repository.Tray
                           IsValid = o.IsValid.GetValueOrDefault()
                       }).FirstOrDefault();
             return result;
+        }
+
+
+
+
+        public IList<TrayGroup> GetTrayGroups(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        {
+            var dbResponse = _dbcontext.procGetTrayGroups_20241213(
+                orgId,
+                domainId,
+                deliveryCenterId,
+                name,
+                currentPage,
+                pageSize
+            );
+
+            var trayGroups = (from t in dbResponse
+                              select new TrayGroup
+                              {
+                                  RecordId = t.RecordId,
+                                  Name = t.Name,
+                                  BarCode = t.BarCode,
+                                  Code = t.Code,
+                                  Capacity = t.Capacity,
+                                  Created = t.Created,
+                                  CreatedBy = t.CreatedBy,
+                                  LastUpdated = t.LastUpdated,
+                                  LastUpdatedBy = t.LastUpdatedBy,
+                                  CurrentPage = currentPage ?? 1,
+                                  PageSize = pageSize ?? 10,
+                                  TotalRecord = t.TotalRecords ?? 0
+                              }).ToList();
+
+            return trayGroups;
+        }
+
+        public BoolResponse DeleteTrayGroup(Guid orgId, Guid domainId, Guid recordId, string savedBy)
+        {
+            var result = new BoolResponse();
+            var dbResponse = _dbcontext.procDeleteTrayGroup_20241213(orgId, domainId, recordId, savedBy);
+            result = (from o in dbResponse
+                      select new BoolResponse
+                      {
+                          RecordId = o.RecordId ?? Guid.Empty,
+                          Message = o.Message,
+                          IsValid = o.IsValid.GetValueOrDefault()
+                      }).FirstOrDefault();
+            return result;
+        }
+
+        public BoolResponse UpsertTrayGroup(Guid orgId, Guid domainId, TrayGroup model, string savedBy)
+        {
+            var result = new BoolResponse();
+            var trayJson = JsonConvert.SerializeObject(model.Trays);
+            var dbResponse = _dbcontext.procUpsertTrayGroup_20241213(orgId, domainId, model.RecordId, model.DeliveryCenterId, model.Name, model.BarCode, model.Capacity, trayJson, savedBy);
+            result = (from o in dbResponse
+                      select new BoolResponse
+                      {
+                          RecordId = o.RecordId ?? Guid.Empty,
+                          Message = o.Message,
+                          IsValid = o.IsValid.GetValueOrDefault()
+                      }).FirstOrDefault();
+            return result;
+        }
+
+        public TrayGroup GetTrayGroupDetail(Guid orgId, Guid domainId, Guid id)
+        {
+            var result = new TrayGroup();
+            var dbResponse = _dbcontext.procGetTrayGroupDetail_20241213(orgId, domainId, id);
+            var tray = (from o in dbResponse
+                        select new TrayGroup
+                        {
+                            Name = o.Name,
+                            BarCode = o.Barcode,
+                            Code = o.Code,
+                            DeliveryCenterId = o.DeliveryCenterId,
+                            Capacity = Convert.ToInt16(o.Capacity),
+                            Trays =o.Trays != null ? JsonConvert.DeserializeObject<List<SelectedTray>>(o.Trays) : null,
+                            RecordId = o.RecordId,
+                        }).FirstOrDefault();
+           return tray;
+           // return result;
+        }
+
+        public IList<TrayListModel> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        {
+            var dbResponse = _dbcontext.procGetAvailableTrays_20241213(orgId, domainId, deliveryCenterId, name, currentPage, pageSize);
+            var tray = (from o in dbResponse
+                        select new TrayListModel
+                        {
+                            Name = o.Name,
+                            RecordId = o.RecordId,
+                            CurrentPage = currentPage ?? 1,
+                            PageSize = pageSize ?? 40,//Entities.Common.ConfigKeys.PageSize,
+                            TotalRecord = o.TotalRecords ?? 0
+                        }).ToList();
+            return tray;
         }
     }
 }

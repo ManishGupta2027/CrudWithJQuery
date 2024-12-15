@@ -9,6 +9,7 @@ namespace CrudOperation.Entities.Common
     public class ConfigKeys
     {
         //JS Report
+        public static readonly string PageSize = "10";
         public static readonly string JSReportApiUrl = ConfigurationManager.AppSettings.Get("JSReportApiUrl");
         public static readonly string JSReportUsername = ConfigurationManager.AppSettings.Get("JSReportUsername");
         public static readonly string JSReportPassword = ConfigurationManager.AppSettings.Get("JSReportPassword");

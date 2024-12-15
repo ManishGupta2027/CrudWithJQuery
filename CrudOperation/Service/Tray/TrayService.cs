@@ -1,5 +1,6 @@
 ﻿using CrudOperation.Entities;
 using CrudOperation.Entities.Trays;
+using CrudOperation.Models.Tray;
 using CrudOperation.Repository.Tray;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,31 @@ namespace CrudOperation.Service.Tray
         public BoolResponse UpsertTray(Guid orgId, Guid domainId, Entities.Trays.Tray model, string savedBy)
         {
             return _trayRepository.UpsertTray(orgId, domainId, model, savedBy);
+        }
+
+        public IList<TrayGroup> GetTrayGroups(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        {
+            return _trayRepository.GetTrayGroups(orgId, domainId, deliveryCenterId, currentPage, pageSize, name);
+        }
+
+        public BoolResponse DeleteTrayGroup(Guid orgId, Guid domainId, Guid recordId, string savedBy)
+        {
+            return _trayRepository.DeleteTrayGroup(orgId, domainId, recordId, savedBy);
+        }
+
+        public BoolResponse UpsertTrayGroup(Guid orgId, Guid domainId, TrayGroup model, string savedBy)
+        {
+            return _trayRepository.UpsertTrayGroup(orgId, domainId, model, savedBy);
+        }
+
+        public TrayGroup GetTrayGroupDetail(Guid orgId, Guid domainId, Guid id)
+        {
+            return _trayRepository.GetTrayGroupDetail(orgId, domainId, id);
+        }
+
+        public IList<TrayListModel> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        {
+            return _trayRepository.GetAvailableTrays(orgId, domainId, deliveryCenterId,currentPage,pageSize,name);
         }
     }
 }

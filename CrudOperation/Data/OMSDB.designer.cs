@@ -97,6 +97,41 @@ namespace CrudOperation.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, name, deliveryCenterId, currentPage, pageSize);
 			return ((ISingleResult<procGetTrayList_20241118Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetTrayGroupDetail_20241213")]
+		public ISingleResult<procGetTrayGroupDetail_20241213Result> procGetTrayGroupDetail_20241213([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> orgId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomainId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> domainId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> recordId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, recordId);
+			return ((ISingleResult<procGetTrayGroupDetail_20241213Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetTrayGroups_20241213")]
+		public ISingleResult<procGetTrayGroups_20241213Result> procGetTrayGroups_20241213([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> orgId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomainId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> domainId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DeliveryCenterId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> deliveryCenterId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(100)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, deliveryCenterId, name, currentPage, pageSize);
+			return ((ISingleResult<procGetTrayGroups_20241213Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procDeleteTrayGroup_20241213")]
+		public ISingleResult<procDeleteTrayGroup_20241213Result> procDeleteTrayGroup_20241213([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> orgId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomainId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> domainId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> recordId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SavedBy", DbType="NVarChar(255)")] string savedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, recordId, savedBy);
+			return ((ISingleResult<procDeleteTrayGroup_20241213Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertTrayGroup_20241213")]
+		public ISingleResult<procUpsertTrayGroup_20241213Result> procUpsertTrayGroup_20241213([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> orgId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomainId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> domainId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> recordId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DeliveryCenterId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> deliveryCenterId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(225)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Barcode", DbType="NVarChar(255)")] string barcode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Capacity", DbType="Int")] System.Nullable<int> capacity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Trays", DbType="NVarChar(MAX)")] string trays, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SavedBy", DbType="NVarChar(255)")] string savedBy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, recordId, deliveryCenterId, name, barcode, capacity, trays, savedBy);
+			return ((ISingleResult<procUpsertTrayGroup_20241213Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetAvailableTrays_20241213")]
+		public ISingleResult<procGetAvailableTrays_20241213Result> procGetAvailableTrays_20241213([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> orgId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DomainId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> domainId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DeliveryCenterId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> deliveryCenterId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(100)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgId, domainId, deliveryCenterId, name, currentPage, pageSize);
+			return ((ISingleResult<procGetAvailableTrays_20241213Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procDeleteTray_20241118Result
@@ -558,6 +593,586 @@ namespace CrudOperation.Data
 				if ((this._LastUpdatedBy != value))
 				{
 					this._LastUpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalRecords", DbType="Int")]
+		public System.Nullable<int> TotalRecords
+		{
+			get
+			{
+				return this._TotalRecords;
+			}
+			set
+			{
+				if ((this._TotalRecords != value))
+				{
+					this._TotalRecords = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetTrayGroupDetail_20241213Result
+	{
+		
+		private System.Guid _RecordId;
+		
+		private string _Name;
+		
+		private string _Barcode;
+		
+		private string _Code;
+		
+		private System.Guid _DeliveryCenterId;
+		
+		private byte _Capacity;
+		
+		private System.Nullable<System.DateTime> _Created;
+		
+		private string _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _LastUpdated;
+		
+		private string _LastUpdatedBy;
+		
+		private string _Trays;
+		
+		public procGetTrayGroupDetail_20241213Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this._RecordId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(225) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Barcode
+		{
+			get
+			{
+				return this._Barcode;
+			}
+			set
+			{
+				if ((this._Barcode != value))
+				{
+					this._Barcode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryCenterId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DeliveryCenterId
+		{
+			get
+			{
+				return this._DeliveryCenterId;
+			}
+			set
+			{
+				if ((this._DeliveryCenterId != value))
+				{
+					this._DeliveryCenterId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capacity", DbType="TinyInt NOT NULL")]
+		public byte Capacity
+		{
+			get
+			{
+				return this._Capacity;
+			}
+			set
+			{
+				if ((this._Capacity != value))
+				{
+					this._Capacity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this._Created = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdated
+		{
+			get
+			{
+				return this._LastUpdated;
+			}
+			set
+			{
+				if ((this._LastUpdated != value))
+				{
+					this._LastUpdated = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this._LastUpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Trays", DbType="NVarChar(MAX)")]
+		public string Trays
+		{
+			get
+			{
+				return this._Trays;
+			}
+			set
+			{
+				if ((this._Trays != value))
+				{
+					this._Trays = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetTrayGroups_20241213Result
+	{
+		
+		private System.Guid _RecordId;
+		
+		private string _Name;
+		
+		private string _Code;
+		
+		private string _BarCode;
+		
+		private byte _Capacity;
+		
+		private System.Nullable<System.DateTime> _Created;
+		
+		private string _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _LastUpdated;
+		
+		private string _LastUpdatedBy;
+		
+		private System.Nullable<int> _TotalRecords;
+		
+		public procGetTrayGroups_20241213Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this._RecordId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(225) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarCode", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string BarCode
+		{
+			get
+			{
+				return this._BarCode;
+			}
+			set
+			{
+				if ((this._BarCode != value))
+				{
+					this._BarCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capacity", DbType="TinyInt NOT NULL")]
+		public byte Capacity
+		{
+			get
+			{
+				return this._Capacity;
+			}
+			set
+			{
+				if ((this._Capacity != value))
+				{
+					this._Capacity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Created", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Created
+		{
+			get
+			{
+				return this._Created;
+			}
+			set
+			{
+				if ((this._Created != value))
+				{
+					this._Created = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastUpdated
+		{
+			get
+			{
+				return this._LastUpdated;
+			}
+			set
+			{
+				if ((this._LastUpdated != value))
+				{
+					this._LastUpdated = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastUpdatedBy", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string LastUpdatedBy
+		{
+			get
+			{
+				return this._LastUpdatedBy;
+			}
+			set
+			{
+				if ((this._LastUpdatedBy != value))
+				{
+					this._LastUpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalRecords", DbType="Int")]
+		public System.Nullable<int> TotalRecords
+		{
+			get
+			{
+				return this._TotalRecords;
+			}
+			set
+			{
+				if ((this._TotalRecords != value))
+				{
+					this._TotalRecords = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procDeleteTrayGroup_20241213Result
+	{
+		
+		private System.Nullable<System.Guid> _RecordId;
+		
+		private System.Nullable<bool> _IsValid;
+		
+		private string _Message;
+		
+		public procDeleteTrayGroup_20241213Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this._RecordId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsValid", DbType="Bit")]
+		public System.Nullable<bool> IsValid
+		{
+			get
+			{
+				return this._IsValid;
+			}
+			set
+			{
+				if ((this._IsValid != value))
+				{
+					this._IsValid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(50)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procUpsertTrayGroup_20241213Result
+	{
+		
+		private System.Nullable<System.Guid> _RecordId;
+		
+		private System.Nullable<bool> _IsValid;
+		
+		private string _Message;
+		
+		public procUpsertTrayGroup_20241213Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this._RecordId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsValid", DbType="Bit")]
+		public System.Nullable<bool> IsValid
+		{
+			get
+			{
+				return this._IsValid;
+			}
+			set
+			{
+				if ((this._IsValid != value))
+				{
+					this._IsValid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(100)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetAvailableTrays_20241213Result
+	{
+		
+		private System.Guid _RecordId;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _TotalRecords;
+		
+		public procGetAvailableTrays_20241213Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RecordId
+		{
+			get
+			{
+				return this._RecordId;
+			}
+			set
+			{
+				if ((this._RecordId != value))
+				{
+					this._RecordId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
 				}
 			}
 		}

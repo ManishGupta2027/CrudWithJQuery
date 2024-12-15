@@ -15,6 +15,9 @@ namespace CrudOperation.Profiler
             // Define mappings here
             CreateMap<TrayAddModel, Tray>();
             CreateMap<TrayDetailModel, Tray>().ReverseMap();
+            CreateMap<TrayGroupAddModel, TrayGroup>().ReverseMap();
+            CreateMap<TrayGroupDetailModel, TrayGroup>().ReverseMap();
+            CreateMap<TrayGroupUpdateModel, TrayGroup>().ReverseMap();
             // Add other mappings as needed
         }
     }
