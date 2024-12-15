@@ -67,7 +67,7 @@ namespace CrudOperation.Service.Tray
             return _trayRepository.GetTrayGroupDetail(orgId, domainId, id);
         }
 
-        public IList<TrayListModel> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        public IList<TrayList> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
         {
             return _trayRepository.GetAvailableTrays(orgId, domainId, deliveryCenterId,currentPage,pageSize,name);
         }

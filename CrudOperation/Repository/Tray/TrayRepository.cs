@@ -189,11 +189,11 @@ namespace CrudOperation.Repository.Tray
            // return result;
         }
 
-        public IList<TrayListModel> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
+        public IList<TrayList> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null)
         {
             var dbResponse = _dbcontext.procGetAvailableTrays_20241213(orgId, domainId, deliveryCenterId, name, currentPage, pageSize);
             var tray = (from o in dbResponse
-                        select new TrayListModel
+                        select new TrayList
                         {
                             Name = o.Name,
                             RecordId = o.RecordId,

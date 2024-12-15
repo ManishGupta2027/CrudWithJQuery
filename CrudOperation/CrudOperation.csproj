@@ -202,6 +202,7 @@
     <Compile Include="Entities\Trays\TrayForBarCodePrint.cs" />
     <Compile Include="Entities\Trays\TrayGroup.cs" />
     <Compile Include="Entities\Trays\TrayLabelPDF.cs" />
+    <Compile Include="Entities\Trays\TrayList.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

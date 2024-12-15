@@ -21,7 +21,7 @@ namespace CrudOperation.Repository.Tray
         BoolResponse UpsertTrayGroup(Guid orgId, Guid domainId, TrayGroup model, string savedBy);
 
         TrayGroup GetTrayGroupDetail(Guid orgId, Guid domainId, Guid id);
-        IList<TrayListModel> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null);
+        IList<TrayList> GetAvailableTrays(Guid orgId, Guid domainId, Guid deliveryCenterId, int? currentPage = null, int? pageSize = null, string name = null);
 
     }
 }

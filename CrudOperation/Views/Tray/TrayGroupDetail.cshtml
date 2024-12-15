@@ -53,11 +53,12 @@
                         <div class="col-10 col-sm-10" ng-if="pm.trayGroup.Trays.length > 0">
                             <label class="mr-2">Selected Trays<span class="text-danger">*</span></label>
                             <ul class="pt-2 p-0">
-                                <li class="badge badge-light font-13 mr-1" ng-repeat="tray in pm.trayGroup.Trays track by $index">
+                                <li class="badge badge-light shadow-sm font-13 mr-1" ng-repeat="tray in pm.trayGroup.Trays track by $index">
                                     <span ng-bind="tray.name"></span>
                                     <a href="" class="text-right pl-1 text-dark" ng-click="pm.removeSelectedTray(tray,$index);" data-toggle="tab">&times;</a>
                                 </li>
                             </ul>
+                            <p class="text-muted mt-2" ng-if="pm.trayGroup.Trays.length === 0">No trays selected.</p>
                         </div>
                     </div>
 
