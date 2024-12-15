@@ -7,15 +7,16 @@
 <h2>AddTrayGroup</h2>
 
 @*@model  Omnicx.Oms.Web.V3.Models.DeliveryCenterModels.DeliveryCenterLocationsModel
-@{
-    ViewBag.Title = "TrayGroups";
-    Layout = "~/Views/Shared/_LayoutSetting.cshtml";
-}
-@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li><li class="breadcrumb-item"><a href="@Url.Action("Detail", "Location")/@Model.DeliveryCenterId"> @Model.DeliveryCenterName </a></li>}
-@section BreadcrumbActive {
-    <a href="@Url.Action("TrayGroups","Tray",new {deliveryCenterId=@Model.DeliveryCenterId})">TrayGroups</a> > TrayGroup}
-@section ngController{ng-controller='trayCtrl as pm'}*@
-<div class="container-fluid" ng-controller="trayCtrl as pm" >
+    @{
+        ViewBag.Title = "TrayGroups";
+        Layout = "~/Views/Shared/_LayoutSetting.cshtml";
+    }
+    @section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li><li class="breadcrumb-item"><a href="@Url.Action("Detail", "Location")/@Model.DeliveryCenterId"> @Model.DeliveryCenterName </a></li>}
+    @section BreadcrumbActive {
+        <a href="@Url.Action("TrayGroups","Tray",new {deliveryCenterId=@Model.DeliveryCenterId})">TrayGroups</a> > TrayGroup}
+    @section ngController{ng-controller='trayCtrl as pm'}*@
+
+<div class="container-fluid" ng-controller="trayCtrl as pm">
     <div class="row" ng-init='pm.initTrayGroup("@Model.DeliveryCenterId")'>
         <div class="col-sm-8 col-12 px-0 px-sm-2 float-left">
             <div class="card card-box p-0">
@@ -130,5 +131,5 @@
     </div>
 </div>
 @*@section scripts{
-    @Scripts.Render("~/bundles/tray-js")
-}*@
+        @Scripts.Render("~/bundles/tray-js")
+    }*@

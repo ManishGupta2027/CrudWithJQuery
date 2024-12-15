@@ -400,8 +400,8 @@
         function saveTrayGroup(deliveryCenterId) {
             pm.trayGroup.DeliveryCenterId = deliveryCenterId
             if (!pm.trayGroup.Name || !pm.trayGroup.Capacity) {
-                //alerts.error(TRAY_CONSTANTS.MANDATORY_MSG);
-                alter(TRAY_CONSTANTS.MANDATORY_MSG);
+                alerts.error(TRAY_CONSTANTS.MANDATORY_MSG);
+              //  alter(TRAY_CONSTANTS.MANDATORY_MSG);
                 return;
             }
             if (!pm.trayGroup.TrayIds.length > 0) {
