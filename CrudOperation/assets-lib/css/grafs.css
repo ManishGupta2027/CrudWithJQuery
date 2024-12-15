@@ -1,0 +1,189 @@
+.grafs foreignObject {
+    cursor: default;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*
+    Font Family
+*/
+.grafs-text,
+.grafs-tips,
+.grafs-tooltip,
+.grafs-summary,
+.grafs-legend {
+    font-family: 'Trebuchet MS', Arial, Helvetica, Tahoma, sans-serif;
+}
+
+/*
+    Text & Labels
+*/
+.grafs-text {
+    font-size: 10px;
+}
+.grafs-label {
+    fill: #9a9ca0;
+}
+.grafs-label-bold {
+    fill: #5b5c5f;
+    font-weight: bold;
+}
+.grafs-bubbles-tip {
+    font-weight: bold;
+}
+.grafs-grid-bottom-x-labels .grafs-label,
+.grafs-grid-left-y-labels .grafs-label {
+    fill: rgba(0, 0, 0, .7);
+    font-size: 11px;
+}
+.grafs.inverted .grafs-grid-bottom-x-labels .grafs-label,
+.grafs.inverted .grafs-grid-left-y-labels .grafs-label {
+    fill: rgba(255, 255, 255, .5);
+}
+
+/*
+    Tooltip
+*/
+.grafs-tooltip {
+    position: absolute;
+    float: left;
+    min-width: 30px;
+    max-width: 300px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: rgba(255,255,255,.97);
+    color: #444;
+    font-size: 12px;
+    text-align: left;
+    line-height: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0,.3);
+    pointer-events: none;
+}
+.grafs-tooltip:after {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    height: 0;
+    margin: 0 0 0 -6px;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 6px solid rgba(255,255,255,.95);
+    line-height: 0;
+}
+
+/*
+    Summary
+*/
+.grafs-summary {
+    color: #000;
+    margin: 0 12px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.grafs.inverted .grafs-summary {
+    font-weight: normal;
+    color: rgba(255, 255, 255, .95);
+}
+.grafs-summary > span {
+    line-height: 1.3;
+    white-space: nowrap;
+}
+.grafs-summary-desc {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, .45);
+}
+.grafs.inverted .grafs-summary-desc {
+    font-weight: normal;
+    color: rgba(255, 255, 255, .45);
+}
+
+/*
+    Base
+*/
+.grafs-base {
+    fill: #f4f4f4;
+}
+.inverted .grafs-base {
+    fill: rgba(255, 255, 255, .1);
+}
+
+/*
+    Hovered
+*/
+.grafs-hovered:hover {
+    opacity: 0.65;
+}
+
+/*
+    Grid
+*/
+.grafs-grid-line {
+    stroke: rgba(0, 0, 0, .1);
+    opacity: .5;
+}
+.grafs.inverted .grafs-grid-line {
+    stroke: rgba(255, 255, 255, .1);
+}
+.grafs-grid-first-line {
+    opacity: 1;
+    stroke-width: 2px;
+    stroke: #000;
+}
+.grafs-grid-x-line {
+    stroke-dasharray: 5 5;
+    stroke: rgba(0, 0, 0, .2);
+}
+.grafs-weekend-line {
+    stroke: #df7586 !important;
+    opacity: 0.35;
+    stroke-width: 2px;
+}
+.grafs-weekend-label {
+    fill: #df7586 !important;
+}
+
+/*
+    Tips
+*/
+.grafs-tips {
+    font-size: 10px;
+    font-weight: bold;
+}
+.grafs-points-tip {
+    font-weight: normal;
+}
+
+/*
+    Legend
+*/
+.grafs-legend {
+    text-align: center;
+}
+.grafs-legend-item {
+    padding: 2px 0;
+    margin: 0 12px;
+    display: inline-block;
+    font-size: 11px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, .85);
+    font-weight: bold;
+}
+.grafs-legend-item-toggle {
+    cursor: pointer;
+}
+.grafs-legend-color {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 1px;
+    border-radius: 4px;
+}

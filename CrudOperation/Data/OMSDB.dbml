@@ -73,4 +73,82 @@
       <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.procGetTrayGroupDetail_20241213" Method="procGetTrayGroupDetail_20241213">
+    <Parameter Name="OrgId" Parameter="orgId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DomainId" Parameter="domainId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="RecordId" Parameter="recordId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="procGetTrayGroupDetail_20241213Result">
+      <Column Name="RecordId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(225) NOT NULL" CanBeNull="false" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryCenterId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastUpdatedBy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Trays" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetTrayGroups_20241213" Method="procGetTrayGroups_20241213">
+    <Parameter Name="OrgId" Parameter="orgId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DomainId" Parameter="domainId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DeliveryCenterId" Parameter="deliveryCenterId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetTrayGroups_20241213Result">
+      <Column Name="RecordId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(225) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastUpdatedBy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procDeleteTrayGroup_20241213" Method="procDeleteTrayGroup_20241213">
+    <Parameter Name="OrgId" Parameter="orgId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DomainId" Parameter="domainId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="RecordId" Parameter="recordId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="SavedBy" Parameter="savedBy" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="procDeleteTrayGroup_20241213Result">
+      <Column Name="RecordId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procUpsertTrayGroup_20241213" Method="procUpsertTrayGroup_20241213">
+    <Parameter Name="OrgId" Parameter="orgId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DomainId" Parameter="domainId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="RecordId" Parameter="recordId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DeliveryCenterId" Parameter="deliveryCenterId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(225)" />
+    <Parameter Name="Barcode" Parameter="barcode" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Capacity" Parameter="capacity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Trays" Parameter="trays" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="SavedBy" Parameter="savedBy" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="procUpsertTrayGroup_20241213Result">
+      <Column Name="RecordId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetAvailableTrays_20241213" Method="procGetAvailableTrays_20241213">
+    <Parameter Name="OrgId" Parameter="orgId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DomainId" Parameter="domainId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DeliveryCenterId" Parameter="deliveryCenterId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetAvailableTrays_20241213Result">
+      <Column Name="RecordId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

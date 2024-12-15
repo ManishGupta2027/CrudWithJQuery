@@ -1,0 +1,165 @@
+﻿@model CrudOperation.Models.DeliveryCenterLocationsModel
+@{
+    ViewBag.Title = "TrayGroups";
+}
+
+
+
+@*@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li>}
+    @section BreadcrumbActive {
+        <a href="@Url.Action("Detail", "Location")/@Model.DeliveryCenterId"> @Model.DeliveryCenterName </a> > TrayGroups}
+    @section ngController{ng-controller='trayCtrl as pm'}
+    @section ngBootboxClass{btn-delete-confirmation}
+    @section style{
+        @Styles.Render("~/bundles/style-select-2")
+    }
+    @section ActionButtonRight{
+        <div class="col-12 col-sm-12 text-right">
+            <a href="@Url.Action("AddTrayGroup", "Tray", new {deliveryCenterId=@Model.DeliveryCenterId} )" class="btn btn-blue">Add New</a>
+        </div>
+    }*@
+<a href="@Url.Action("AddTrayGroup", "Tray", new {deliveryCenterId=@Model.DeliveryCenterId} )" class="btn btn-blue">Add New</a>
+<div class="row" ng-controller="trayCtrl as pm" >
+    <div class="col-12 col-lg-12 px-0 px-sm-2">
+        <div class="card card-box">
+            <form class="row" ng-enter="pm.pageFilter.currentPage=1;pm.getTrayGroupList(pm.pageFilter);">
+                <div class="col-12 col-sm-3">
+                    @Html.TextBox("Name", "", new { @ng_model = "pm.pageFilter.name", @class = "form-control", @placeholder = "Search TrayGroup" })
+                </div>
+                <div class="col-12 col-sm-2">
+                    <button type="button" class="btn btn-primary m--w-100 mb-2 mb-sm-0" ng-click="pm.pageFilter.currentPage=1;pm.getTrayGroupList(pm.pageFilter);">Search </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 col-lg-12 px-0 px-sm-2">
+        <div class="card-box p-0">
+            <div class="row mx-0" ng-init='pm.initTrayGroups("@Model.DeliveryCenterId")'>
+                <div class="col-2 col-sm-2" ng-if="pm.trayforBarCodePrint.length > 0">
+                    <a href="" ng-click="pm.showBulkBarCodePopUp()" class="btn btn-blue btn-sm m-2"><i class="mdi mdi-printer"></i>  Bulk Barcode </a>
+                    <span>(<label ng-bind="pm.trayforBarCodePrint.length"></label>)</span>
+                </div>
+                <div class="col-10 col-sm-10" ng-if="pm.trayforBarCodePrint.length > 0">
+                    <ul class="pt-2 p-0">
+                        <li class="badge badge-light font-13 mr-1" ng-repeat="loc in pm.trayforBarCodePrint track by $index">
+                            <span ng-bind="loc.code"></span>
+                            <a href="" class="text-right pl-1 text-dark" ng-click="pm.clearSelectedTray(loc.recordId,$index);" data-toggle="tab">&times;</a>
+                        </li>
+                        <li class="badge badge-light font-13">
+                            <a href="" ng-click="pm.removeAlltrayForBarCode()" class="btn btn-danger btn-sm"><i class="mdi mdi-delete"></i>Clear all</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-12 px-0">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-hover mb-0">
+                            <thead class="thead-white">
+                                <tr>
+                                    <th>
+                                        <div class="checkbox checkbox-success checkbox-single">
+                                            <span>
+                                                <input type="checkbox" id="singleCheckbox1" aria-label="Single checkbox One" ng-model="selectAll" ng-change="pm.selectAllLocation(pm.trays,selectAll,'40')">
+                                                <label></label>
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Created</th>
+                                    <th>Created By</th>
+                                    <th class="text-right padding-right-10">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="sr in pm.trayGroups track by $index">
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-success checkbox-single">
+                                            <input type="checkbox" aria-label="Single checkbox One" ng-model="sr.isChecked" ng-change="pm.selectSingletray(sr,sr.isChecked,'40')" />
+                                            <label></label>
+                                        </div>
+                                    </td>
+                                    <td><a href="/Tray/TrayGroupDetail/{{sr.recordId}}" class="font-weight-bold font-13" ng-bind="sr.name"></a></td>
+                                    <td>
+                                        <span ng-bind="sr.code"></span>
+                                    </td>
+                                    <td>
+                                        <span class="d-block font-weight-bold text-dark" ng-bind="sr.created | ocxDateTime"></span>
+                                    </td>
+                                    <td><span ng-bind="sr.createdBy"></span></td>
+                                    <td align="right">
+                                        <a href="/Tray/TrayGroupDetail/{{sr.recordId}}" class="show-on-hover"><i class="mdi mdi-square-edit-outline action-icon"></i></a>
+                                        <a href="" ng-bootbox-confirm="You are about to delete {{sr.name}} tray. Deleted tray can`t be restored?" ng-bootbox-confirm-action="pm.deleteTrayGroup(sr.recordId)" class="show-on-hover text-danger"><i class="icon-trash action-icon text-danger"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12" ng-show="pm.trayGroups.length>0">
+                    <div paging
+                         class="small"
+                         page="page"
+                         page-size="pageSize"
+                         total="total"
+                         text-next="next"
+                         text-prev="prev"
+                         show-prev-next="true"
+                         show-first-last="false"
+                         disabled="false"
+                         adjacent="2"
+                         text-next-class="pagination-border-less-next"
+                         text-prev-class="pagination-border-less-prev"
+                         paging-action="pm.pageFilter.currentPage=page;pm.getTrayGroupList(pm.pageFilter);">
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-hide="pm.trayGroups.length>0">
+                <div class="col-sm-12 col-xl-12 p-5 text-center mt-2">
+                    <div class="nodata-order">
+                        <h3 class="mt-3 text-muted">No trayGroup available</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" id="barCodePopUpModal" tabindex="-1" role="dialog" aria-labelledby="barCodePopUpModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Print Barcode</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body max-75vh">
+                <div class="row">
+                    <div class="col-sm-12 col-12 form-group">
+                        <table class="table table-hover border">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>No of BarCode <button type="button" class="btn-success btn btn-xs" ng-click="pm.applytoAllNoofBarCode();" ng-show="pm.trayforBarCodePrint.length>1">Apply all</button></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="loc in pm.trayForBarCode">
+                                    <td><span ng-bind="loc.code"></span></td>
+                                    <td><input class="form-control ng-valid ng-valid-number " type="number" min="1" max="10" size="2" name="printqty" id="printqty" ng-model="loc.printQty" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 text-right">
+                            <input type="submit" value="Print" ng-click="pm.printBarCode(@JsReportPdfDocumentTypes.TR.GetHashCode())" id="btnSubmit" class="ladda-button btn btn-success" />
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+
