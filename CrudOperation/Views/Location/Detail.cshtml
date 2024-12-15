@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Detail";
 }
-
+@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li>}
 <h2>Detail</h2>
 <div class="container-fluid">
     <div class="row">
@@ -12,5 +12,5 @@
             <a class="btn btn-sm float-right mr-0 mr-sm-2 btn-light" href='@Url.Action("Index","DeliveryCenterLocation",new {deliveryCenterId = Model.DeliveryCenterId})'>View All Bins</a>
         </div>
     </div>
-   </div>
+</div>
 

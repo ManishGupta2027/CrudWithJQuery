@@ -5,10 +5,10 @@
 
 
 
-@*@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li>}
+@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index", "Location")">Delivery Centers</a></li>}
     @section BreadcrumbActive {
         <a href="@Url.Action("Detail", "Location")/@Model.DeliveryCenterId"> @Model.DeliveryCenterName </a> > TrayGroups}
-    @section ngController{ng-controller='trayCtrl as pm'}
+    @*@section ngController{ng-controller='trayCtrl as pm'}
     @section ngBootboxClass{btn-delete-confirmation}
     @section style{
         @Styles.Render("~/bundles/style-select-2")

@@ -68,6 +68,20 @@
             </div>
         </div>
     </nav>
+
+    <div class="row">
+        <div class="col-12 breadcrumb-sec-mob">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        @RenderSection("Breadcrumb", required: false)
+                        <li class="breadcrumb-item active">@RenderSection("BreadcrumbActive", required: false)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @section ngBootboxClass{
         @RenderSection("ngBootboxClass", required: false)
     }
