@@ -290,7 +290,7 @@ namespace CrudOperation.Controllers
         [HttpPost]
         public JsonResult GetAvailableTrays(TrayGroup model)
         {
-            // If name is null or empty, return all trays
+            
             model.CurrentPage = model.CurrentPage != 0 ? model.CurrentPage : 1;
             model.PageSize = model.PageSize != 0 ? model.PageSize : 40;
             var resp = _trayService.GetAvailableTrays(DemoData._sessionContext.OrgId, DemoData._sessionContext.CurrentDomainId, model.DeliveryCenterId, model.CurrentPage, model.PageSize, model.Name);
