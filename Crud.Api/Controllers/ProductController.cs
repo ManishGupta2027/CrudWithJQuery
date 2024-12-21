@@ -31,7 +31,7 @@ namespace Crud.Api.Controllers
         }
         // GET: api/<ProductController>
         [HttpGet]
-		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage ,int pageSize=40, string name=null)
+		public ResponsecPaginationModel<List<ProductListModel>> GetAll(int currentPage =1,int pageSize=40, string name=null)
 		{
             _logger.LogInformation("Information level log");
             var res = new ResponsecPaginationModel<List<ProductListModel>>();
