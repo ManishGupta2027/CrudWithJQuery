@@ -1,0 +1,81 @@
+2024-12-05 21:15:37.812 +05:30 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.Extensions.Hosting.DiagnosticContext' while attempting to activate 'Serilog.AspNetCore.RequestLoggingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-12-05 21:15:38.018 +05:30 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.Extensions.Hosting.DiagnosticContext' while attempting to activate 'Serilog.AspNetCore.RequestLoggingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-12-05 21:17:05.018 +05:30 [INF] Now listening on: https://localhost:7059
+2024-12-05 21:17:05.068 +05:30 [INF] Now listening on: http://localhost:5079
+2024-12-05 21:17:05.073 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-12-05 21:17:05.075 +05:30 [INF] Hosting environment: Development
+2024-12-05 21:17:05.078 +05:30 [INF] Content root path: D:\Project2\e\CrudWithJQuery\Crud.Api
+2024-12-05 21:17:08.087 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/index.html - null null
+2024-12-05 21:17:08.613 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/index.html - 200 null text/html;charset=utf-8 541.9397ms
+2024-12-05 21:17:08.634 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/index.js - null null
+2024-12-05 21:17:08.634 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/_framework/aspnetcore-browser-refresh.js - null null
+2024-12-05 21:17:08.675 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/index.js - 200 null application/javascript;charset=utf-8 41.0341ms
+2024-12-05 21:17:08.679 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/_vs/browserLink - null null
+2024-12-05 21:17:08.692 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/_framework/aspnetcore-browser-refresh.js - 200 13752 application/javascript; charset=utf-8 58.578ms
+2024-12-05 21:17:09.708 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1028.9322ms
+2024-12-05 21:17:09.751 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/v1/swagger.json - null null
+2024-12-05 21:17:10.622 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 871.8484ms
+2024-12-05 21:17:48.434 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/api/Product?currentPage=1&pageSize=40 - null null
+2024-12-05 21:17:48.456 +05:30 [INF] Executing endpoint 'Crud.Api.Controllers.ProductController.GetAll (Crud.Api)'
+2024-12-05 21:17:48.485 +05:30 [INF] Route matched with {action = "GetAll", controller = "Product"}. Executing controller action with signature Crud.Api.Model.ResponsecPaginationModel`1[System.Collections.Generic.List`1[Crud.Api.Model.Product.ProductListModel]] GetAll(Int32, Int32, System.String) on controller Crud.Api.Controllers.ProductController (Crud.Api).
+2024-12-05 21:17:48.674 +05:30 [INF] Executing action method Crud.Api.Controllers.ProductController.GetAll (Crud.Api) - Validation state: "Valid"
+2024-12-05 21:17:51.608 +05:30 [INF] Information level log
+2024-12-05 21:17:56.970 +05:30 [INF] Executed action method Crud.Api.Controllers.ProductController.GetAll (Crud.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 8290.9203ms.
+2024-12-05 21:17:56.978 +05:30 [INF] Executing ObjectResult, writing value of type 'Crud.Api.Model.ResponsecPaginationModel`1[[System.Collections.Generic.List`1[[Crud.Api.Model.Product.ProductListModel, Crud.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-12-05 21:17:57.009 +05:30 [INF] Executed action Crud.Api.Controllers.ProductController.GetAll (Crud.Api) in 8517.492ms
+2024-12-05 21:17:57.013 +05:30 [INF] Executed endpoint 'Crud.Api.Controllers.ProductController.GetAll (Crud.Api)'
+2024-12-05 21:17:57.017 +05:30 [INF] HTTP GET /api/Product responded 200 in 8562.6348 ms
+2024-12-05 21:17:57.021 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/api/Product?currentPage=1&pageSize=40 - 200 null application/json; charset=utf-8 8587.144ms
+2024-12-05 21:22:05.744 +05:30 [INF] Now listening on: https://localhost:7059
+2024-12-05 21:22:05.786 +05:30 [INF] Now listening on: http://localhost:5079
+2024-12-05 21:22:05.792 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-12-05 21:22:05.794 +05:30 [INF] Hosting environment: Development
+2024-12-05 21:22:05.796 +05:30 [INF] Content root path: D:\Project2\e\CrudWithJQuery\Crud.Api
+2024-12-05 21:22:07.439 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/index.html - null null
+2024-12-05 21:22:07.778 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/index.html - 200 null text/html;charset=utf-8 348.0717ms
+2024-12-05 21:22:07.801 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/_framework/aspnetcore-browser-refresh.js - null null
+2024-12-05 21:22:07.801 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/index.js - null null
+2024-12-05 21:22:07.825 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/index.js - 200 null application/javascript;charset=utf-8 23.2794ms
+2024-12-05 21:22:07.900 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/_vs/browserLink - null null
+2024-12-05 21:22:07.917 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/_framework/aspnetcore-browser-refresh.js - 200 13752 application/javascript; charset=utf-8 116.8788ms
+2024-12-05 21:22:08.010 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/_vs/browserLink - 200 null text/javascript; charset=UTF-8 110.7683ms
+2024-12-05 21:22:08.075 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/swagger/v1/swagger.json - null null
+2024-12-05 21:22:08.387 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 312.3264ms
+2024-12-05 21:22:21.898 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/api/Product?currentPage=1&pageSize=40 - null null
+2024-12-05 21:22:21.912 +05:30 [INF] Executing endpoint 'Crud.Api.Controllers.ProductController.GetAll (Crud.Api)'
+2024-12-05 21:22:21.943 +05:30 [INF] Route matched with {action = "GetAll", controller = "Product"}. Executing controller action with signature Crud.Api.Model.ResponsecPaginationModel`1[System.Collections.Generic.List`1[Crud.Api.Model.Product.ProductListModel]] GetAll(Int32, Int32, System.String) on controller Crud.Api.Controllers.ProductController (Crud.Api).
+2024-12-05 21:22:22.172 +05:30 [INF] Executing action method Crud.Api.Controllers.ProductController.GetAll (Crud.Api) - Validation state: "Valid"
+2024-12-05 21:22:27.289 +05:30 [INF] Information level log
+2024-12-05 21:22:28.004 +05:30 [INF] Executed action method Crud.Api.Controllers.ProductController.GetAll (Crud.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 5827.7792ms.
+2024-12-05 21:22:28.017 +05:30 [INF] Executing ObjectResult, writing value of type 'Crud.Api.Model.ResponsecPaginationModel`1[[System.Collections.Generic.List`1[[Crud.Api.Model.Product.ProductListModel, Crud.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-12-05 21:22:28.047 +05:30 [INF] Executed action Crud.Api.Controllers.ProductController.GetAll (Crud.Api) in 6096.2008ms
+2024-12-05 21:22:28.051 +05:30 [INF] Executed endpoint 'Crud.Api.Controllers.ProductController.GetAll (Crud.Api)'
+2024-12-05 21:22:28.055 +05:30 [INF] HTTP GET /api/Product responded 200 in 6145.3765 ms
+2024-12-05 21:22:28.059 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/api/Product?currentPage=1&pageSize=40 - 200 null application/json; charset=utf-8 6160.9049ms
+2024-12-05 21:22:49.507 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7059/api/Product/2a22ea8b-d2b2-ef11-829e-d8c0a6429b5a - null null
+2024-12-05 21:22:49.527 +05:30 [INF] Executing endpoint 'Crud.Api.Controllers.ProductController.Get (Crud.Api)'
+2024-12-05 21:22:49.530 +05:30 [INF] Route matched with {action = "Get", controller = "Product"}. Executing controller action with signature Crud.Api.Model.ResponseModel`1[Crud.Api.Model.Product.ProductDetailModel] Get(System.Guid) on controller Crud.Api.Controllers.ProductController (Crud.Api).
+2024-12-05 21:22:49.552 +05:30 [INF] Executing action method Crud.Api.Controllers.ProductController.Get (Crud.Api) - Validation state: "Valid"
+2024-12-05 21:22:52.476 +05:30 [INF] Get product id:{@id}
+2024-12-05 21:22:52.700 +05:30 [INF] Executed action method Crud.Api.Controllers.ProductController.Get (Crud.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3144.3933ms.
+2024-12-05 21:22:52.703 +05:30 [INF] Executing ObjectResult, writing value of type 'Crud.Api.Model.ResponseModel`1[[Crud.Api.Model.Product.ProductDetailModel, Crud.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-12-05 21:22:52.712 +05:30 [INF] Executed action Crud.Api.Controllers.ProductController.Get (Crud.Api) in 3180.0016ms
+2024-12-05 21:22:52.715 +05:30 [INF] Executed endpoint 'Crud.Api.Controllers.ProductController.Get (Crud.Api)'
+2024-12-05 21:22:52.717 +05:30 [INF] HTTP GET /api/Product/2a22ea8b-d2b2-ef11-829e-d8c0a6429b5a responded 200 in 3190.7588 ms
+2024-12-05 21:22:52.721 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7059/api/Product/2a22ea8b-d2b2-ef11-829e-d8c0a6429b5a - 200 null application/json; charset=utf-8 3213.7924ms
