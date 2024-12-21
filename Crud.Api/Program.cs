@@ -13,9 +13,22 @@ using Crud.Service.ProductService;
 using Crud.Service.Service;
 using Crud.Service.Service.asset;
 using Crud.Service.Service.List;
+using Serilog;
+using Serilog.Core;
+using Serilog.Formatting.Compact;
 
 var builder = WebApplication.CreateBuilder(args);
+var levelSwitch = new LoggingLevelSwitch();
+Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console(new RenderedCompactJsonFormatter())
+                .WriteTo.Debug(outputTemplate: DateTime.Now.ToString())
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.Seq("http://localhost:5341/")
+                .CreateLogger();
 
+
+builder.Host.UseSerilog(); // Proper integration with ASP.NET Core Host
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -65,7 +78,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
-
+app.UseSerilogRequestLogging(); // Logs all HTTP requests
 app.UseAuthorization();
 
 app.MapControllers();
