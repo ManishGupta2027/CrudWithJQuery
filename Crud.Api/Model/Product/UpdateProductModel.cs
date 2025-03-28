@@ -1,14 +1,16 @@
-﻿namespace Crud.Api.Model.Product
+﻿using Crud.Api.Model.CommanModals;
+
+namespace Crud.Api.Model.Product
 {
     public class UpdateProductModel
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string StockCode { get; set; }
-        public decimal Price { get; set; }
-		public Guid? CategoryId { get; set; }
-		public Guid? BrandId { get; set; }
-		public string Gender { get; set; }
+
+        public BasicInfoModel BasicInfo { get; set; }
+        public IdentifierModel Identifier { get; set; }
+        public MediaModel? Media { get; set; }
+        public InventoryModel? Inventory { get; set; }
         public bool IsActive { get; set; }
     }
+    // Basic Information about the product
+   
 }

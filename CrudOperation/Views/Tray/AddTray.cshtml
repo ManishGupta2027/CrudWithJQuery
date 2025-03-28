@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Tray";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@section Breadcrumb{<li class="breadcrumb-item"><a href="@Url.Action("Index","Setting")">Settings</a></li><li class="breadcrumb-item"><a href="@Url.Action("Trays","Setting")">Trays</a></li>}
+    @section BreadcrumbActive {Add Tray}
+    @section ngController{ng-controller='trayCtrl as pm'}*@
+<div class="container-fluid" ng-controller="trayCtrl as pm">
+    <div class="row" ng-init="pm.initAddTray()">
+        <div class="col-sm-8 col-12 px-0 px-sm-2 float-left">
+            <div class="card card-box p-0">
+                <div class="card-header bg-white border-bottom">
+                    <div class="row">
+                        <div class="col-sm-8 col-12"><h3 class="font-18 font-weight-bold text-dark">New Tray</h3></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 col-12 form-group">
+                            <div class="form-group">
+                                <label class="mr-2">Name<span class="text-danger">*</span></label>
+                                <input class="form-control ng-pristine ng-untouched ng-valid" id="ItemText" name="ItemText" ng-model="pm.tray.Name" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-12 form-group">
+                            <label class="control-label">WareHouse<span class="text-danger">*</span></label>
+                            <select ng-model="pm.tray.DeliveryCenterId"
+                                    ng-options="w.recordId as w.code for w in pm.warehouses"
+                                    class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row botton-fixed-bottom">
+        <div class="col-sm-12 text-right">
+            <a href="@Url.Action("Trays","Tray")" class="btn btn-light">Cancel</a>
+            <button type="button" class="btn btn-success" ng-click="pm.saveTray()">Save</button>
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/Asset/js/directive/loader.js"></script>*@
+
+@*@section scripts{
+        @Scripts.Render("~/bundles/tray-js")
+    }*@

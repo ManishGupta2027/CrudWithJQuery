@@ -5,7 +5,9 @@ using Crud.Api.Model.Brand;
 using Crud.Api.Model.Product;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Brand;
+using Crud.Data.Entities.Category;
 using Crud.Service.BrandService;
+using Crud.Service.Service.asset;
 using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,25 +19,32 @@ namespace Crud.Api.Controllers
 	{
 		private IBrandService _brandService;
 		private readonly IMapper _mapper;
-        public BrandController(IBrandService brandService, IMapper mapper)
+		private readonly CloudinaryService  _cloudinaryService;
+		public BrandController(IBrandService brandService, IMapper mapper, CloudinaryService cloudinaryService)
         {
 			_mapper = mapper;
 			_brandService = brandService;
+			_cloudinaryService = cloudinaryService;
 
 		}
-
-        // GET: api/<BrandController>
+		/// <summary>
+		/// Get All Brands with pagination and search by Name
+		/// </summary>
+		/// <param name="currentPage"></param>
+		/// <param name="pageSize"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
         [HttpGet]
-		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40)
+		public ResponsecPaginationModel<List<BrandListModel>> GetAll(int currentPage, int pageSize = 40, string name=null)
 		{
 			var response = new ResponsecPaginationModel<List<BrandListModel>>();
-			var brandlist = _brandService.GetBrandList(currentPage, pageSize);
+			var brandlist = _brandService.GetBrandList(currentPage, pageSize,name);
 			var mappedBrandList = _mapper.Map<List<BrandListModel>>(brandlist);
 			// Prepare a successful response
 			response.Status = "Success";
 			response.StatusCode = (int)HttpStatusCode.OK; // Using HttpStatusCode
 			response.Result = mappedBrandList;
-			response.TotalRecords = brandlist[0].TotalRecords ?? 0;
+			response.TotalRecords = brandlist.Count() > 0 ? brandlist[0].TotalRecords ?? 0 :0;
 			response.CurrentPage = currentPage;
 			response.PageSize = pageSize;
 			return response;
@@ -102,15 +111,37 @@ namespace Crud.Api.Controllers
 		}
 
 		// PUT api/<BrandController>/5
-		[HttpPut]
-		public ResponseModel<BoolResponse> Put(UpdateBrandModel model)
+		[HttpPut("{id}")]
+		public ResponseModel<BoolResponse> Put(Guid id, UpdateBrandModel model)
 		{
 			var response = new ResponseModel<BoolResponse>();
 			try
 			{
+				model.Id = id;
 				response.ErrorDetails = new List<string>();
+				var brand = "Brand";
+				if (!string.IsNullOrEmpty(model.LogoBase64))
+				{
+					// Name like abc.jpg than abc
+					//var splitLogoName = model.LogoName.Split(".");
+					//string logoName = splitLogoName[0];
+					model.LogoUrl = _cloudinaryService.UploadImage(model.LogoBase64, $"{brand}/{model.LogoName}", "Store");
+				}
+				foreach (var item in model.Images)
+				{
+					if (!string.IsNullOrEmpty(item.Base64))
+					{
+						// Name like abc.jpg than abc
+						var splitFileName = item.Name.Split('.');
+						string name = splitFileName[0];
+						item.Url = _cloudinaryService.UploadImage(item.Base64, $"{brand}/{name}", "Store");
+					}
+
+				}
 				var mappedBrand = _mapper.Map<Brand>(model);
 				var result = _brandService.UpsertBrand(mappedBrand);
+				_brandService.BrandMedia(model.Id, mappedBrand.Images);
+
 				response.Status = "Success";
 				response.StatusCode = (int)HttpStatusCode.OK;
 				response.Result = result;	

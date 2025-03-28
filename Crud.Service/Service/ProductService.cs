@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Crud.Data.Entities;
 using Crud.Data.Entities.Product;
+using Crud.Data.Enums;
 using Crud.Data.Repository;
 
 namespace Crud.Service.ProductService
@@ -17,19 +18,19 @@ namespace Crud.Service.ProductService
 			_productRepository = productRepository;
 		}
 
-		public List<Product> GetProductList(int currentPage, int pageSize)
+		public List<Product> GetProductList(int currentPage, int pageSize, string name=null)
 		{
-			var res = _productRepository.GetProductList(currentPage, pageSize);
+			var res = _productRepository.GetProductList(currentPage, pageSize, name);
 			return res;
 		}
 
-		public Product GetProductById(Guid id)
+		public UpdateProduct GetProductById(Guid id)
 		{
 			return _productRepository.GetProductById(id);
 		}
-		public BoolResponse UpsertProduct(Product product)
+		public BoolResponse UpdateProduct(Guid id, UpdateProduct product)
 		{
-			return _productRepository.UpsertProduct(product);
+			return _productRepository.UpdateProduct(id,product);
 		}
 		public BoolResponse DeleteProduct(Guid id)
 		{
@@ -39,6 +40,10 @@ namespace Crud.Service.ProductService
 		{
 			var res = _productRepository.SaveProduct(product);
 			return res;
+		}
+		public BoolResponse UpdateProductStatus(Guid id, UpdateProductStatusModel model)
+		{
+			return _productRepository.UpdateProductStatus(id, model);
 		}
 	}
 }

@@ -31,13 +31,17 @@ namespace Crud.Service.BrandService
 		{
 			return _brandRepository.UpsertBrand(brand);
 		}
-		public List<Brand> GetBrandList(int currentPage, int pageSize) 
+		public List<Brand> GetBrandList(int currentPage, int pageSize, string name=null) 
 		{
-			return _brandRepository.GetBrandList(currentPage, pageSize);
+			return _brandRepository.GetBrandList(currentPage, pageSize, name);
 		}
 		public BoolResponse DeleteBrand(Guid id)
 		{ 
 			return _brandRepository.DeleteBrand(id);
+		}
+		public BoolResponse BrandMedia(Guid brandId, List<Image> model)
+		{
+			return _brandRepository.BrandMedia(brandId, model);
 		}
 	}
 }

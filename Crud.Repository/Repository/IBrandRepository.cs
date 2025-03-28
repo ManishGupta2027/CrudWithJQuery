@@ -13,7 +13,8 @@ namespace Crud.Data.Repository
 		BoolResponse SaveBrand(Brand brand);
 		Brand GetBrandById(Guid id);
 		BoolResponse UpsertBrand(Brand brand);
-		List<Brand> GetBrandList(int currentPage, int pageSize);
+		List<Brand> GetBrandList(int currentPage, int pageSize, string name=null);
 		BoolResponse DeleteBrand(Guid id);
+		BoolResponse BrandMedia(Guid brandId, List<Image> model);
 	}
 }
